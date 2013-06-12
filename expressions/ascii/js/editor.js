@@ -79,8 +79,6 @@ UT.Expression.ready(function(post) {
   }
 
   that.createImgCanvas = function(){
-    //that.canvas.css('width', that.postWidth);
-    //that.canvas.css('height', that.postHeight);
     that.canvas.get(0).width = that.postWidth;
     that.canvas.get(0).height = that.postHeight;
 
@@ -143,8 +141,6 @@ UT.Expression.ready(function(post) {
     var ii = new Image();
     ii.src = that.imageOverlay.url;
     ii.onload = function(){
-      //that.canvas.css('width', that.postWidth);
-      //that.canvas.css('height', that.postHeight);
       that.canvas.get(0).width = that.postWidth;
       that.canvas.get(0).height = that.postHeight;
       var imgCtx = that.canvas.get(0).getContext('2d');
@@ -163,7 +159,6 @@ UT.Expression.ready(function(post) {
 
 
   that.insertImage = function(data) {
-    //data.url = 'images/9.jpg';
     var ii = new UT.Image(data.url);
     ii.editable(function(data) {
       that.img = new Image();
