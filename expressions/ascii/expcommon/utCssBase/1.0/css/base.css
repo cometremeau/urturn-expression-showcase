@@ -1,0 +1,41 @@
+.container {
+  position: relative;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  font: 62.5%/1.4 normal Arial, Helvetica, sans-serif;
+}
+.mobile .container {
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+.container,
+.container div,
+.container span,
+.container textarea,
+.container header,
+.container footer {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.noSelect:not(input):not(textarea),
+.noSelectAll:not(input):not(textarea),
+.noSelectAll *:not(input):not(textarea) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

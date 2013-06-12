@@ -1,0 +1,33 @@
+input[type='text'] {
+  font-weight: normal;
+  text-indent: 0;
+  opacity: 1;
+  color: rgb(128,128,128);
+  height: 2.6667em;
+  
+  padding-left: 0.8333em;
+  padding-right: 0.8333em;
+
+  background-color: white;
+  border: 1px solid rgb(204,204,204);
+
+  border-radius: 4px;
+  
+  -webkit-transition: box-shadow .1s ease-in-out;
+     -moz-transition: box-shadow .1s ease-in-out;
+      -ms-transition: box-shadow .1s ease-in-out;
+       -o-transition: box-shadow .1s ease-in-out;
+          transition: box-shadow .1s ease-in-out;
+}
+
+input[type='text'].huge,
+input[type='search'].huge {
+  font-size: 1.5em; 
+}
+
+input[type='text']:focus {
+  outline: none;
+  color: rgb(71,71,71);
+  border-color: rgb(128,128,128);
+  box-shadow: 0 0 5px rgb(152,152,152);
+}

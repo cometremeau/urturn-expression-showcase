@@ -1,0 +1,238 @@
+/********************************************************************************
+ * main box
+ ********************************************************************************/
+.utImagePanel {
+  visibility: visible;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+.utImagePanel.utImagePanel_full {
+  background-color: white;
+}
+
+.utImagePanel .utImagePanel_darkLayer {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+.utImagePanel.utImagePanel_dark .utImagePanel_darkLayer {
+  opacity: 1;
+}
+
+/********************************************************************************
+ * buttons (common styles)
+ ********************************************************************************/
+.utImagePanel .add_image_button {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: 11em;
+  height: 4em;
+  line-height: 4em;
+  margin: -1.75em 0 0 -5.5em;
+  border-radius: .4em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 20000000;
+
+  -webkit-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+  -webkit-transform: rotateZ(0);
+  transform: rotateZ(0);
+}
+
+.utImagePanel .add_image_button.add {
+  opacity: 1;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.utImagePanel.mobile .add_image_button.add {
+  width: 7em;
+  margin-left: -3.5em;
+}
+
+.utImagePanel .add_image_button.edit {
+  display: none;
+  left: 1.3em;
+  top: 1.3em;
+  width: 11.3em;
+  height: 4em;
+  line-height: 4em;
+  overflow: visible;
+  margin: 0;
+  color: white;
+  text-align: center;
+}
+
+/* bold for text in 'Add' and 'Edit' button */
+.utImagePanel .add_image_button.add > span,
+.utImagePanel .add_image_button.edit > div.edit > span {
+  font-weight: bold;
+}
+
+
+
+.utImagePanel .add_image_button.edit > div.edit {
+  display: inline-block;
+  width: 7.3em;
+  height: 100%;
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: .4em 0  0 .4em;
+  border-right: 1px solid rgba(255,255,255,0.25);
+  -webkit-transition: all .2s ease-in-out;
+  transition:         all .2s ease-in-out;
+}
+
+.utImagePanel .add_image_button.edit > div.edit::after{
+  border: 0.8em solid transparent;
+  position: absolute;
+  bottom: -1.6em;
+  left: 1.6em;
+  width: 0px;
+  height: 0px;
+  border-color: transparent;
+  border-top-color: rgba(0, 0, 0, 0.6);
+  content: '';
+  -webkit-transition: all .2s ease-in-out;
+  transition:         all .2s ease-in-out;
+}
+
+
+.utImagePanel .add_image_button.edit > div.remove {
+  display: inline-block;
+  width: 4em;
+  height: 100%;
+  box-shadow: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 .4em .4em 0;
+  -webkit-transition: all .2s ease-in-out;
+  transition:         all .2s ease-in-out;
+}
+
+.utImagePanel .add_image_button > div.edit:hover,
+.utImagePanel .add_image_button > div.remove:hover{
+  background-color: rgba(0,0,0,1);
+  -webkit-transition: all .2s ease-in-out;
+  transition:         all .2s ease-in-out;
+}
+
+.utImagePanel .add_image_button > div.edit:hover::after {
+  border-top-color: rgba(0,0,0,1);
+  -webkit-transition: all .2s ease-in-out;
+  transition:         all .2s ease-in-out;
+}
+
+.utImagePanel .add_image_button.add > span,
+.utImagePanel .add_image_button > div.edit > span,
+.utImagePanel .add_image_button > div.remove > span {
+  font-size: 1.5em;
+  vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+/* hide in view mode */
+.utImagePanel.utImagePanel_view .add_image_button,
+.utImagePanel.loading .add_image_button{
+  display: none !important;
+}
+
+.utImagePanel.utImagePanel_focus .add_image_button {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.utImagePanel.utImagePanel_full .add_image_button.add {
+  display: none;
+}
+
+.utImagePanel.utImagePanel_full .add_image_button.edit {
+  display: block;
+}
+
+
+/* FAST FIX !!!!!!!!!!!!!!!!!!!! (facepalm) AAAAA urgent RELEASEE!!!*/
+
+.utImagePanel .add_image_button.add {
+  width: 11em;
+  height: 4em;
+  line-height: 4em;
+  margin: -1.75em 0 0 -5.5em;
+  border-radius: .4em;
+}
+
+.utImagePanel .add_image_button.add span.icon_camera{
+  font-size: 3em;
+}
+
+.utImagePanel .add_image_button.add {
+  width: 10em;
+  height: 10em;
+  line-height: 1.6em;
+  margin: -5em 0 0 -5em;
+  padding: 1em;
+}
+
+/* FAST FIX !!!!!!!!!!!!!!!!!!!! (facepalm) AAAAA urgent RELEASEE!!!*/
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************************************************************
+ * view mode
+ ********************************************************************************/
+.utImagePanel.utImagePanel_view {
+  background-color: transparent;
+}
+
+.utImagePanel:not(.utImagePanel_focus) .add_image_button.edit {
+  opacity: 0;
+}
+
+/********************************************************************************
+ * loading
+ ********************************************************************************/
+.utImagePanel_loading{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20000001;
+  background-color: rgba(25,25,25,1);
+}

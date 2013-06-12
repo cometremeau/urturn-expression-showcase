@@ -1,0 +1,1 @@
+grunt custom:-ajax,-wrap,-event-alias,-effects,-deprecated

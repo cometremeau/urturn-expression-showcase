@@ -1,0 +1,34 @@
+{
+  "title":"ascii",
+  "description": "ascii",
+  "system_name":"ascii",
+  "version":"1.1.33",
+  "static_view": true,
+  "offline_support": true,
+  "api_version": "0.8.0",
+  "assets":[
+    "images/add_picture_new.png",
+    "images/pixelate_new.png",
+    "expcommon/utSplashScreen/1.1/images/arrow1_x1.png",
+    "expcommon/utSplashScreen/1.1/images/arrow1_x2.png",
+    "expcommon/utSplashScreen/1.1/images/arrow2_x1.png",
+    "expcommon/utSplashScreen/1.1/images/arrow2_x2.png"
+  ],
+  "dependencies":[
+    {                    "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.js"},
+    {                    "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.ex.js"},
+    {"context":"editor", "type":"javascript", "path":"expcommon/jquery/2.0/js/utils.js"},
+    {"context":"editor", "type":"javascript", "path":"expcommon/jquery/2.0/js/utils.js"},
+    {"context":"editor", "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.touchScroll.js"},
+
+    {                    "type":"stylesheet", "path":"expcommon/utCssBase/2.1/css/style_full.css"},
+
+    {                    "type":"stylesheet", "path":"css/common.css"},
+    {"context":"editor", "type":"stylesheet", "path":"css/editor.css"},
+    {"context":"player", "type":"stylesheet", "path":"css/player.css"},
+
+    {"context":"editor", "type":"javascript", "path":"js/ascii.js"},
+    {"context":"editor", "type":"javascript", "path":"js/editor.js"},
+    {"context":"player", "type":"javascript", "path":"js/player.js"}
+  ]
+}
