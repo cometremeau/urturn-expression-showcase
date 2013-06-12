@@ -1,4 +1,5 @@
 UT.Expression.ready(function(post) {
+  "use strict";
   var that = {};
 
   var element = $(post.node);
@@ -20,7 +21,7 @@ UT.Expression.ready(function(post) {
             .css('width',style.width)
             .css('height',style.height);
 
-  var scale = parseInt($(post.node).width()) / parseInt(that.asciiContainer.width());
+  var scale = parseInt($(post.node).width(),10) / parseInt(that.asciiContainer.width(),10);
 
   that.asciiContainer.css("WebkitTransform", 'scale(' + scale + ')')
     .css("Moztransform", 'scale(' + scale + ')')
@@ -33,7 +34,7 @@ UT.Expression.ready(function(post) {
     that.asciiContainer.css('visibility','visible');
   });
 
-  post.resize({height:that.asciiContainer.height()*scale})
+  post.resize({height:that.asciiContainer.height()*scale});
 
   return that;
 });

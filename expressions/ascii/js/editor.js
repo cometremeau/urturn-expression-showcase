@@ -1,4 +1,5 @@
 UT.Expression.ready(function(post) {
+  "use strict";
   var that = {};
 
   that.ASCIIStyles = post.storage.ASCIIStyles || null;
@@ -7,8 +8,7 @@ UT.Expression.ready(function(post) {
 
   var element = $(post.node);
 
-  that.container = $("<div>").addClass("container").appendTo(element);
-  that.desc = $("<div>").addClass("desc").appendTo(that.container);
+  that.desc = $("<div>").addClass("desc").appendTo(element);
   that.canvas = $("<canvas id='canvas'>").appendTo(that.desc);
   that.asciiContainer = $("<pre>").addClass("ascii").appendTo(that.desc);
 
@@ -21,7 +21,7 @@ UT.Expression.ready(function(post) {
   that.showImageDialog = function() {
     post.dialog('image', {size: { width: 576, height: false, flexRatio: true, autoCrop: true }}, function(data, error) {
       if (error) {return;}
-      if (data) that.insertImage(data);
+      if (data) {that.insertImage(data);}
     });
   };
 
@@ -33,23 +33,23 @@ UT.Expression.ready(function(post) {
       .css('letter-spacing', ASCIIStyles.letterSpacing)
       .css('width', ASCIIStyles.width)
       .css('height', ASCIIStyles.height);
-  }
+  };
 
   that.scaleASCII = function() {
-    that.scale = parseInt($(post.node).width()) / parseInt(that.asciiContainer.width());
+    that.scale = parseInt($(post.node).width(),10) / parseInt(that.asciiContainer.width(),10);
     that.asciiContainer
       .css("WebkitTransform", 'scale(' + that.scale + ')')
       .css("Moztransform", 'scale(' + that.scale + ')')
       .css("msTransform", 'scale(' + that.scale + ')')
       .css("OTransform", 'scale(' + that.scale + ')')
       .css("transform", 'scale(' + that.scale + ')');
-  }
+  };
 
 
   that.setASCIIMap = function(ASCIIMap) {
     that.ASCIIMap = ASCIIMap;
     that.asciiContainer.html(ASCIIMap);
-  }
+  };
 
   that.createGrdCanvas = function(){
     var grdCanvas = document.createElement("canvas");
@@ -63,20 +63,20 @@ UT.Expression.ready(function(post) {
     var grd = grdCtx.createLinearGradient(0, 0, that.postWidth, 0);
 
     grd.addColorStop(0, 'transparent');
-    grd.addColorStop(.4, 'transparent');
-    grd.addColorStop(.6, '#000');
+    grd.addColorStop(0.4, 'transparent');
+    grd.addColorStop(0.6, '#000');
     grd.addColorStop(1, '#000');
 
     grdCtx.fillStyle = grd;
     grdCtx.fill();
 
     return grdCtx;
-  }
+  };
 
   that.updateSize = function(){
-    that.postWidth = $(post.node).width(),
+    that.postWidth = $(post.node).width();
     that.postHeight = $(post.node).height();
-  }
+  };
 
   that.createImgCanvas = function(){
     that.canvas.get(0).width = that.postWidth;
@@ -86,7 +86,7 @@ UT.Expression.ready(function(post) {
     imgCtx.drawImage(that.img, 0, 0, that.postWidth, that.postHeight);
 
     return imgCtx;
-  }
+  };
 
   that.createImageOverlay = function() {
     var imgCtx = that.createImgCanvas();
@@ -107,7 +107,7 @@ UT.Expression.ready(function(post) {
 
     imgCtx.putImageData(imgData, 0, 0);
     that.imageOverlay = new UT.Image(document.getElementById('canvas').toDataURL());
-  }
+  };
 
   that.saveData = function() {
     post.storage.ASCIIStyles = that.ASCIIStyles;
@@ -118,7 +118,7 @@ UT.Expression.ready(function(post) {
     var res = that.ASCIIStyles && that.ASCIIMap && that.imageOverlay;
 
     post.valid(res);
-  }
+  };
 
   that.clear = function(){
     that.ASCIIStyles = null;
@@ -133,7 +133,7 @@ UT.Expression.ready(function(post) {
     
     that.updateSize();
     that.showImageDialog();
-  }
+  };
 
   that.setBackground = function(){
     that.updateSize();
@@ -145,17 +145,17 @@ UT.Expression.ready(function(post) {
       that.canvas.get(0).height = that.postHeight;
       var imgCtx = that.canvas.get(0).getContext('2d');
       imgCtx.drawImage(ii, 0, 0, that.postWidth, that.postHeight);
-    }
+    };
     that.saveData();
-  }
+  };
 
   that.createBackground = function(){
     that.updateSize();
     that.scaleASCII();
     that.asciiContainer.css('visibility', 'visible');
-    that.createImageOverlay()
+    that.createImageOverlay();
     that.saveData();
-  }
+  };
 
 
   that.insertImage = function(data) {
@@ -170,15 +170,12 @@ UT.Expression.ready(function(post) {
           that.setASCIIStyles(ASCIIStyles);
           that.setASCIIMap(ASCIIMap);
           that.scaleASCII();
-          post.on('resize', function() {
-            post.off('resize');
-            post.on('resize', that.scaleASCII);
-            that.createBackground();
-          });
-          if(that.postHeight == parseInt(that.asciiContainer.height() * that.scale)){
+          if(that.postHeight === parseInt(that.asciiContainer.height() * that.scale, 10)){
             that.createBackground();
           }else{
-            post.resize({height:that.asciiContainer.height() * that.scale})
+            post.size({height:that.asciiContainer.height() * that.scale},function(){
+              that.createBackground();
+            });
           }
         });
       };
@@ -197,15 +194,12 @@ UT.Expression.ready(function(post) {
     that.setASCIIStyles(that.ASCIIStyles);
     that.setASCIIMap(that.ASCIIMap);
     that.scaleASCII();
-    post.on('resize', function() {
-      post.off('resize');
-      post.on('resize', that.scaleASCII);
-      that.setBackground();
-    });
-    if(that.postHeight == parseInt(that.asciiContainer.height() * that.scale)){
+    if(that.postHeight === parseInt(that.asciiContainer.height() * that.scale, 10)){
       that.setBackground();
     }else{
-      post.resize({height:that.asciiContainer.height() * that.scale})
+      post.size({height:that.asciiContainer.height() * that.scale},function(){
+        that.setBackground();
+      });
     }
   } else {
     that.showImageDialog();
