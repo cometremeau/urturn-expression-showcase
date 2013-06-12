@@ -3,15 +3,13 @@ UT.Expression.ready(function(post) {
 
   that.view = {
     desc: jQuery("#desc"),
-    image: jQuery('#image'),
-    cover: jQuery('#cover')
+    image: jQuery('#image')
   };
 
   that.data = post.storage;
 
   post.on('resize',function(){
-    console.log(that.data.image)
-    that.view.image[0].src = that.data.image.url;
+    that.view.image.utImage();
     that.view.desc.show();
   })
 
