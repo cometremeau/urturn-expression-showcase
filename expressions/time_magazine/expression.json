@@ -1,0 +1,22 @@
+{
+  "title": "Time Magazine",
+  "description": "Time Magazine",
+  "system_name": "time_magazine",
+  "version": "1.1.10",
+  "admins": [ "yury" ],
+  "offline_support": true,
+  "api_version": "0.9.0-alpha9",
+  "platform": [ "desktop", "ios", "bookmarklet" ],
+  "assets": [],
+  "dependencies": [
+    {"path": "components/urturn-expression-css/css/styles.css" },
+    {"path": "components/jquery/jquery.js" },
+    {"path": "components/jquery.ut-image/jquery.ut-image.js" },
+    {"path": "components/jquery.ut-image/jquery.ut-image.css" },
+
+    {                    "type":"stylesheet", "path":"css/common.css"},
+
+    {"context":"editor", "type":"javascript", "path":"js/editor.js"},
+    {"context":"player", "type":"javascript", "path":"js/player.js"}
+  ]
+}
