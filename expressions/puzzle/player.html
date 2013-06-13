@@ -77,6 +77,9 @@
     }
     renderGame();
     post.users('current', function(user){
+      if (!user) {
+        return;
+      }
       USERNAME = user.username;
       AVATAR = user.avatar();
     })
