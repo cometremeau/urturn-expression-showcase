@@ -1,0 +1,13 @@
+{
+  "name": "jquery.ut-text",
+  "version": "0.1.0",
+  "dependencies": {
+    "jquery": ">=2.0.0",
+    "urturn-expression-css": "*"
+  },
+  "includes": [],
+  "main": [
+    "jquery.ut-text.js",
+    "jquery.ut-text.css"
+  ]
+}

@@ -1,0 +1,67 @@
+.ut-text {
+  display: inline-block;
+}
+
+.ut-text-flex {
+  width: 100%;
+}
+
+.ut-text-content {
+  width: auto;
+  white-space: pre-line;
+}
+
+.ut-text-content[data-placeholder]:not([data-div-placeholder-content]):before {
+    position: absolute;
+    margin-left: 2px;
+    color: rgba(70,70,70,0.5);
+
+    content: attr(data-placeholder);
+
+    font-style: italic;
+    font-size: 24px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.ut-text-content[data-placeholder]:not([data-div-placeholder-content]) {
+  color: rgb(30,30,30);
+}
+
+.ut-text-content {
+  padding: 10px;
+  outline: none;
+  background-color: rgba(247,247,247,0);
+  color: rgb(70,70,70);
+  text-align: left;
+  font-size: 24px;
+
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.ut-text-fixed .ut-text-content {
+  /*  overflow: hidden; */
+}
+
+.ut-text .ut-text-countdown {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+.ut-text .ut-text-countdown-max {
+  background-color:rgba(172,15,0,0.5);
+}
+
+.ut-image .ut-text-content {
+  margin: 5px;
+  background-color: rgba(0,0,0,0.5);
+  color: rgb(255,255,255);
+}
+
+.ut-text-content::-moz-selection {
+  background-color: rgba(90,185,245,0.5);
+}
+
+.ut-text-content::selection {
+  background-color: rgba(90,185,245,0.5);
+}

@@ -1,0 +1,65 @@
+@font-face {
+    font-family: 'antonregular';
+    src: url('../fonts/anton/anton-webfont.eot');
+    src: url('../fonts/anton/anton-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/anton/anton-webfont.woff') format('woff'),
+         url('../fonts/anton/anton-webfont.ttf') format('truetype'),
+         url('../fonts/anton/anton-webfont.svg#antonregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+header,
+footer {
+  position: absolute;
+  width: 100%;
+  z-index: 3;
+  max-height: 33%;
+  min-height: 20%;
+}
+
+.ut-text-countdown {
+  display: none;
+}
+
+.ut-text-fixed .ut-text-content {
+  text-align: center;
+  font-family: 'antonregular';
+  color: white;
+  text-transform:uppercase;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: inherit;
+  line-height: inherit;
+  display:block;
+  overflow: visible;
+}
+
+header {
+  top: 20px;
+}
+
+header .ut-text-content {
+  padding: 0 10px 0 10px;
+  vertical-align:top;
+}
+
+footer {
+  bottom: 20px;
+}
+
+footer .ut-text-content {
+  padding: 0 10px 0 10px;
+  vertical-align:bottom;
+}
+
+.ut-text-content[data-placeholder]:not([data-div-placeholder-content]):before {
+  left: 0;
+  text-align: center;
+  width: 100%;
+  color: rgba(255,255,255,0.7);
+  content: attr(data-placeholder);
+  font-style: inherit;
+  font-size: 72px;
+  font-family: inherit;
+}

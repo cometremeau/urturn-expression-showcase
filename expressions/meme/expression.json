@@ -1,0 +1,24 @@
+{
+  "title": "MEME Generator",
+  "description": "Yet another one",
+  "system_name": "meme",
+  "version": "0.0.92",
+  "api_version": "0.8.3",
+  "platform": [
+    "desktop",
+    "ios"
+  ],
+  "dependencies": [
+    { "path": "lib/jquery/jquery.js" },
+    { "path": "lib/urturn-expression-css/css/styles.css" },
+
+    { "path": "lib/jquery.ut-text/jquery.ut-text.js"},
+    { "path": "lib/jquery.ut-text/jquery.ut-text.css"},
+    { "path": "lib/jquery.ut-image-panel/jquery.ut-image.js"},
+    { "path": "lib/jquery.ut-image-panel/jquery.ut-image.css"},
+
+
+    { "path": "js/editor.js"},
+    { "path": "css/exp.css"}
+  ]
+}
