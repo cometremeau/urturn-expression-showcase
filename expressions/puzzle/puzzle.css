@@ -1,0 +1,104 @@
+/**
+ * Describe your expression styles below.
+ *
+ * /!\ IMPORTANT NOTE
+ * Do not use #id selector as your expression markup can be displayed multiple time
+ * in the same HTML page. Use .class selectors instead.
+ */
+
+@font-face {
+    font-family: 'Cooper Heavy';
+    src: url('assets/cooprblk-webfont.eot');
+    src: url('assets/cooprblk-webfont.eot?#iefix') format('embedded-opentype'),
+         url('assets/cooprblk-webfont.woff') format('woff'),
+         url('assets/cooprblk-webfont.ttf') format('truetype'),
+         url('assets/cooprblk-webfont.svg#cooperheavy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	font-family: 'Cooper Heavy';
+	width : 100%;
+	margin : 0px;
+	padding : 0px;
+}
+
+.box {
+	background-color : #fafafa;
+	border-radius : 4px;
+	box-shadow : 1px 1px 1px #aaa;
+	padding : 0px
+}
+
+.tutorial
+{
+	padding : 20px;
+	text-align: center;
+}
+
+.btn {
+	font-family: 'Cooper Heavy';
+	border-radius : 4px;
+	border : 1px solid #888;
+}
+
+.big {
+	font-size : 25px;
+	width : 80%;
+	height : 50px;
+}
+
+.success {
+	background-color : #b5061b;
+	color : #fff;
+	text-shadow : 1px 1px 1px #666;
+	letter-spacing: 2px;
+}
+
+.tutorial img {
+	border-radius : 4px;
+	box-shadow : 1px 1px 1px #aaa;
+}
+
+.bottomButton {
+	float : right;
+	height : 40px;
+	text-align : center;
+	font-size : 30px;
+	padding : 3px;
+}
+
+
+.bottomButtonr {
+	float : left;
+	height : 40px;
+	text-align : center;
+	font-size : 30px;
+	padding : 3px;
+}
+
+#scores {
+	margin : 0px;
+	padding : 0px;
+	height : 40px;
+	width : 100%;
+	margin-top : -4px;
+	overflow : hidden;
+	letter-spacing: 2px;
+}
+
+#highscores {
+	margin : 0px;
+	padding : 0px;
+	height : 40px;
+	width : 100%;
+	margin-top : -4px;
+	overflow : hidden;
+	letter-spacing: 2px;
+}
+
+#c {
+	padding : 0px;
+	margin : 0px;
+}
