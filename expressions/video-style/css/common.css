@@ -1,0 +1,573 @@
+/********************************************************************************
+ * fonts
+ ********************************************************************************/
+@font-face {
+  font-family: 'Roboto';
+  src: url('Roboto-Regular.eot'); /* IE9 Compat Modes */
+  src: url('Roboto-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('Roboto-Regular.woff') format('woff'), /* Modern Browsers */
+  url('Roboto-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('Roboto-Regular.svg#f4ba68a9596ca53347cecdb9c6e48d01') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+/********************************************************************************
+* container styles
+********************************************************************************/
+.container {
+  visibility: hidden;
+  opacity: 0;
+}
+.container.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /*background-color: rgb(70,70,70);*/
+  overflow: hidden;
+  font-size: 10px;
+}
+
+/********************************************************************************
+ * video element styles
+ ********************************************************************************/
+.video_element {
+  position: absolute;
+  overflow: visible;
+
+  /* turn on 3D accelerate*/
+  -webkit-transform: rotateZ(0);
+  -moz-transform: rotateZ(0);
+  -ms-transform: rotateZ(0);
+  -o-transform: rotateZ(0);
+  transform: rotateZ(0);
+  background-size: 100% 100%;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.video_element .video {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50,50,50,1);
+  box-shadow: 0 0 5px rgba(0,0,0,1) inset;
+  color: #f00;
+}
+a, a:hover, a:active {
+  text-decoration: none;
+}
+
+/**
+ * design styles
+ */
+
+/******************** design 1 ********************/
+.video_element.video1 {
+  padding: 4em 15.3em 4.1em 4em;
+  overflow: hidden;
+  background-image: url(../images/frame1_desktop.png);
+}
+
+.video_element.video1 .video {}
+
+.video_element.video1 #videoPlayer {
+  overflow: hidden;
+}
+
+/* buttons */
+
+.video_element.video1 .play,
+.video_element.video1 .pause {
+  position: absolute;
+  left: 45.1em;
+  top: 3.4em;
+  width: 5.5em;
+  height: 3.9em;
+  background-image: url(../images/frame1_button_normal.png);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.video_element.video1 .pause {
+  left: 50.6em;
+}
+
+.playing .video_element.video1 .play {
+  background-image: url(../images/frame1_button_active.png);
+}
+
+.paused .video_element.video1 .pause {
+  background-image: url(../images/frame1_button_active.png);
+}
+
+.video_element.video1 .play:hover,
+.video_element.video1 .pause:hover {
+  background-image: url(../images/frame1_button_hover.png);
+}
+
+/* texts */
+
+.video_element.video1 .text-play,
+.video_element.video1 .text-pause {
+  position: absolute;
+  display: block;
+  left: 45.1em;
+  top: 7.4em;
+  width: 5.5em;
+
+  font-family: "Roboto";
+  font-weight: normal;
+  text-align: center;
+  color: #7D7E81;
+}
+.video_element.video1 .text-pause {
+  left: 50.6em;
+}
+
+.video_element.video1 .text-play > span,
+.video_element.video1 .text-pause > span {
+  font-size: 12px;
+}
+
+.video_element.video1 .play-pause {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .video_element.video1 {
+    padding: 1.8em 7.8em 1.8em 1.8em;
+    background-image: url(../images/frame1_mobile@2x.png);
+    /*background-image: url(../images/frame1_mobile.png);*/
+  }
+
+  .video_element.video1 .play,
+  .video_element.video1 .pause {
+    left: 25.8em;
+    top: 1.4em;
+    width: 5.5em;
+    height: 3.9em;
+    background-image: url(../images/frame1_button_normal@2x.png);
+  }
+  .video_element.video1 .pause {
+    top: 7.3em;
+  }
+
+  .video_element.video1 .play:hover,
+  .video_element.video1 .pause:hover {
+    background-image: url(../images/frame1_button_hover@2x.png);
+  }
+
+  .playing .video_element.video1 .play {
+    background-image: url(../images/frame1_button_active@2x.png);
+  }
+
+  .paused .video_element.video1 .pause {
+    background-image: url(../images/frame1_button_active@2x.png);
+  }
+
+  .video_element.video1 .text-play,
+  .video_element.video1 .text-pause {
+    left: 25.8em;
+    top: 5.4em;
+    width: 5.5em;
+  }
+
+  .video_element.video1 .text-pause {
+    top: 11.3em;
+  }
+}
+
+/******************** design 2 ********************/
+.video_element.video2 {
+  padding: 5em 5em 13em 5em;
+  overflow: hidden;
+  background-image: url(../images/frame2_desktop.png);
+}
+
+.video_element.video2 .video {}
+
+.video_element.video2 #videoPlayer {
+  overflow: hidden;
+}
+
+.video_element.video2 .play-pause {
+  position: absolute;
+  left: 26.2em;
+  top: 38.7em;
+  width: 5.2em;
+  height: 5.3em;
+  background-image: url(../images/frame2_button_normal.png);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -ms-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+  -webkit-transition: -webkit-transform .3s linear;
+  -moz-transition: -moz-transform .3s linear;
+  -ms-transition: -ms-transform .3s linear;
+  -o-transition: -o-transform .3s linear;
+  transition: transform .3s linear;
+}
+
+.video_element.video2 .play-pause:hover {
+  background-image: url(../images/frame2_button_hover.png);
+}
+
+.playing .video_element.video2 .play-pause {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* texts */
+
+.video_element.video2 .text-play,
+.video_element.video2 .text-pause {
+  position: absolute;
+  display: block;
+  left: 22.0em;
+  top: 44.5em;
+  width: 5.5em;
+
+  font-family: "Roboto";
+  font-weight: normal;
+  text-align: center;
+  color: #DCDCDC;
+}
+.video_element.video2 .text-pause {
+  left: 30.0em;
+}
+
+.video_element.video2 .text-play > span,
+.video_element.video2 .text-pause > span {
+  font-size: 14px;
+}
+
+.video_element.video2 .play,
+.video_element.video2 .pause {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+
+  .video_element.video2 {
+    padding: 3em 3em 7.1em 3em;
+    /*background-image: url(../images/frame2_mobile@2x.png);*/
+    background-image: url(../images/frame2_mobile.png);
+  }
+
+  .video_element.video2 .play-pause {
+    left: 13.5em;
+    top: 20.5em;
+    width: 5.2em;
+    height: 5.2em;
+    background-image: url(../images/frame2_button_normal@2x.png);
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
+  }
+
+  .video_element.video2 .play-pause:hover {
+    background-image: url(../images/frame2_button_hover@2x.png);
+  }
+
+  .playing .video_element.video2 .play-pause {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .video_element.video2 .text-play,
+  .video_element.video2 .text-pause {
+    left: 9.3em;
+    top: 22.1em;
+    width: auto;
+  }
+
+  .video_element.video2 .text-pause {
+    left: 19.3em;
+  }
+}
+
+/******************** design 3 ********************/
+.video_element.video3 {
+  padding: 2em 17.2em 2em 2em;
+  overflow: hidden;
+  background-image: url(../images/frame3_desktop.png);
+}
+
+.video_element.video3 .video {}
+
+.video_element.video3 #videoPlayer {
+  overflow: hidden;
+}
+
+.video_element.video3 .play,
+.video_element.video3 .pause {
+  position: absolute;
+  left: 43.5em;
+  top: 3.1em;
+  width: 11.0em;
+  height: 3.0em;
+  z-index: 1;
+}
+
+.video_element.video3 .pause {
+  top: 26.2em;
+}
+
+.video_element.video3 .play:before,
+.video_element.video3 .pause:before {
+  display: block;
+  font-family: "Roboto";
+  font-weight: normal;
+  text-align: center;
+  color: #B4B4B4;
+  text-align: center;
+  font-size: 1.8em;
+}
+
+.video_element.video3 .play:before {
+  content: "PLAY";
+}
+
+.video_element.video3 .pause:before {
+  content: "PAUSE";
+}
+
+.video_element.video3 .play:hover:before,
+.video_element.video3 .pause:hover:before {
+  color: #ffffff;
+}
+
+.playing .video_element.video3 .play:before,
+.paused .video_element.video3 .pause:before {
+  color: #14161A;
+}
+
+.video_element.video3 .play-pause {
+  position: absolute;
+  left: 44.4em;
+  top: 22.1em;
+  width: 9.3em;
+  height: 4.2em;
+  background-image: url(../images/frame3_button_normal.png);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: top .4s linear;
+  -moz-transition: top .4s linear;
+  -ms-transition: top .4s linear;
+  -o-transition: top .4s linear;
+  transition: top .4s linear;
+}
+
+.video_element.video3 .play-pause:hover {
+  background-image: url(../images/frame3_button_hover.png);
+}
+.playing .video_element.video3 .play-pause {
+  top: 6.5em;
+}
+
+/* texts */
+
+.video_element.video3 .text-play,
+.video_element.video3 .text-pause {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .mobile .video_element.video3 {
+    padding: .7em 8.7em .7em .7em;
+    background-image: url(../images/frame3_mobile.png);
+  }
+
+  .mobile .video_element.video3 .play,
+  .mobile .video_element.video3 .pause {
+    left: 24.5em;
+    top: 1.2em;
+    width: 6.3em;
+  }
+
+  .mobile .video_element.video3 .pause {
+    top: 14.4em;
+  }
+
+  .video_element.video3 .play-pause {
+    background-image: url(../images/frame3_button_mobile.png);
+    left: 23.8em;
+    top: 10.4em;
+    width: 7.3em;
+    height: 4.2em;
+  }
+  .video_element.video3 .play-pause:hover {
+    background-image: url(../images/frame3_button_mobile.png);
+  }
+
+  .video_element.video3 .play:before,
+  .video_element.video3 .pause:before {
+    font-size: 1.4em;
+  }
+
+  .playing .video_element.video3 .play-pause {
+    top: 3.6em;
+  }
+}
+
+/******************** design 4 ********************/
+.video_element.video4 {
+  padding: 5em 5em 13.4em 5em;
+  overflow: hidden;
+  background-image: url(../images/frame4_desktop.png);
+}
+
+.video_element.video4 .video {}
+
+.video_element.video4 #videoPlayer {
+  overflow: hidden;
+}
+
+/* buttons */
+
+.video_element.video4 .play,
+.video_element.video4 .pause {
+  position: absolute;
+  left: 17.5em;
+  top: 39.7em;
+  width: 6em;
+  height: 3em;
+  z-index: 1;
+}
+
+.video_element.video4 .pause {
+  left: 34.4em;
+}
+
+.video_element.video4 .play:before,
+.video_element.video4 .pause:before {
+  display: block;
+  font-family: "Roboto";
+  font-weight: normal;
+  text-align: center;
+  color: #B4B4B4;
+  text-align: center;
+  font-size: 1.8em;
+}
+
+.video_element.video4 .play:hover:before,
+.video_element.video4 .pause:hover:before {
+  color: #5AB9F5;
+}
+
+.playing .video_element.video4 .play:before,
+.paused .video_element.video4 .pause:before {
+  color: #464646;
+}
+
+.video_element.video4 .play:before {
+  content: "PLAY";
+}
+
+.video_element.video4 .pause:before {
+  content: "PAUSE";
+}
+
+.video_element.video4 .play-pause {
+  position: absolute;
+  left: 28.3em;
+  top: 38.7em;
+  width: 4em;
+  height: 4em;
+  background-image: url(../images/frame4_button_normal.png);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: left .4s linear;
+  -moz-transition: left .4s linear;
+  -ms-transition: left .4s linear;
+  -o-transition: left .4s linear;
+  transition: left .4s linear;
+}
+
+.video_element.video4 .play-pause:hover {
+  background-image: url(../images/frame4_button_hover.png);
+}
+
+.playing .video_element.video4 .play-pause {
+  left: 25.3em;
+}
+
+/* text */
+.video_element.video4 .text-play,
+.video_element.video4 .text-pause {
+  display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .video_element.video4 {
+    padding: 2.5em 2.5em 7.4em 2.5em;
+    /*background-image: url(../images/frame4_mobile@2x.png);*/
+    background-image: url(../images/frame4_mobile.png);
+  }
+
+  .video_element.video4 .play,
+  .video_element.video4 .pause {
+    left: 8.1em;
+    top: 21.5em;
+    width: 4em;
+    height: 2em;
+  }
+
+  .video_element.video4 .play:before,
+  .video_element.video4 .pause:before {
+    font-size: 1.2em;
+  }
+
+  .video_element.video4 .pause {
+    left: 20.0em;
+  }
+
+  .video_element.video4 .play-pause {
+    left: 15.4em;
+    top: 20.6em;
+  }
+
+  .playing .video_element.video4 .play-pause {
+    left: 12.4em;
+  }
+}
+
+/******************** end of designs ********************/
+
+.video_element .video_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#videoPlayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 10px;
+}

@@ -1,0 +1,24 @@
+{
+  "title": "giraffe",
+  "description": "",
+  "system_name": "giraffe",
+  "version": "2.0.1",
+  "api_version": "0.9.0-beta1",
+  "dependencies": [
+    {
+      "path": "assets/main-styles.css"
+    },
+    {
+      "path": "assets/editor-styles.css",
+      "context": "editor"
+    },
+    {
+      "path": "assets/editor.js",
+      "context": "editor"
+    },
+    {
+      "path": "assets/player.js",
+      "context": "player"
+    }
+  ]
+}

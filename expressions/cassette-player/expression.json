@@ -1,0 +1,27 @@
+{
+  "title": "Cassette player",
+  "description": "Cassette player",
+  "system_name": "cassette-player",
+  "version": "1.0.8",
+  "admins":["stephban", "dmitry", "emmanuel"],
+  "api_version":"0.9.0-alpha10",
+  "indexed_keys": ["indexedContent"],
+  "assets":[
+  ],
+  "dependencies":[
+    {"path":"css/cassette.css"},
+
+    {                    "type":"javascript", "path":"js/knobKnob.jquery.js"},
+
+    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.jplayer.min.js"},
+    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.ut-audio-engine.js"},
+    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.ut-audio.js"},
+
+    {                    "type": "stylesheet", "path": "css/common.css" },
+    {"context":"editor", "type": "stylesheet", "path": "css/editor.css" },
+    {"context":"player", "type": "stylesheet", "path": "css/player.css" },
+
+    {"context":"editor", "type":"javascript", "path":"js/editor.js"},
+    {"context":"player", "type":"javascript", "path":"js/player.js"}
+  ]
+}

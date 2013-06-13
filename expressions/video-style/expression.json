@@ -1,0 +1,30 @@
+{
+  "title": "Video Style",
+  "description": "Video and style...",
+  "system_name": "video-style",
+  "version": "1.0.43",
+  "admins":["stephban", "dmitry", "emmanuel"],
+  "api_version":"0.8.0",
+  "indexed_keys": ["indexedContent"],
+  "assets":[
+  ],
+  "dependencies":[
+    {                    "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.js"},
+    {                    "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.ex.js"},
+    {"context":"editor", "type":"javascript", "path":"expcommon/jquery/2.0/js/utils.js"},
+    {                    "type":"javascript", "path":"expcommon/jquery/2.0/js/jquery.hammer.min.js"},
+
+    {                    "type":"stylesheet", "path":"expcommon/utCssBase/2.1/css/style_full.css"},
+
+    {                    "type":"stylesheet", "path":"expcommon/utVideo/css/default/jquery.ut-video.css"},
+    {                    "type":"javascript", "path":"expcommon/utVideo/js/jquery.ut-video.js"},
+    {                    "type":"javascript", "path":"expcommon/utVideo/js/froogaloop.min.js"},
+
+    {                    "type": "stylesheet", "path": "css/common.css" },
+    {"context":"editor", "type": "stylesheet", "path": "css/editor.css" },
+    {"context":"player", "type": "stylesheet", "path": "css/player.css" },
+
+    {"context":"editor", "type":"javascript", "path":"js/editor.js"},
+    {"context":"player", "type":"javascript", "path":"js/player.js"}
+  ]
+}
