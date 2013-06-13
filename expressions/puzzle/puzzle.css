@@ -102,3 +102,22 @@ body {
 	padding : 0px;
 	margin : 0px;
 }
+
+.scoreCurrent {
+	color : #fafafa;
+	background-color: #b5061b;
+}
+
+.scoreOdd: {
+	background-color: #dadada;
+}
+
+table {
+	border : none;
+	width : 100%;
+	text-align : center;
+}
+
+td {
+	padding-left : 10px;
+}

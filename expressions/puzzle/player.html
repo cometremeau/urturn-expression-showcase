@@ -96,7 +96,6 @@
   }
 
   function restart() {
-    if (!GAME_OVER)
       play();
   }
 
@@ -109,8 +108,8 @@
       }
       return 1;
     });
-    renderOtherHighScore();
     computeUserPosition();
+    renderOtherHighScore();
   }
 
 
@@ -118,26 +117,43 @@
     if (!OTHERS_HIGHSCORES) {
      return;
     }
+    if (USER_POSITION < 6) {
+      var others = document.getElementById('others');
+      others.innerHTML = '';
+      if (OTHERS_HIGHSCORES) {
+        var i = 0;
+        while (i < OTHERS_HIGHSCORES.length && i < 6) {
+          var tr = document.createElement('tr');
 
-    var others = document.getElementById('others');
-    others.innerHTML = '';
-    if (OTHERS_HIGHSCORES) {
-      var i = 0;
-      while (i < OTHERS_HIGHSCORES.length) {
-        var tr = document.createElement('tr');
-        tr.innerHTML = '<td>' + (i + 1) 
-        +  '</td><td>'
-        + '@' + OTHERS_HIGHSCORES[i].username
-        +  '</td><td>'
-        + OTHERS_HIGHSCORES[i].score
-        +  '</td>';
-        others.appendChild(tr);
-        ++i;
-      }
+          var className = '';
+          if (!i % 2) {
+            className = 'scoreOdd';
+          }
+          if (i == USER_POSITION) {
+            className = 'scoreCurrent';
+          }
+          tr.className = className;
+          tr.innerHTML = '<td>' 
+          + (i + 1) 
+          +  '</td><td>'
+          + '@' 
+          + OTHERS_HIGHSCORES[i].username
+          +  '</td><td>'
+          + OTHERS_HIGHSCORES[i].score
+          +  '</td>';
+          others.appendChild(tr);
+          ++i;
+        }
     }
+    }
+
+   
   }
 
   function drawHighScores() {
+    if (USER_POSITION == -1) {
+      computeUserPosition();
+    }
     var hs = document.getElementById('hs');
     hs.style.display = 'block';
     document.getElementById('scores').style.display = 'none';
@@ -249,10 +265,18 @@
     if (!userHighScore || !OTHERS_HIGHSCORES) {
       return;
     }
+    // Reorder high scores
+    OTHERS_HIGHSCORES.sort(function (a, b) {
+      if (a.score < b.score) {
+        return -1;
+      }
+      return 1;
+    });
+    // find user in high scores
     var i = 0;
     USER_POSITION = OTHERS_HIGHSCORES.length;
     while (i < OTHERS_HIGHSCORES.length) {
-      if (OTHERS_HIGHSCORES[i].score > userHighScore) {
+      if (OTHERS_HIGHSCORES[i].score > userHighScore || OTHERS_HIGHSCORES[i].username == USERNAME) {
         USER_POSITION = i;
       }
       ++i;
@@ -283,6 +307,19 @@
     userHighScore.username = USERNAME;
     userHighScore.avatar = AVATAR;
     HIGH_SCORES.setUserItem(userHighScore);
+    var i = 0;
+    var userAlreadyHaveScored = 0;
+    while (i < OTHERS_HIGHSCORES.length) {
+      if (OTHERS_HIGHSCORES[i].username == USERNAME) {
+        OTHERS_HIGHSCORES[i].score = SCORE;
+        userAlreadyHaveScored = 1;
+        ++i;
+      }
+    }
+    if (!userAlreadyHaveScored) {
+      OTHERS_HIGHSCORES.push(userHighScore);
+      computeUserPosition();
+    }
     post.save();
   }
 
