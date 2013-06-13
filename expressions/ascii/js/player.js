@@ -4,8 +4,7 @@ UT.Expression.ready(function(post) {
 
   var element = $(post.node);
 
-  that.container = $("<div>").addClass("container").appendTo(element);
-  that.desc = $("<div>").addClass("desc").appendTo(that.container);
+  that.desc = $("<div>").addClass("desc").appendTo(element);
   that.canvas = $("<img id='canvas'>").appendTo(that.desc);
   that.asciiContainer = $("<pre>").addClass("ascii").appendTo(that.desc);
 
@@ -29,12 +28,9 @@ UT.Expression.ready(function(post) {
     .css("OTransform", 'scale(' + scale + ')')
     .css("transform", 'scale(' + scale + ')');
 
-  post.on('resize',function(){
-    post.off('resize');
+  post.size({height:that.asciiContainer.height()*scale},function(){
     that.asciiContainer.css('visibility','visible');
   });
-
-  post.resize({height:that.asciiContainer.height()*scale});
 
   return that;
 });
