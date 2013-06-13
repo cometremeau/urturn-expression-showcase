@@ -19,8 +19,8 @@ UT.Expression.ready(function(post) {
    * prepare working data
    */
   that.data.currentElement = typeof(post.storage.design) !== "undefined" ? post.storage.design : Math.floor(that.ui.videos.length / 2);
-  that.data.frameRatios = [576/360, 576/480, 576/319, 576/473, 576/360];
-  that.data.videoRatio = 576/360;// 4/3;
+  that.data.frameRatios = [576/360, 576/480, 576/319, 576/473];
+  that.data.videoRatio = 576/360;
   that.data.itemWidth = 0;
   that.data.itemHeight = 0;
   that.data.expWidth = 0;

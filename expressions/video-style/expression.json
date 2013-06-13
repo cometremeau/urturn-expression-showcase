@@ -2,7 +2,7 @@
   "title": "Video Style",
   "description": "Video and style...",
   "system_name": "video-style",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "admins":["stephban", "dmitry", "emmanuel"],
   "api_version":"0.8.0",
   "indexed_keys": ["indexedContent"],

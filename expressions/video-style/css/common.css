@@ -74,15 +74,15 @@ a, a:hover, a:active {
   overflow: hidden;
   background-image: url(../images/frame1_desktop.png);
 }
-.mobile .video_element.video1 {
-  padding: 3.6em 14.4em 3.6em 3.6em;
-  background-image: url(../images/frame1_mobile@2x.png);
-}
-.video_element.video1 .video {
-}
+
+.video_element.video1 .video {}
+
 .video_element.video1 #videoPlayer {
   overflow: hidden;
 }
+
+/* buttons */
+
 .video_element.video1 .play,
 .video_element.video1 .pause {
   position: absolute;
@@ -95,14 +95,16 @@ a, a:hover, a:active {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+
 .video_element.video1 .pause {
   left: 50.6em;
 }
 
-.container.playing .video_element.video1 .play {
+.playing .video_element.video1 .play {
   background-image: url(../images/frame1_button_active.png);
 }
-.container.paused .video_element.video1 .pause {
+
+.paused .video_element.video1 .pause {
   background-image: url(../images/frame1_button_active.png);
 }
 
@@ -111,29 +113,7 @@ a, a:hover, a:active {
   background-image: url(../images/frame1_button_hover.png);
 }
 
-.mobile .video_element.video1 .play,
-.mobile .video_element.video1 .pause {
-  left: 258px;
-  top: 14px;
-  width: 55px;
-  height: 39px;
-  background-image: url(../images/frame1_button_normal@2x.png);
-}
-.mobile .video_element.video1 .play:hover,
-.mobile .video_element.video1 .pause:hover {
-  background-image: url(../images/frame1_button_hover@2x.png);
-}
-
-.container.mobile.playing .video_element.video1 .play {
-  background-image: url(../images/frame1_button_active@2x.png);
-}
-.container.mobile.paused .video_element.video1 .pause {
-  background-image: url(../images/frame1_button_active@2x.png);
-}
-
-.mobile .video_element.video1 .pause {
-  top: 73px;
-}
+/* texts */
 
 .video_element.video1 .text-play,
 .video_element.video1 .text-pause {
@@ -157,19 +137,52 @@ a, a:hover, a:active {
   font-size: 12px;
 }
 
-.mobile .video_element.video1 .text-play,
-.mobile .video_element.video1 .text-pause {
-  left: 258px;
-  top: 54px;
-  width: 55px;
-}
-
-.mobile .video_element.video1 .text-pause {
-  top: 113px;
-}
-
 .video_element.video1 .play-pause {
   display: none;
+}
+
+@media screen and (max-width: 480px) {
+  .video_element.video1 {
+    padding: 1.8em 7.8em 1.8em 1.8em;
+    background-image: url(../images/frame1_mobile@2x.png);
+    /*background-image: url(../images/frame1_mobile.png);*/
+  }
+
+  .video_element.video1 .play,
+  .video_element.video1 .pause {
+    left: 25.8em;
+    top: 1.4em;
+    width: 5.5em;
+    height: 3.9em;
+    background-image: url(../images/frame1_button_normal@2x.png);
+  }
+  .video_element.video1 .pause {
+    top: 7.3em;
+  }
+
+  .video_element.video1 .play:hover,
+  .video_element.video1 .pause:hover {
+    background-image: url(../images/frame1_button_hover@2x.png);
+  }
+
+  .playing .video_element.video1 .play {
+    background-image: url(../images/frame1_button_active@2x.png);
+  }
+
+  .paused .video_element.video1 .pause {
+    background-image: url(../images/frame1_button_active@2x.png);
+  }
+
+  .video_element.video1 .text-play,
+  .video_element.video1 .text-pause {
+    left: 25.8em;
+    top: 5.4em;
+    width: 5.5em;
+  }
+
+  .video_element.video1 .text-pause {
+    top: 11.3em;
+  }
 }
 
 /******************** design 2 ********************/
@@ -541,8 +554,7 @@ a, a:hover, a:active {
   }
 }
 
-/******************** design 5 ********************/
-.video_element.video5 { padding: 10px 0; background-color: #00f;}
+/******************** end of designs ********************/
 
 .video_element .video_container {
   position: relative;

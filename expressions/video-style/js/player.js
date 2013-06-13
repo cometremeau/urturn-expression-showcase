@@ -45,7 +45,7 @@ UT.Expression.ready(function (post) {
 
     // set scale as width/576 * 100%
     obj.css("font-size", ($(post.node).width()/5.76) + "%");
-    var player = $("#videoPlayer").utVideo();
+    var player = $("#videoPlayer").utVideo({ ui:{ play:false, playing:false } });
 
     // show content
     that.ui.container.addClass("show");
