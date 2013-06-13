@@ -1,0 +1,1 @@
+http://www.urturn.com/Yury/time_magazine
