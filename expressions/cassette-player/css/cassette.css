@@ -1,0 +1,190 @@
+.ut-audio-skin-cassette.ut-audio-ui {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: 'RobotoRegular', helvetica, arial, sans-serif;
+  z-index: 0;
+  overflow: hidden;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4) inset;
+  background: url(../images/background.jpg) 50% 50% no-repeat;
+  background-size: cover;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.ut-audio-skin-cassette.ut-audio-ui div,
+.ut-audio-skin-cassette.ut-audio-ui h1,
+.ut-audio-skin-cassette.ut-audio-ui a {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.ut-audio-ui-title {
+  position: absolute;
+  width: 100%;
+  height: 7%;
+  top: 25.3%;
+  left: 0.3%;
+  z-index: 1;
+  padding: 0 21%;
+  overflow: hidden;
+  font: 1em/2.5em "CasinoHandRegular";
+  text-align: center;
+  background: url(../images/stickers.png) 50% 50% no-repeat;
+  background-size: 84.5%;
+  -webkit-backface-visibility: hidden;
+}
+
+.ut-audio-ui.ut-audio-state-empty .ut-audio-ui-title {
+  display: none;
+}
+
+.ut-audio-ui-play {
+  position: absolute;
+  bottom: 0.7%;
+  left: 50%;
+  width: 28.6%;
+  height: 22.1%;
+  margin-left: -14.5%;
+  background: url(../images/main_button.png) 50% 50% no-repeat;
+  background-size: cover;
+  -webkit-transform: rotate(-20deg);
+  -moz-transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  transform: rotate(-20deg);
+
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+
+  -webkit-backface-visibility: hidden;
+}
+
+.ut-audio-state-play .ut-audio-ui-play,
+.ut-audio-state-seek .ut-audio-ui-play {
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  transform: rotate(20deg);
+}
+
+.ut-audio-ui-artwork {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  width: 76%;
+  height: 27%;
+  margin-left: -37.5%;
+  background-size: cover;
+}
+
+.ut-audio-ui-loading {
+  display: none;
+}
+
+/*----------------------  ADD AND EDIT  -----------------------------------*/
+
+.ut-audio-skin-cassette .ut-audio-ui-add,
+.ut-audio-skin-cassette .ut-audio-ui-remove{
+  display: none;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.ut-audio-ui-remove:before{
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-launch .ut-audio-ui-remove,
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-seek   .ut-audio-ui-remove,
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-play   .ut-audio-ui-remove,
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-pause  .ut-audio-ui-remove{
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 11;
+  color: white;
+  background: rgba(0,0,0,0.75);
+}
+
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-empty .ut-audio-ui-add,
+.ut-audio-skin-cassette.ut-audio-mode-editor.ut-audio-state-error .ut-audio-ui-add {
+  display: block;
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  width: 103px;
+  height: 90px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 5px;
+  margin-top: -30px;
+  margin-left: -50px;
+  font-size: 13px;
+  color: rgba(240,240,240,1);
+  line-height: 20px;
+  font-weight: bold;
+  text-shadow: 0 0 0 transparent;
+  font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
+}
+
+/*.ut-audio-skin-cassette .ut-audio-ui-add:hover {
+  background: rgba(40,40,40,1);
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+  box-shadow: -1px 1px 0 0 rgba(30,30,30,1), 1px -1px 0 0 rgba(60,60,60,1);
+}
+
+.ut-audio-skin-cassette .ut-audio-ui-add:active {
+  color: rgba(20,20,20,1);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 1px -1px 0 0 rgba(30,30,30,1), -1px 1px 0 0 rgba(60,60,60,1);
+}*/
+
+.ut-audio-skin-cassette .ut-audio-ui-add[class*="icon_"]:before{
+  font-size: 28px;
+  display: block;
+  padding: 15px 0 5px 0;
+}
+
+/*----------------------- ERROR PANEL ---------------------------------*/
+
+.ut-audio-skin-cassette .ut-audio-ui-error {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: none;
+}
+
+.ut-audio-skin-cassette .ut-audio-ui-error div{
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  bottom:10px;
+  right: 10px;
+  color: #A0A0A0;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  font-size: 18px;
+  text-align: right;
+}
+
+.ut-audio-skin-cassette.ut-audio-state-loading .ut-audio-ui-error,
+.ut-audio-skin-cassette.ut-audio-state-play   .ut-audio-ui-error,
+.ut-audio-skin-cassette.ut-audio-state-launch  .ut-audio-ui-error,
+.ut-audio-skin-cassette.ut-audio-state-pause   .ut-audio-ui-error{
+  display: none;
+}
+
+.ut-audio-skin-cassette.ut-audio-state-error .ut-audio-ui-error{
+  display: block;
+}
