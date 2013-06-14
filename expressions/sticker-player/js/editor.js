@@ -28,10 +28,13 @@ UT.Expression.ready(function(post) {
 
   that.view.sticker.utSticker({
     top: 100,
-    left: that.view.desc.width() / 4 | 0,
-    width: that.view.desc.width() / 4 | 0,
-    height: that.view.desc.width() / 4 | 0,
-    autoSave: true
+    left: that.view.desc.width() / 3 | 0,
+    width: that.view.desc.width() / 3 | 0,
+    height: that.view.desc.width() / 3 | 0,
+    autoSave: true,
+    ui:{
+     remove:false
+    }
   });
 
   that.view.player.utAudio({
