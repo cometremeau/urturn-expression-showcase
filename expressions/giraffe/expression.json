@@ -2,7 +2,7 @@
   "title": "giraffe",
   "description": "",
   "system_name": "giraffe",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "api_version": "0.9.0-beta2",
   "dependencies": [
     {
