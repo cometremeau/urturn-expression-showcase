@@ -35,6 +35,10 @@ UT.Expression.ready(function (post) {
   that.ui.playerWrapper = $(".player-wrapper");
   that.ui.playerContainer = $("#player");
 
+  if (that.settings.isTouch) {
+    that.ui.container.addClass('is-touch');
+  }
+
   that.ui.playerContainer.utAudio({
     skin: 'cassette',
     ui: {
@@ -97,6 +101,8 @@ UT.Expression.ready(function (post) {
   });
 
   that.ui.playerContainer.on('utAudio:finish', function () {
+    clearInterval(that.settings.seekInterval);
+    that.settings.rotateAngle = 45;
     that.ui.noisePlayer.pause();
   });
 

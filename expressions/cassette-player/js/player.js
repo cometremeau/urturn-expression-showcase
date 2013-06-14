@@ -33,6 +33,10 @@ UT.Expression.ready(function (post) {
   that.ui.playerWrapper = $(".player-wrapper");
   that.ui.playerContainer = $("#player");
 
+  if (that.settings.isTouch) {
+    that.ui.container.addClass('is-touch');
+  }
+
   var calcContHeight = that.ui.container.width() / that.settings.imageRatio;
 
   that.ui.playerContainer.css({
@@ -96,6 +100,8 @@ UT.Expression.ready(function (post) {
   });
 
   that.ui.playerContainer.on('utAudio:finish', function () {
+    clearInterval(that.settings.seekInterval);
+    that.settings.rotateAngle = 45;
     that.ui.noisePlayer.pause();
   });
 

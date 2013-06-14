@@ -23,6 +23,10 @@
   user-select: none;
 }
 
+.container.is-touch {
+  background: black;
+}
+
 #player {
   position: absolute;
   height: 100%;

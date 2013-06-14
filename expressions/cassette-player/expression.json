@@ -2,7 +2,7 @@
   "title": "Cassette player",
   "description": "Cassette player",
   "system_name": "cassette-player",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "admins":["stephban", "dmitry", "emmanuel"],
   "api_version":"0.9.0-beta2",
   "indexed_keys": ["indexedContent"],
