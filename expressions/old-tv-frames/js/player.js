@@ -19,6 +19,9 @@ UT.Expression.ready(function (post) {
      */
     that.data.currentElement = post.storage.design || 0;
     that.data.isPlayed = false;
+    that.data.expWidth = $(post.node).width();
+    that.data.isMobileDesign = (that.data.expWidth <= 480);
+    that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
 
     /**
      * expression's methods
@@ -37,14 +40,14 @@ UT.Expression.ready(function (post) {
      * first time expression init
      */
     // attach events
-    if($.browser.mobile) {
+    if(that.isTouch) {
       that.ui.container.addClass("mobile");
     }
     var obj = that.ui.container.find(".video_element");
     obj.addClass("video" + (that.data.currentElement+1));
 
     // set scale as width/576 * 100%
-    obj.css("font-size", ($(post.node).width()/5.76) + "%");
+    obj.css("font-size", (that.data.isMobileDesign ? that.data.expWidth/3.2 : that.data.expWidth/5.76) + "%");
     var player = $("#videoPlayer").utVideo({ ui:{ play:false, playing:false } });
 
     // show content

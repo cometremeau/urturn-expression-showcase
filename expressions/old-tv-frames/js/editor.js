@@ -4,6 +4,8 @@ UT.Expression.ready(function(post) {
   that.ui = {};
   that.data = {};
   that.methods = {};
+  that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
+  that.isMSIE = (navigator.userAgent.indexOf("MSIE") !== -1);
 
   /**
    * prepare referance to UI elements
@@ -21,10 +23,11 @@ UT.Expression.ready(function(post) {
   that.data.currentElement = typeof(post.storage.design) !== "undefined" ? post.storage.design : Math.floor(that.ui.videos.length / 2);
   that.data.frameRatios = [576/360, 576/480, 576/319, 576/473];
   that.data.videoRatio = 576/360;
+  that.data.expWidth = $(post.node).width();
+  that.data.expHeight = $(post.node).height();
+  that.data.isMobileDesign = (that.data.expWidth <= 480);
   that.data.itemWidth = 0;
   that.data.itemHeight = 0;
-  that.data.expWidth = 0;
-  that.data.expHeight = 0;
   that.data.isPlayed = false;
 
   /**
@@ -99,7 +102,7 @@ UT.Expression.ready(function(post) {
     obj = $(that.ui.videos[that.data.currentElement]).find(".video");
     if(obj.find("#videoPlayer").length <= 0) {
       /* IE: remove object and create new -- fix with iframe troubles */
-      if($.browser.msie) {
+      if(that.isMSIE) {
         that.ui.videoPlayer.off("utVideo:finish", that.methods.onPlayFinished);
         that.ui.videoPlayer.utVideo("destroy");
         that.ui.videoPlayer.remove();
@@ -173,7 +176,6 @@ UT.Expression.ready(function(post) {
    * move to next frame
    */
   that.methods.toNext = function(e) {
-    console.log("that.methods.toNext");
     that.data.currentElement++;
 
     if(e) {
@@ -186,7 +188,6 @@ UT.Expression.ready(function(post) {
    * move to previous frame
    */
   that.methods.toPrev = function(e) {
-    console.log("that.methods.toPrev");
     that.data.currentElement--;
 
     if(e) {
@@ -211,6 +212,7 @@ UT.Expression.ready(function(post) {
     // retrieve new epression size
     that.data.expWidth = $(post.node).width();
     that.data.expHeight = $(post.node).height();
+    that.data.isMobileDesign = (that.data.expWidth <= 480);
 
     var objs = $(".video_element");
     objs.each(function(n, item){
@@ -237,11 +239,11 @@ UT.Expression.ready(function(post) {
         "margin-top": -Math.round(itemHeight / 2) + "px",
         "width": itemWidth + "px",
         "height": itemHeight + "px",
-        "font-size": ($.browser.mobile ? itemWidth/3.2 : itemWidth/5.76) + "%"
+        "font-size": (that.data.isMobileDesign ? itemWidth/3.2 : itemWidth/5.76) + "%"
       });
     });
     // for non mobile mode --- change container position
-    if(!$.browser.mobile) {
+    if(!that.isTouch) {
       that.ui.container.css({
         "left": Math.round((that.data.expWidth - that.data.itemWidth)/2) + "px",
         "top": Math.round((that.data.expHeight - that.data.itemHeight)/2) + "px",
@@ -275,7 +277,7 @@ UT.Expression.ready(function(post) {
    * first time expression init
    */
   // attach events
-  if($.browser.mobile) {
+  if(that.isTouch) {
     that.ui.container.addClass("mobile");
     that.ui.container.hammer({ drag_lock_to_axis:true }).on("tap release dragleft dragright swipeleft swiperight dragup dragdown swipeup swipedown", that.methods.onHamerHandle);
     that.ui.container.parent().on("touchmove", function(e){ e.preventDefault(); });
