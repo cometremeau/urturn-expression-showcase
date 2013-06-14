@@ -27,7 +27,6 @@ UT.Expression.ready(function(post) {
     // keep the actual size and disable the
     // add sticker button
     .on('utImage:removed', function(){
-      console.log('REMOVED');
       state.hasImage = false;
       stickerManager.disable();
       stickerManager.removeAll();
@@ -66,6 +65,7 @@ UT.Expression.ready(function(post) {
 
     var drawSticker = function(data){
       // define a width which is about 33% of the post width
+      var postSize = post.size();
       var width = parseInt(post.size().width / 3, 10);
       // create and return a new sticker node
       return $('<img class="sticker-giraffe" src="assets/images/giraffe_'+data.name+'.png"/>')
@@ -76,8 +76,8 @@ UT.Expression.ready(function(post) {
           id: data.stickerId, // link the sticker to its data using the same generated uuid
           width: width,
           height: 'auto',
-          top: parseInt($background.height()/2 - (width*1.2)/2, 10), // center vertically
-          left: parseInt($background.width()/2 - width/2, 10) // center horizontally
+          top: parseInt(postSize.height/2 - (width*1.2)/2, 10), // center vertically
+          left: parseInt(postSize.width/2 - width/2, 10) // center horizontally
         })
         // listen to the image load event (IMG, not utSticker)
         .on('load', function(event){
@@ -137,7 +137,6 @@ UT.Expression.ready(function(post) {
     $('.button-giraffe').on('click', handleAddStickerEvent);
 
     $.each(collection, function(){
-      console.log('collection item', this);
       drawSticker(this);
     });
 
