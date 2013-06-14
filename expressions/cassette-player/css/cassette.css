@@ -62,6 +62,8 @@
   transition: all 0.2s ease;
 
   -webkit-backface-visibility: hidden;
+
+  cursor: pointer;
 }
 
 .ut-audio-state-play .ut-audio-ui-play,

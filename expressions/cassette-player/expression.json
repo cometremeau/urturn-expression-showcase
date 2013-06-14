@@ -2,26 +2,38 @@
   "title": "Cassette player",
   "description": "Cassette player",
   "system_name": "cassette-player",
-  "version": "1.0.8",
+  "version": "1.0.13",
   "admins":["stephban", "dmitry", "emmanuel"],
-  "api_version":"0.9.0-alpha10",
+  "api_version":"0.9.0-beta2",
   "indexed_keys": ["indexedContent"],
   "assets":[
+    "sounds/noise.mp3",
+    "images/fwd-normal.png",
+    "images/fwd-pressed.png",
+    "images/main_button.png",
+    "images/numbers.png",
+    "images/rwd-normal.png",
+    "images/rwd-pressed.png",
+    "images/stickers.png",
+    "images/tape_bande.png",
+    "images/tape.png",
+    "images/volume_button.png",
+    "images/wheel.png"
   ],
   "dependencies":[
-    {"path":"css/cassette.css"},
+    {"path":"js/knobKnob.jquery.js"},
 
-    {                    "type":"javascript", "path":"js/knobKnob.jquery.js"},
+    {                    "path":"components/jquery.ut-audio-master/js/jquery.ut-audio-engine.js"},
+    {                    "path":"components/jquery.ut-audio-master/js/jquery.ut-audio.js"},
+    {                    "path":"components/jquery.ut-audio-master/js/jquery.jplayer.min.js"},
 
-    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.jplayer.min.js"},
-    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.ut-audio-engine.js"},
-    {                    "type":"javascript", "path":"components/jquery.ut-audio-master/js/jquery.ut-audio.js"},
+    {                    "path": "css/common.css" },
+    {"context":"editor", "path": "css/editor.css" },
+    {"context":"player", "path": "css/player.css" },
 
-    {                    "type": "stylesheet", "path": "css/common.css" },
-    {"context":"editor", "type": "stylesheet", "path": "css/editor.css" },
-    {"context":"player", "type": "stylesheet", "path": "css/player.css" },
+    {                    "path":"css/cassette.css"},
 
-    {"context":"editor", "type":"javascript", "path":"js/editor.js"},
-    {"context":"player", "type":"javascript", "path":"js/player.js"}
+    {"context":"editor", "path":"js/editor.js"},
+    {"context":"player", "path":"js/player.js"}
   ]
 }

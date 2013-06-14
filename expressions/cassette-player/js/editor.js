@@ -1,3 +1,8 @@
+//preload images
+var tmp = new Image();
+tmp.src = 'images/fwd-pressed.png';
+tmp.src = 'images/rwd-pressed.png';
+
 UT.Expression.ready(function (post) {
   'use strict';
   var that = {};
@@ -11,8 +16,16 @@ UT.Expression.ready(function (post) {
    * settings
    */
   that.settings = {
+    isTouch: 'ontouchstart' in window || window.navigator.msMaxTouchPoints > 0,
     imageRatio: 0.76,
-    initialVolume: 1
+    initialVolume: 1,
+    currentTime: 0,
+    seekInterval: false,
+    tapeInterval: false,
+    rotateAngle: 45,
+    tapeLSpeedOffset: 1,
+    tapeRSpeedOffset: 1,
+    rearward: false
   };
 
   /**
@@ -33,7 +46,7 @@ UT.Expression.ready(function (post) {
       time: false
     },
     i18n: {
-      add: "Type here to load your tape",
+      add: (that.settings.isTouch ? "Tap" : "Click") + " here to load your tape",
       change: "",
       error: "Error occurred"
     }
@@ -50,9 +63,14 @@ UT.Expression.ready(function (post) {
   });
 
   that.ui.playerContainer.on('utAudio:timeupdate', function (e, s) {
+    that.settings.currentTime = s;
+
     var percent = 100 * (s / ((that.data.trackData ? that.data.trackData.duration : 0) / 1000));
 
     var offset = percent / 100 * 42;
+
+    that.settings.tapeLSpeedOffset = 1 + (0.1 * percent / 100);
+    that.settings.tapeRSpeedOffset = 1.1 - (0.1 * percent / 100);
 
     //100 - max tape width in %, 58 - min, 42 - difference
     that.ui.tapeFilmLeft.css({
@@ -68,22 +86,70 @@ UT.Expression.ready(function (post) {
   that.ui.playerContainer.on('utAudio:play', function (e, data) {
     that.ui.tapeContainer.addClass('animate');
     that.methods.setTapeRotation(true);
+    that.ui.noisePlayer.play();
   });
 
   that.ui.playerContainer.on('utAudio:pause', function (e, data) {
     that.methods.setTapeRotation(false);
     that.ui.tapeContainer.removeClass('animate');
     that.methods.setStartRotate();
+    that.ui.noisePlayer.pause();
+  });
+
+  that.ui.playerContainer.on('utAudio:finish', function () {
+    that.ui.noisePlayer.pause();
   });
 
   that.ui.playerContainer.on('utAudio:change', function () {
     that.methods.checkValidContent();
   });
 
+  that.ui.noisePlayer = document.getElementById('noise-player');
+
+  that.ui.rwd = $("<div class='rwd'></div>").appendTo(that.ui.playerWrapper).on(that.settings.isTouch ? 'touchstart' : 'mousedown', function(){
+    $(this).addClass('active');
+    that.settings.rearward = true;
+    that.settings.rotateAngle = 90;
+    that.settings.seekInterval = setInterval(function(){
+      if (that.settings.currentTime > 0) {
+        that.settings.currentTime -= 1;
+        that.ui.playerContainer.utAudio('play', that.settings.currentTime);
+      } else {
+        clearInterval(that.settings.seekInterval);
+        that.settings.rotateAngle = 45;
+        that.settings.rearward = false;
+      }
+    }, 100);
+  }).on(that.settings.isTouch ? 'touchend' : 'mouseup', function(){
+      clearInterval(that.settings.seekInterval);
+      that.settings.rotateAngle = 45;
+      that.settings.rearward = false;
+      $(this).removeClass('active');
+    });
+  that.ui.fwd = $("<div class='fwd'></div>").appendTo(that.ui.playerWrapper).on(that.settings.isTouch ? 'touchstart' : 'mousedown', function(){
+    $(this).addClass('active');
+    that.settings.rotateAngle = 90;
+    that.settings.seekInterval = setInterval(function(){
+      that.settings.currentTime += 1;
+      that.ui.playerContainer.utAudio('play', that.settings.currentTime);
+    }, 100);
+  }).on(that.settings.isTouch ? 'touchend' : 'mouseup', function(){
+      clearInterval(that.settings.seekInterval);
+      that.settings.rotateAngle = 45;
+      $(this).removeClass('active');
+    });
+
+  that.ui.volumeControl = $("<div class='volume-control'></div>").appendTo(that.ui.playerWrapper);
+
+  that.ui.volumeControl.knobKnob({
+    snap: 10,
+    value: 359 * that.settings.initialVolume,
+    turn: function (ratio) {
+      that.ui.playerContainer.utAudio('volume', ratio);
+    }
+  });
+
   that.methods.createPlayer = function () {
-
-    that.methods.createVolumeControl();
-
     that.ui.tapeWrapper = $("<div class='tape-common-wrapper'></div>").appendTo(that.ui.playerContainer.find('.ut-audio-ui'));
     that.ui.tapeContainer = $("<div class='tape-container'></div>").appendTo(that.ui.tapeWrapper);
 
@@ -96,21 +162,10 @@ UT.Expression.ready(function (post) {
 
     that.ui.tapeBgLeft = $("<div class='tape-bg tape-bg-left'></div>").appendTo(that.ui.bdRadiuxFix);
     that.ui.tapeBgRight = $("<div class='tape-bg tape-bg-right'></div>").appendTo(that.ui.bdRadiuxFix);
+
+    that.ui.numbers = $("<div class='numbers'></div>").appendTo(that.ui.tapeWrapper);
   };
 
-  that.methods.createVolumeControl = function () {
-    that.ui.volumeControl = $("<div class='volume-control'></div>").appendTo(that.ui.playerWrapper);
-
-    that.ui.volumeControl.knobKnob({
-      snap: 10,
-      value: 359 * that.settings.initialVolume,
-      turn: function (ratio) {
-        that.ui.playerContainer.utAudio('volume', ratio);
-      }
-    });
-  };
-
-  that.methods.createVolumeControl();
 
   that.methods.getRotationDegrees = function (element) {
     // get the computed style object for the element
@@ -135,35 +190,49 @@ UT.Expression.ready(function (post) {
   };
 
   that.methods.setTapeRotation = function (bool) {
-    var startDeg = that.methods.getRotationDegrees(that.ui.tapeBgLeft.get(0)),
-      deg = startDeg;
+    var startDegL = that.methods.getRotationDegrees(that.ui.tapeBgLeft.get(0)),
+      degL = startDegL,
+      startDegR = that.methods.getRotationDegrees(that.ui.tapeBgRight.get(0)),
+      degR = startDegR;
 
     if (bool) {
-      if (!that.tapeInterval) {
-        that.tapeInterval = setInterval(function () {
-          deg -= 45;
-          that.ui.tapeContainer.find('.tape-film-left, .tape-bg-left, .tape-film-right, .tape-bg-right').css({
-            '-webkit-transform': 'rotate(' + deg + 'deg)',
-            '-moz-transform': 'rotate(' + deg + 'deg)',
-            'ms-transform': 'rotate(' + deg + 'deg)',
-            'transform': 'rotate(' + deg + 'deg)'
-          });
+      if (!that.settings.tapeInterval) {
+        that.settings.tapeInterval = setInterval(function () {
+          if (that.settings.rearward) {
+            degL = degL + that.settings.rotateAngle * that.settings.tapeLSpeedOffset;
+            degR = degR + that.settings.rotateAngle * that.settings.tapeRSpeedOffset;
+          } else {
+            degL = degL - that.settings.rotateAngle * that.settings.tapeLSpeedOffset;
+            degR = degR - that.settings.rotateAngle * that.settings.tapeRSpeedOffset;
+          }
+          that.methods.setTransform(degL, degR);
         }, 200);
       }
     } else {
-      clearInterval(that.tapeInterval);
-      that.tapeInterval = false;
+      clearInterval(that.settings.tapeInterval);
+      that.settings.tapeInterval = false;
     }
   };
 
   that.methods.setStartRotate = function () {
-    var deg = that.methods.getRotationDegrees(that.ui.tapeBgLeft.get(0));
+    var startDegL = that.methods.getRotationDegrees(that.ui.tapeBgLeft.get(0)),
+      startDegR = that.methods.getRotationDegrees(that.ui.tapeBgRight.get(0));
 
-    that.ui.tapeContainer.find('.tape-film-left, .tape-bg-left, .tape-film-right, .tape-bg-right').css({
-      '-webkit-transform': 'rotate(' + deg + 'deg)',
-      '-moz-transform': 'rotate(' + deg + 'deg)',
-      'ms-transform': 'rotate(' + deg + 'deg)',
-      'transform': 'rotate(' + deg + 'deg)'
+    that.methods.setTransform(startDegL, startDegR);
+  };
+
+  that.methods.setTransform = function(degL, degR) {
+    that.ui.tapeContainer.find('.tape-film-left, .tape-bg-left').css({
+      '-webkit-transform': 'rotate(' + degL + 'deg)',
+      '-moz-transform': 'rotate(' + degL + 'deg)',
+      'ms-transform': 'rotate(' + degL + 'deg)',
+      'transform': 'rotate(' + degL + 'deg)'
+    });
+    that.ui.tapeContainer.find('.tape-film-right, .tape-bg-right').css({
+      '-webkit-transform': 'rotate(' + degR + 'deg)',
+      '-moz-transform': 'rotate(' + degR + 'deg)',
+      'ms-transform': 'rotate(' + degR + 'deg)',
+      'transform': 'rotate(' + degR + 'deg)'
     });
   };
 
