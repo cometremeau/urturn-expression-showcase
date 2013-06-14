@@ -143,14 +143,14 @@ a, a:hover, a:active {
 
 @media screen and (max-width: 480px) {
   .video_element.video1 {
-    padding: 1.8em 7.8em 1.8em 1.8em;
+    padding: 1.8em 7.6em 1.8em 1.8em;
     background-image: url(../images/frame1_mobile@2x.png);
     /*background-image: url(../images/frame1_mobile.png);*/
   }
 
   .video_element.video1 .play,
   .video_element.video1 .pause {
-    left: 25.8em;
+    left: 25.6em;
     top: 1.4em;
     width: 5.5em;
     height: 3.9em;
@@ -175,7 +175,7 @@ a, a:hover, a:active {
 
   .video_element.video1 .text-play,
   .video_element.video1 .text-pause {
-    left: 25.8em;
+    left: 25.6em;
     top: 5.4em;
     width: 5.5em;
   }
@@ -262,11 +262,9 @@ a, a:hover, a:active {
 }
 
 @media screen and (max-width: 480px) {
-
   .video_element.video2 {
-    padding: 3em 3em 7.1em 3em;
-    /*background-image: url(../images/frame2_mobile@2x.png);*/
-    background-image: url(../images/frame2_mobile.png);
+    padding: 3.1em 3.1em 7.2em 3.1em;
+    background-image: url(../images/frame2_mobile@2x.png);
   }
 
   .video_element.video2 .play-pause {
@@ -396,7 +394,7 @@ a, a:hover, a:active {
 @media screen and (max-width: 480px) {
   .mobile .video_element.video3 {
     padding: .7em 8.7em .7em .7em;
-    background-image: url(../images/frame3_mobile.png);
+    background-image: url(../images/frame3_mobile@2x.png);
   }
 
   .mobile .video_element.video3 .play,
@@ -523,8 +521,8 @@ a, a:hover, a:active {
 @media screen and (max-width: 480px) {
   .video_element.video4 {
     padding: 2.5em 2.5em 7.4em 2.5em;
-    /*background-image: url(../images/frame4_mobile@2x.png);*/
-    background-image: url(../images/frame4_mobile.png);
+    background-image: url(../images/frame4_mobile@2x.png);
+    /*background-image: url(../images/frame4_mobile.png);*/
   }
 
   .video_element.video4 .play,
