@@ -138,15 +138,18 @@ UT.Expression.ready(function(post) {
   that.setBackground = function(){
     that.updateSize();
     that.asciiContainer.css('visibility', 'visible');
-    var ii = new Image();
-    ii.src = that.imageOverlay.url;
-    ii.onload = function(){
-      that.canvas.get(0).width = that.postWidth;
-      that.canvas.get(0).height = that.postHeight;
-      var imgCtx = that.canvas.get(0).getContext('2d');
-      imgCtx.drawImage(ii, 0, 0, that.postWidth, that.postHeight);
-    };
-    that.saveData();
+    var img = new UT.Image(that.imageOverlay.url);
+    img.editable(function(data){
+      var ii = new Image();
+      ii.src = data.url;
+      ii.onload = function(){
+        that.canvas.get(0).width = that.postWidth;
+        that.canvas.get(0).height = that.postHeight;
+        var imgCtx = that.canvas.get(0).getContext('2d');
+        imgCtx.drawImage(ii, 0, 0, that.postWidth, that.postHeight);
+      };
+      that.saveData();
+    });
   };
 
   that.createBackground = function(){

@@ -103,21 +103,36 @@ body {
 	margin : 0px;
 }
 
-.scoreCurrent {
+td .scoreCurrent {
 	color : #fafafa;
 	background-color: #b5061b;
 }
 
-.scoreOdd: {
+td .scoreOdd: {
 	background-color: #dadada;
 }
 
 table {
+	margin-top : 5px;
+	margin-bottom : 5px;
+	margin-left : 0px;
+	margin-right : 0px;
 	border : none;
 	width : 100%;
-	text-align : center;
+	text-align : left;
+	border-collapse : collapse;
+	font-size : 20px;
 }
 
 td {
 	padding-left : 10px;
+	border-collapse: collapse;
+	border : none;
+	color : #888;
+}
+
+th {
+	padding-left : 10px;
+	border-collapse: collapse;
+	border : none
 }
