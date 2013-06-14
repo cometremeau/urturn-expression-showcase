@@ -40,6 +40,11 @@
   </table>
 </div>
 
+<div class='box' style='display:none;width : 80%; position : absolute; bottom : 10%; left : 10%'>
+  <img id='creatorAvatarf' src='' width='70px' height='70px' style='border-radius : 35px' />
+  This board was created by :
+</div>
+
 <script type="text/javascript">
   var canvas = document.getElementById('c');
   var ctx = canvas.getContext('2d');
@@ -122,26 +127,38 @@
       others.innerHTML = '';
       if (OTHERS_HIGHSCORES) {
         var i = 0;
-        while (i < OTHERS_HIGHSCORES.length && i < 6) {
+        while (i < 6) {
           var tr = document.createElement('tr');
 
           var className = '';
-          if (!i % 2) {
+          if (i % 2 == 1) {
             className = 'scoreOdd';
           }
           if (i == USER_POSITION) {
             className = 'scoreCurrent';
           }
           tr.className = className;
-          tr.innerHTML = '<td>' 
-          + (i + 1) 
-          +  '</td><td>'
-          + '@' 
-          + OTHERS_HIGHSCORES[i].username
-          +  '</td><td>'
-          + OTHERS_HIGHSCORES[i].score
-          +  '</td>';
-          others.appendChild(tr);
+          
+          if (i < OTHERS_HIGHSCORES.length) {
+            tr.innerHTML = '<td>' 
+            + (i + 1) 
+            +  '</td><td>'
+            + '@' 
+            + OTHERS_HIGHSCORES[i].username
+            +  '</td><td>'
+            + OTHERS_HIGHSCORES[i].score
+            +  '</td>';
+            others.appendChild(tr);
+          }
+          else {
+            tr.innerHTML = '<td>' 
+            + (i + 1) 
+            +  '</td><td>'
+            + 'No Entry' 
+            +  '</td><td>??'
+            +  '</td>';
+            others.appendChild(tr);
+          }
           ++i;
         }
     }
