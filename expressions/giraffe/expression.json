@@ -2,9 +2,21 @@
   "title": "giraffe",
   "description": "",
   "system_name": "giraffe",
-  "version": "2.0.1",
-  "api_version": "0.9.0-beta1",
+  "version": "2.0.6",
+  "api_version": "0.9.0-beta2",
   "dependencies": [
+    {
+      "path": "jquery.ut-sticker/jquery.ut-sticker.js"
+    },
+    {
+      "path": "jquery.ut-sticker/jquery.ut-sticker.css"
+    },
+    {
+      "path": "jquery.ut-image/jquery.ut-image.js"
+    },
+    {
+      "path": "jquery.ut-image/jquery.ut-image.css"
+    },
     {
       "path": "assets/main-styles.css"
     },
