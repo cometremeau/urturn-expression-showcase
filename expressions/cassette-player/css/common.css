@@ -16,6 +16,19 @@
   top: 0;
   left: 0;
   -webkit-backface-visibility: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+#player {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .tape-common-wrapper {
@@ -112,6 +125,7 @@
   right: 7%;
   width: 19%;
   height: 14.4%;
+  cursor: pointer;
 }
 
 .volume-control .knob,
@@ -127,5 +141,47 @@
 .volume-control .top {
   background: url(../images/volume_button.png) 50% 50% no-repeat;
   background-size: cover;
+}
+
+.numbers {
+  position: absolute;
+  left: 7%;
+  bottom: 25%;
+  width: 75%;
+  height: 19%;
+  background: url(../images/numbers.png) 50% 50% no-repeat;
+  background-size: contain;
+}
+
+.rwd {
+  position: absolute;
+  bottom: 7%;
+  left: 7%;
+  width: 12%;
+  height: 9%;
+  background: url(../images/rwd-normal.png) 50% 50% no-repeat;
+  background-size: 150%;
+  cursor: pointer;
+}
+
+.rwd:active,
+.rwd.active {
+  background-image: url(../images/rwd-pressed.png);
+}
+
+.fwd {
+  position: absolute;
+  bottom: 7%;
+  left: 19%;
+  width: 12%;
+  height: 9%;
+  background: url(../images/fwd-normal.png) 50% 50% no-repeat;
+  background-size: 150%;
+  cursor: pointer;
+}
+
+.fwd:active,
+.fwd.active {
+  background-image: url(../images/fwd-pressed.png);
 }
 
