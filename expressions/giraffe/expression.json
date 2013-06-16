@@ -3,7 +3,7 @@
   "description": "",
   "system_name": "giraffe",
   "version": "2.2.0",
-  "api_version": "0.9.0-beta5",
+  "api_version": "0.9.0-beta6",
   "dependencies": [
     {
       "path": "assets/editor-styles.css",
