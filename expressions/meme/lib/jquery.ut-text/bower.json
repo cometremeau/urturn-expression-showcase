@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "author": {
     "name": "Urturn",
     "email": "dev@urturn.com"
@@ -21,15 +21,13 @@
     "urturn-expression-css": "*"
   },
   "devDependencies": {
-    "qunit": "~1.11.0",
-    "jquery.ut-image-panel": "*",
-    "jquery.ut-sticker": "*"
+    "qunit": "~1.11.0"
   },
-  "gitHead": "efa9c8306cc0d4cdec5d669e9c7939681abc1290",
-  "readme": "### TODOS\n\n- [ ] Firefox compatibility\n- [*] Mobile input (partial)\n- [*] Integration with others components (partial, UX needed)\n- [*] Charaters limitations\n- [ ] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [ ] Events\n- [ ] Formating, return lines etc...",
+  "gitHead": "fdb1fb840a2ec2a506f5bad6140c8a183fb63263",
+  "readme": "### TODOS\n\n- [*] Firefox compatibility\n- [*] Mobile input (partial)\n- [*] Integration with others components (partial, UX needed)\n- [*] Charaters limitations\n- [*] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [*] Events\n- [ ] Paste text\n- [ ] Formating, return lines etc...",
   "readmeFilename": "README.md",
-  "_id": "jquery.ut-text@0.1.0",
-  "description": "- [ ] Firefox compatibility - [*] Mobile input (partial) - [*] Integration with others components (partial, UX needed) - [*] Charaters limitations - [ ] Size limitations - [*] Save - [*] View mode (partial) - [ ] Events - [ ] Formating, return lines etc...",
+  "_id": "jquery.ut-text@0.1.4",
+  "description": "- [*] Firefox compatibility - [*] Mobile input (partial) - [*] Integration with others components (partial, UX needed) - [*] Charaters limitations - [*] Size limitations - [*] Save - [*] View mode (partial) - [*] Events - [ ] Paste text - [ ] Formating, return lines etc...",
   "repository": {
     "type": "git",
     "url": "git://github.com/urturn/jquery.ut-text.git"

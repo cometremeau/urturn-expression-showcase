@@ -2,23 +2,16 @@
   "title": "jQuery.utText Usage",
   "description": "",
   "system_name": "ut-text-example",
-  "version": "0.1.0",
-  "api_version": "0.8.0",
+  "version": "0.2.7",
+  "api_version": "0.9.0-beta4",
   "platform": [
-    "desktop"
+    "desktop",
+    "ios"
   ],
   "dependencies": [
-    { "path": "lib/jquery/jquery.js" },
-    { "path": "lib/urturn-expression-css/css/styles.css" },
 
     { "path": "jquery.ut-text.js"},
     { "path": "jquery.ut-text.css"},
-
-    { "path": "lib/jquery.ut-image-panel/jquery.ut-image.js"},
-    { "path": "lib/jquery.ut-image-panel/jquery.ut-image.css"},
-
-    { "path": "lib/jquery.ut-sticker/jquery.ut-sticker.js"},
-    { "path": "lib/jquery.ut-sticker/jquery.ut-sticker.css"},
 
     { "path": "js/editor.js"},
     { "path": "css/exp.css"}
