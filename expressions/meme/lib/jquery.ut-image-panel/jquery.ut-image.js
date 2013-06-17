@@ -343,7 +343,7 @@
         if (options.autoSave === true) {
           post.storage[imageStorageKey] = options.data;
           post.storage[ratioStorageKey] = ratio;
-          trigger('change', [options.data, oldData]);
+          trigger('change', [{data: options.data}, {data: oldData}]);
           if(options.autoSave){
             post.save();
             trigger('save', options.data);
