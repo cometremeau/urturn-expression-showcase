@@ -8,16 +8,14 @@
       .utImage({
         reuse: true
       })
-      .on('utImage:resized',function() {
+      .on('utImage:resize',function() {
         post.size({'height':$(this).outerHeight()});
         checkValidContent();
       })
-      .on('utImage:removed',function() {
-        console.warn("remov");
+      .on('utImage:remove',function() {
         checkValidContent();
       })
-      .on('utImage:added',function() {
-        console.warn("added");
+      .on('utImage:load',function() {
         checkValidContent();
       });
    $("#header_text")
@@ -29,7 +27,7 @@
        chars: 60,
        reuse: true
      })
-     .on('utText:saved',function() {
+     .on('utText:save',function() {
       checkValidContent();
      });
    $("#footer_text")
@@ -42,7 +40,6 @@
      });
 
   function checkValidContent() {
-    console.log("valid ?",$("#meme").hasClass('ut-image-placeholder'));
     if ($("#header_text .ut-text-content")[0].innerHTML.length !== 0 &&
         !$("#meme").hasClass('ut-image-placeholder')) {
       post.valid(true);
