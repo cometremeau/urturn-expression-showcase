@@ -1,0 +1,17 @@
+{
+  "title": "Sticker player",
+  "description": "Nice and amazing sticker with music player inside",
+  "system_name": "sticker-player",
+  "version": "1.0.4",
+  "admins": [ "dmitry, yury, james bond, harry potter" ],
+  "api_version": "0.9.0-beta4",
+  "platform": [ "desktop", "ios"],
+  "assets": [],
+  "dependencies": [
+    {                     "path": "css/common.css"},
+    {                     "path": "css/ut-audio-player-myskin.css"},
+
+    {"context": "editor", "path": "js/editor.js"},
+    {"context": "player", "path": "js/player.js"}
+  ]
+}
