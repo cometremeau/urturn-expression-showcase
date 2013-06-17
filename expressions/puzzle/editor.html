@@ -31,11 +31,33 @@
   // Bootstrap you expression editor
   UT.Expression.ready(function(exp){
     post = exp;
+    post.users('current', function(user) {
+      post.storage.creator = user.username;
+    });
+    if (post.storage.map) {
+      loadMapFromStorage();
+    }
   });
 
+  function loadMapFromStorage() {
+    MAP = JSON.parse(post.storage.map);
+    COLORS = JSON.parse(post.storage.pallette);
+    SCHEMA_MAP = JSON.parse(post.storage.schema);
+    renderMap();
+    renderPalette();
+  }
 
   function saveMap() {
+    post.storage.pallette = JSON.stringify(COLORS);
     post.storage.map = JSON.stringify(MAP);
+    post.storage.schema = JSON.stringify(SCHEMA_MAP);
+    var c = document.createElement('canvas');
+    c.width = 70;
+    c.height = 70;
+    var t = c.getContext('2d');
+    t.drawImage(canvas, 0,0,640,640,0,0,70,70);
+    var thumb = c.toDataURL("image/jpg");
+    post.storage.thumb = thumb;
     post.storage.save();
     post.valid(true);
   }

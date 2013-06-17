@@ -103,12 +103,12 @@ body {
 	margin : 0px;
 }
 
-td .scoreCurrent {
+.scoreCurrent {
 	color : #fafafa;
 	background-color: #b5061b;
 }
 
-td .scoreOdd: {
+.scoreOdd {
 	background-color: #dadada;
 }
 
@@ -122,17 +122,22 @@ table {
 	text-align : left;
 	border-collapse : collapse;
 	font-size : 20px;
+	color : #888;
 }
 
 td {
 	padding-left : 10px;
 	border-collapse: collapse;
 	border : none;
-	color : #888;
 }
 
 th {
 	padding-left : 10px;
 	border-collapse: collapse;
 	border : none
+}
+
+tr {
+	height : 40px;
+	vertical-align:  center;
 }

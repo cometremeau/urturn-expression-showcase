@@ -1,3 +1,14 @@
+<!--
+
+TODO :
+-> Make More go to a better search :(than puzzle)
+    OR : Expression page (implement it into SDK)
+-> Help Board
+-> Clean Code
+
+
+-->
+
 <div style="width : 100%; margin : 0px; padding : 0px;" id='container'>
 <canvas id='c' width='640' height='640' style='width:100%'> 
 
@@ -15,11 +26,15 @@
 <div id='highscores' style='display : none'>
 
   <div style='width : 60%; background-color : #b5061b; color : #fafafa' class='bottomButtonr' onclick='restart()'>Restart</div>  
-  <div style='width : 35%; background-color : #fafafa;' class='bottomButtonr'> More </div>
+  <div style='width : 35%; background-color : #fafafa;' class='bottomButtonr' onclick='goExpPage()'> More </div>
 
 </div>
 
-<div style='display : none; width : 80%; position : absolute; top:10px; left: 10%;' class='box' id='hs'>
+<div id='youJustDid'style='display : none; width : 80%; position : absolute; top:20px; left: 10%; font-size : 25px; padding-top : 10px; padding-bottom : 10px; text-align : center' class='box' id='hs'>
+  You just did : &nbsp;&nbsp;&nbsp;&nbsp;<span id='yourScore'> </span>
+</div>
+
+<div style='display : none; width : 80%; position : absolute; top:100px; left: 10%;' class='box' id='hs'>
   <table>
     <thead>
       <tr>
@@ -40,9 +55,18 @@
   </table>
 </div>
 
-<div class='box' style='display:none;width : 80%; position : absolute; bottom : 10%; left : 10%'>
-  <img id='creatorAvatarf' src='' width='70px' height='70px' style='border-radius : 35px' />
-  This board was created by :
+<div class='box' id='creatorBox' style='display:none;width : 80%; position : absolute; bottom : 10%; left : 10%; padding-top : 20px; padding-bottom : 20px'>
+  <div style='width : 70px; margin-right : 20px; margin-left :20px; float : left'>
+    <img id='thumb' src='' width='70px' height='70px' />
+  </div>
+  <div style='float:left'>
+    This board was created by : <br/>
+    <div style='width : 100%; overflow : hidden'>
+      <span style='font-size : 25px; color : #b5061b'>
+       @<a id='authorProfile' onclick='goProfile(this)'></a>
+      </span>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
@@ -77,6 +101,9 @@
     HIGH_SCORES = post.collection('scores');
     userHighScore = HIGH_SCORES.getUserItem();
     HIGH_SCORES.find(otherScoresCallback);
+    document.getElementById('thumb').src = post.storage.thumb;
+    document.getElementById('authorProfile').innerHTML = '' + post.storage.creator;
+
     if (userHighScore) {
       renderHighScores();
     }
@@ -97,6 +124,8 @@
     renderGame();
     document.getElementById('hs').style.display = 'none';
     document.getElementById('highscores').style.display = 'none';
+    document.getElementById('creatorBox').style.display = 'none';
+    document.getElementById('youJustDid').style.display = 'none';
     document.getElementById('scores').style.display = 'block';
   }
 
@@ -104,6 +133,11 @@
       play();
   }
 
+
+  function goProfile(el) {
+    var value = el.innerHTML;
+    post.navigate('user', value);
+  }
 
   function otherScoresCallback(items) {
     OTHERS_HIGHSCORES = items;
@@ -118,18 +152,34 @@
   }
 
 
+  function goExpPage() {
+    post.navigate('search', 'puzzle');
+  }
+
+
+  function createScoreLine(className, position, username, score, linked, others) {
+    var tr = document.createElement('tr');
+    tr.className = className;
+    tr.innerHTML = '<td>' 
+            + position 
+            +  '</td><td>'
+            + username
+            +  '</td><td>'
+            +  score
+            +  '</td>';
+    others.appendChild(tr);
+  }
+
   function renderOtherHighScore() {
     if (!OTHERS_HIGHSCORES) {
      return;
     }
+    var others = document.getElementById('others');
+    others.innerHTML = '';
     if (USER_POSITION < 6) {
-      var others = document.getElementById('others');
-      others.innerHTML = '';
       if (OTHERS_HIGHSCORES) {
         var i = 0;
         while (i < 6) {
-          var tr = document.createElement('tr');
-
           var className = '';
           if (i % 2 == 1) {
             className = 'scoreOdd';
@@ -137,44 +187,89 @@
           if (i == USER_POSITION) {
             className = 'scoreCurrent';
           }
-          tr.className = className;
           
           if (i < OTHERS_HIGHSCORES.length) {
-            tr.innerHTML = '<td>' 
-            + (i + 1) 
-            +  '</td><td>'
-            + '@' 
-            + OTHERS_HIGHSCORES[i].username
-            +  '</td><td>'
-            + OTHERS_HIGHSCORES[i].score
-            +  '</td>';
-            others.appendChild(tr);
+            createScoreLine(className, 
+                i + 1, 
+                '@' + OTHERS_HIGHSCORES[i].username, 
+                OTHERS_HIGHSCORES[i].score,
+                true,
+                others
+            );
           }
           else {
-            tr.innerHTML = '<td>' 
-            + (i + 1) 
-            +  '</td><td>'
-            + 'No Entry' 
-            +  '</td><td>??'
-            +  '</td>';
-            others.appendChild(tr);
+           createScoreLine(className, 
+                i + 1, 
+                'No Entry', 
+                '??',
+                true,
+                others
+            );
           }
           ++i;
         }
+      }
     }
-    }
-
-   
+    else {
+      if (OTHERS_HIGHSCORES) {
+        var i = 0;
+        while (i < 4) {
+          var className = '';
+          if (i % 2 == 1) {
+            className = 'scoreOdd';
+          }
+          
+          if (i < OTHERS_HIGHSCORES.length) {
+            createScoreLine(className, 
+                i + 1, 
+                '@' + OTHERS_HIGHSCORES[i].username, 
+                OTHERS_HIGHSCORES[i].score,
+                true,
+                others
+            );
+          }
+          else {
+           createScoreLine(className, 
+                i + 1, 
+                'No Entry', 
+                '??',
+                true,
+                others
+            );
+          }
+          ++i;
+        }
+        createScoreLine('scoreOdd', 
+              '...', 
+              '...', 
+              '...',
+              true,
+              others
+          );
+        createScoreLine('scoreCurrent', 
+              USER_POSITION + 1, 
+              '@' + OTHERS_HIGHSCORES[USER_POSITION].username, 
+              OTHERS_HIGHSCORES[USER_POSITION].score,
+              true,
+              others
+          );
+      }
+    }   
   }
 
   function drawHighScores() {
     if (USER_POSITION == -1) {
       computeUserPosition();
     }
+    if (SCORE) {
+      document.getElementById('youJustDid').style.display = 'block';
+      document.getElementById('yourScore').innerHTML = SCORE;
+    }
     var hs = document.getElementById('hs');
     hs.style.display = 'block';
     document.getElementById('scores').style.display = 'none';
     document.getElementById('highscores').style.display = 'block';
+    document.getElementById('creatorBox').style.display = 'block';
     GAME_OVER = 1;
     renderOtherHighScore();
   }
