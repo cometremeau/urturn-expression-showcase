@@ -81,7 +81,7 @@
         bindEvents();
       }
       if (storage && storage[storageKey]) {
-        $contentDomNode.html(storage[storageKey]);
+        $contentDomNode.text(storage[storageKey]);
         $contentDomNode.attr('data-div-placeholder-content', 'true');
 
         setTimeout(function() {
@@ -119,7 +119,7 @@
           post.dialog('text',{'value':cleanUpData(), 'max':options.chars || null, 'multiline':true}, function(text){
             $contentDomNode.html(text).trigger('input');
             if (text.length >= 1) {
-              $contentDomNode.removeAttr('data-div-placeholder-content');
+              $contentDomNode.attr('data-div-placeholder-content', 'true');
             }
             adaptAndSave();
           });
