@@ -356,8 +356,8 @@ function setHighScore() {
     if (OTHERS_HIGHSCORES[i].username == USERNAME) {
       OTHERS_HIGHSCORES[i].score = SCORE;
       userAlreadyHaveScored = 1;
-      ++i;
     }
+    ++i;
   }
   if (!userAlreadyHaveScored) {
     OTHERS_HIGHSCORES.push(userHighScore);
@@ -490,6 +490,14 @@ function renderParticles() {
     ++i;
 
   }
+}
+
+function help() {
+  document.getElementById('tuto').style.display = 'block';
+}
+
+function hideHelp() {
+    document.getElementById('tuto').style.display = 'none';
 }
 
 function loop() {

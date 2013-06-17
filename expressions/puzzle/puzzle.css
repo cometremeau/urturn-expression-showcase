@@ -227,3 +227,7 @@ tr {
   margin-left :20px; 
   float : left
 }
+
+img {
+  width : 100%;
+}
