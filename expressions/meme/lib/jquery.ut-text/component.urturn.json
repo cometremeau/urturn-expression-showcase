@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.1.0",
+  "version": "0.1.4",
   "dependencies": {
     "jquery": ">=2.0.0",
     "urturn-expression-css": "*"

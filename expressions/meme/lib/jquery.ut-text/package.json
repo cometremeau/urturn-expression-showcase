@@ -3,9 +3,6 @@
   "version": "0.0.0-ignored",
   "description": "Text component for Urturn expressions",
   "main": "jquery.ut-text.js",
-  "scripts": {
-    "install": "grunt configure"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/urturn/jquery.ut-text.git"

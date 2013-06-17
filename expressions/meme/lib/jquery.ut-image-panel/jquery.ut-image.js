@@ -15,7 +15,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
  * OR OTHER DEALINGS IN THE SOFTWARE.
  */
-;(function($) {
+;(function($, window, document, undefined) {
   "use strict";
   /**
    * Enhace the given <code>element</code> to make it a placeholder for images.
@@ -35,52 +35,76 @@
    */
   function UtImage(element, options) {
     options = $.extend({}, $.fn.utImage.defaults, options);
+    options.ui = $.extend({}, $.fn.utImage.defaults.ui, options.ui);
     var el              = element,
         storagePrefix   = 'utImage_',
         namespace       = 'utImage',
         $el             = $(el),
-        post            = options.post || null,
-        storage         = null,
-        mode            = null,
-        imageStorageKey = storagePrefix+$el.attr('id')+'_img',
-        ratioStorageKey = storagePrefix+$el.attr('id')+'_ratio',
-        ratio           = 1,
-        minSize         = 32,
-        image;
+        initialized     = false,
+        $overlay,           // the selector that will retrieve an overlay dom node
+        ratio,              // the image ratio h/w
+        imageStorageKey,    // the UT.Image instance storage key
+        ratioStorageKey,    // the ratio storage key
+        image,              // the image element
+        post;               // the post instance
 
     function init() {
-      $el.addClass('ut-image ut-image-placeholder');
+      $el.addClass('ut-image media-placeholder');
 
       UT.Expression.ready(function(p){
         post = p;
-        storage = p.storage;
-        mode = p.context;
-        ratio = storage && storage[ratioStorageKey];
 
-        if (options.image) {
-          image = options.image;
-        } else if (storage && storage[imageStorageKey]) {
-          image = storage[imageStorageKey];
+        // Default editable value depends on the post context
+        if (options.editable === undefined){
+          options.editable = p.context.editor;
         }
+
+        // options.id will be used to store the data
+        options.id = options.id || $el.attr('id') || 'noname';
+
+        imageStorageKey = storagePrefix+options.id+'_img';
+        ratioStorageKey = storagePrefix+options.id+'_ratio';
+
+        // Default image came from storage if not in options
+        if (!options.data) {
+          options.data = post.storage[imageStorageKey];
+        }
+
+        ratio = post.storage[ratioStorageKey];
         defineSize();
-        displayEmptyPlaceHolder(true);
-        loadImage();
-        if (mode && mode.editor === true) {
+
+        if(options.editable) {
           renderEdit();
+        } else {
+          removeEdit();
         }
-        trigger('ready');
+        if(!initialized){
+          initialized = true;
+          displayEmptyPlaceHolder(true);
+          loadImage();
+          trigger('ready');
+        } else {
+          trigger('change');
+        }
+
+        post.on('resize', function(){
+          defineSize();
+          displayImage();
+        });
       });
     }
 
     function trigger(name, data){
-      $el.trigger(namespace+':'+name, data);
+      setTimeout(function(){
+        $el.trigger(namespace+':'+name, data);
+      }, 0);
     }
 
     function displayEmptyPlaceHolder(enabled){
       if(enabled) {
-        $el.addClass('ut-image-placeholder');
+        $el.addClass('media-placeholder');
       } else {
-        $el.removeClass('ut-image-placeholder');
+        $el.removeClass('media-placeholder');
       }
     }
 
@@ -90,54 +114,68 @@
      * The size is computed given the followings rules:
      * 1) the width is by order
      *    a) options.width
-     *    b) element.width()
-     *    c) post.node.width()
+     *    b) 100%
      *    d) css#min-width
      * 2) the height is by order
      *    a) width*ratio
      *    b) options.height
-     *    c) element.height()
-     *    d) post.node.height()
+     *    c) auto
      *    e) css#min-height
      */
     function defineSize() {
-      var postNode = $(post.node);
       if(options.width){
-        $el.width(options.width);
-      } else if($el.width() <= minSize && postNode.width()){
-        $el.css('width', postNode.width() + 'px');
+        $el.width(options.width).css('min-width', options.minSize);
       }
       if(ratio){
         $el.height(Math.round($el.width()*ratio));
       } else if(options.height){
         $el.height(options.height);
-      } else if($el.height() <= minSize && postNode.height()){
-        $el.css('height', postNode.height() + 'px');
+      }
+      if($el.css('min-height') === '0px'){
+        $el.css('min-height', options.minSize);
       }
       trigger('resized');
     }
 
+    function setVisible(el, value){
+      if(value){
+        el.removeClass('is-hidden');
+      } else {
+        el.addClass('is-hidden');
+      }
+    }
+
     function renderEdit() {
-      var actionButtons = '<ul class="tls horizontal index spaced">'+
-          '<li><a href="#" class="edit-button action-button icon_camera spaced-right large-button button">Edit</a></li>'+
-          '<li><a href="#" class="remove-button action-button icon_trash large-button button"></a></li>'+
+      var actionButtons = '<ul class="tls horizontal index spaced ut-image-action-list">'+
+          '<li><a href="#" class="ut-image-edit-button edit-button action-button icon_camera spaced-right large-button button">Edit</a></li>'+
+          '<li><a href="#" class="ut-image-remove-button remove-button action-button icon_trash large-button button"></a></li>'+
           '</ul>'+
-          '<div class="add-button-wrapper"><a href="#" class="add-button dark-button icon_camera spaced-right large-button button">Add Image</a></div>';
+          '<a href="#" class="ut-image-add-button icon_camera media-button button">Add Image</a></div>';
 
       $el
         .append(actionButtons)
-        .on('click','.add-button',addImage)
-        .on('click','.edit-button', recropImage )
-        .on('click','.remove-button', removeImage);
+        .on('click','.ut-image-add-button', addImage)
+        .on('click','.ut-image-edit-button', recropImage )
+        .on('click','.ut-image-remove-button', removeImage);
 
-      if (!image && options.autoAdd === true) {
+      if (!options.data && options.autoAdd === true) {
           addImage();
       }
 
-      if (image) {
-        displayImage(image);
+      if (options.data) {
+        displayImage(options.data);
         $el.addClass('ut-image-active');
       }
+      displayControls();
+    }
+
+    function removeEdit() {
+      $el
+        .off('click','.ut-image-add-button', addImage)
+        .off('click','.ut-image-edit-button', recropImage)
+        .off('click','.ut-image-remove-button', removeImage);
+      $el.find('.ut-image-add-button').remove();
+      $el.find('.ut-image-action-list').remove();
     }
 
 
@@ -161,6 +199,10 @@
         imgOptions.size.autoCrop = (context === 'add');
       }
 
+      if(context === 'edit'){
+        imgOptions.size.autoCrop = false;
+      }
+
       // Specify an height only if one of autoCrop or flexRatio is false.
       if( ! (imgOptions.size.autoCrop && imgOptions.size.flexRatio) ) {
         imgOptions.size.height = $el.height();
@@ -168,7 +210,7 @@
 
       // In the case where an height is defined, adapt the UI of the camera.
       if(imgOptions.size.height && imgOptions.size.width){
-        imgOptions.adaptUI = true;
+        imgOptions.size.adaptUI = true;
       }
 
       // Apply any predefined filters.
@@ -178,7 +220,7 @@
 
       // Add the image data if we do a recrop.
       if (context === 'edit') {
-        imgOptions.image = image;
+        imgOptions.image = options.data;
       }
       return imgOptions;
     }
@@ -200,18 +242,21 @@
 
     function removeImage(e) {
       e.preventDefault();
-      $el.removeClass('ut-image-active').addClass('ut-image-placeholder').css('background-image', '');
+      $el.removeClass('ut-image-active').addClass('media-placeholder').css('background-image', '');
+      $(image).remove();
+      image = null;
       if (options.autoSave === true) {
-        storage[imageStorageKey] = null;
+        post.storage[imageStorageKey] = null;
         post.save();
       }
 
       $el.removeData('image');
-      image = null;
+      options.data = null;
 
       if (options.autoAdd === true) {
         addImage();
       }
+      displayControls();
 
       trigger('removed');
     }
@@ -230,39 +275,43 @@
       });
     }
 
+    function displayControls(){
+      setVisible($el.find('.ut-image-add-button'), options.editable && !image && options.ui.add);
+      setVisible($el.find('.ut-image-edit-button'), options.editable && image && options.ui.edit);
+      setVisible($el.find('.ut-image-remove-button'), options.editable && image && options.ui.remove);
+    }
+
     function loadImage(onload) {
-      if(!image){
+      if(!options.data){
         return;
       }
-      var newImage = new Image();
+      $(image).remove();
 
-      newImage.onload = function() {
+      image = new Image();
+      image.onload = function() {
         removeLoader();
         // Compute image ratio
-        if(newImage.width){
-          ratio = newImage.height / newImage.width;
+        if(image.width){
+          ratio = image.height / image.width;
         } else {
           ratio = 0;
         }
         defineSize();
         displayImage();
-        trigger('loaded', image);
+        trigger('loaded', options.data);
         if(onload){
-          onload(newImage, ratio);
+          onload(image, ratio);
         }
-
-        $('.button',$el).removeClass('is-hidden');
+        displayControls();
       };
-
-      newImage.onerror = function() {
+      image.onerror = function() {
         removeLoader();
       };
-
-      newImage.src = image.url;
+      image.src = options.data.url;
     }
 
     function handleImageReceived(data, action) {
-      image = data;
+      options.data = data;
 
       if(!data) {
         removeLoader();
@@ -272,13 +321,13 @@
 
       loadImage(function(domImage, ratio){
         if (options.autoSave === true) {
-          storage[imageStorageKey] = image;
-          storage[ratioStorageKey] = ratio;
+          post.storage[imageStorageKey] = options.data;
+          post.storage[ratioStorageKey] = ratio;
           post.save();
-          trigger('saved', image);
+          trigger('saved', options.data);
 
           if(action){
-            trigger(action, image);
+            trigger(action, options.data);
           }
         }
       });
@@ -294,18 +343,9 @@
     }
 
     function displayImage() {
-      if (image) {
-        $el.css('background-image', 'url(' + image.url + ')')
-          .addClass('ut-image-active');
+      if(image) {
+        $el.css('background-image', 'url('+image.src+')').addClass('ut-image-active');
         displayEmptyPlaceHolder(false);
-      }
-    }
-
-    function option (key, val) {
-      if (val) {
-        options[key] = val;
-      } else {
-        return options[key];
       }
     }
 
@@ -314,18 +354,23 @@
         trigger('destroy');
         $el
           .removeData('utImage')
-          .removeClass('ut-image ut-image-active ut-image-placeholder')
+          .removeClass('ut-image ut-image-active media-placeholder')
           .empty();
       });
     }
 
-    function imageAccessor(val) {
+    function imageDataAccessor(val) {
       if(val !== undefined){
-        image = val;
+        options.data = val;
         return $el;
       } else {
-        return image;
+        return options.data;
       }
+    }
+
+    // Retrieve the DOM node
+    function imageAccessor() {
+      return image;
     }
 
     function ratioAccessor(val) {
@@ -337,13 +382,32 @@
       }
     }
 
+    function option(key) {
+      return options[key];
+    }
+
+    function update(opts) {
+      options = $.extend(options, opts);
+      init();
+    }
+
+    function overlay() {
+      if(!$overlay){
+        $overlay = $('<div class="ut-image-overlay"></div>').prependTo($el);
+      }
+      return $overlay;
+    }
+
     init();
 
     return {
       option: option,
       destroy: destroy,
+      data: imageDataAccessor,
       image: imageAccessor,
-      ratio: ratioAccessor
+      ratio: ratioAccessor,
+      overlay: overlay,
+      update: update
     };
   }
 
@@ -378,9 +442,15 @@
   };
 
   $.fn.utImage.defaults = {
-    autoAdd: false,
     autoSave: true,
-    flexRatio: true
+    flexRatio: true,
+    minSize: '100px',
+    editable: undefined, // true in edit mode, false in player mode
+    ui: {
+      edit: true,
+      add: true,
+      remove: true
+    }
   };
 
-})(jQuery);
+})(jQuery, window, document, undefined);

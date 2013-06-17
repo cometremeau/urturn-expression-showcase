@@ -17,19 +17,12 @@
         placeholder: "What's on your mind ?",
       });
 
-//  $("#demo3")
-//    .utSticker({
-//      flexRatio: false
-//    });
-//  $('.text','#demo3')
-//    .utText({
-//      placeholder: "working... but not, not today :p"
-//    });
-
-//  $("#demo4")
-//    .utText({
-//      fixedSize: true
-//    });
+    $("#demo4")
+      .utText({
+        maxFontSize: 50,
+        minFontSize: 10,
+        fixedSize: true
+      });
 
     $("#demo5")
       .utText({
