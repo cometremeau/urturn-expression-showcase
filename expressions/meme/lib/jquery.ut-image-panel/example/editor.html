@@ -8,14 +8,16 @@
   <dl>
     <dt>utImage:ready</dt>
     <dd class="event-logger-ready"></dd>
-    <dt>utImage:loaded</dt>
-    <dd class="event-logger-loaded"></dd>
-    <dt>utImage:removed</dt>
-    <dd class="event-logger-removed"></dd>
+    <dt>utImage:load</dt>
+    <dd class="event-logger-load"></dd>
+    <dt>utImage:remove</dt>
+    <dd class="event-logger-remove"></dd>
     <dt>utImage:saved</dt>
-    <dd class="event-logger-saved"></dd>
+    <dd class="event-logger-save"></dd>
     <dt>utImage:change</dt>
     <dd class="event-logger-change"></dd>
+    <dt>utImage:resize</dt>
+    <dd class="event-logger-resize"></dd>
   </dl>
 
   <h2>Overlay</h2>
@@ -36,9 +38,14 @@
 
     //Event Bindings
     $('#events').utImage({height: '150px'})
-      .on('utImage:ready utImage:loaded utImage:saved utImage:removed utImage:change', function(event, data){
+      .on('utImage:ready utImage:load utImage:save utImage:remove utImage:resize', function(event, data){
         console.log(event.type, event, data);
         $('.event-logger-'+event.type.substring(8)).append('<div>data:'+data+'</div>');
+        post.size($('.content').height());
+      })
+      .on('utImage:change', function(event, newValues, oldValues){
+        console.log(event.type, event, newValues, oldValues);
+        $('.event-logger-'+event.type.substring(8)).append('<div>newValues:'+newValues+'</div><div>oldValues:'+oldValues+'</div>');
         post.size($('.content').height());
       });
 

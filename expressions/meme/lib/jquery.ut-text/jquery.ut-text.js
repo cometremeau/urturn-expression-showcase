@@ -41,6 +41,7 @@
       minFontSize     = parseInt(options.minFontSize,10) || null,
       isUtimage       = $el.data('utImage'),
       isIosApp        = /(urturn)/i.test(navigator.userAgent),
+      isIE            = /(msie)/i.test(navigator.userAgent),
       $contentDomNode,timer,$countdownDomNode,imageHeight,minFontSizePercent;
 
     function init() {
@@ -98,6 +99,7 @@
         reuse();
       }
 
+      trigger('ready');
 
     }
 
@@ -111,6 +113,10 @@
       - handle copy-paste text
     */
     function bindEvents() {
+
+      $el.on('click',function() {
+        $contentDomNode.trigger('focus');
+      });
       /* here is the meat and potates */
       $contentDomNode.attr('data-placeholder',options.placeholder);
 
@@ -132,6 +138,14 @@
             } else {
               $contentDomNode.removeAttr('data-div-placeholder-content');
             }
+          }
+
+          if (e.type === 'paste') {
+            formatPaste();
+          }
+
+          if(e.which === 13 && isIE) {
+            e.preventDefault();
           }
 
           //list of functional/control keys that you want to allow always
@@ -220,7 +234,7 @@
       storage[storageKey] = cleanUpData();
       post.save();
 
-      trigger('saved',cleanUpData());
+      trigger('save',cleanUpData());
     }
 
     /* in the case we have a character limitation, display and update the counter */
@@ -239,6 +253,16 @@
       var v = $contentDomNode.html().replace(/<br\s*\/?>/mg,"\n");
       v = v.replace(/(<([^>]+)>)/ig,'');
       return $.trim(v.replace(/&nbsp;/ig,''));
+    }
+
+    function formatPaste() {
+      setTimeout(function() {
+        if(options.chars && $contentDomNode[0].innerHTML.length >= options.chars) {
+          $contentDomNode.text(cleanUpData().substr(0, options.chars));
+        } else {
+          $contentDomNode.text(cleanUpData());
+        }
+      }, 50);
     }
 
     /* Reuse data from the parent post */

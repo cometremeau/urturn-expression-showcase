@@ -66,8 +66,13 @@
         ratioStorageKey = storagePrefix+options.id+'_ratio';
 
         // Default image came from storage if not in options
-        if (!options.data) {
+        if (!options.data && !options.reuse) {
           options.data = post.storage[imageStorageKey];
+        }
+
+        // Default image come from the parent post triggered by the "ur" event
+        if (!options.data && options.reuse) {
+          options.data = reuse();
         }
 
         ratio = post.storage[ratioStorageKey];
@@ -84,14 +89,16 @@
           loadImage();
           trigger('ready');
         } else {
-          trigger('change');
+          trigger('change', [options, options /*WRONG*/]);
         }
 
-        post.on('resize', function(){
-          defineSize();
-          displayImage();
-        });
+        post.on('resize', handlePostResize);
       });
+    }
+
+    function handlePostResize () {
+      defineSize();
+      displayImage();
     }
 
     function trigger(name, data){
@@ -123,18 +130,32 @@
      *    e) css#min-height
      */
     function defineSize() {
+      var oldWidth = $el.width(),
+          oldHeight = $el.height(),
+          newWidth,
+          newHeight;
+
       if(options.width){
         $el.width(options.width).css('min-width', options.minSize);
+        newWidth = $el.width();
+      } else {
+        newWidth = oldWidth;
       }
       if(ratio){
-        $el.height(Math.round($el.width()*ratio));
+        newHeight = Math.round($el.width()*ratio);
+        $el.height(newHeight);
       } else if(options.height){
         $el.height(options.height);
+        newHeight = $el.height();
+      } else {
+        newHeight = oldHeight;
       }
       if($el.css('min-height') === '0px'){
         $el.css('min-height', options.minSize);
       }
-      trigger('resized');
+      if(newHeight !== oldHeight || newWidth !== oldWidth){
+        trigger('resize', {width: newWidth, height: newHeight});
+      }
     }
 
     function setVisible(el, value){
@@ -249,8 +270,7 @@
         post.storage[imageStorageKey] = null;
         post.save();
       }
-
-      $el.removeData('image');
+      var oldValue = options.data;
       options.data = null;
 
       if (options.autoAdd === true) {
@@ -258,7 +278,8 @@
       }
       displayControls();
 
-      trigger('removed');
+      trigger('change', [{data: undefined}, {data: oldValue}]);
+      trigger('remove');
     }
 
     function recropImage(e) {
@@ -285,7 +306,6 @@
       if(!options.data){
         return;
       }
-      $(image).remove();
 
       image = new Image();
       image.onload = function() {
@@ -298,7 +318,7 @@
         }
         defineSize();
         displayImage();
-        trigger('loaded', options.data);
+        trigger('load', image);
         if(onload){
           onload(image, ratio);
         }
@@ -311,7 +331,9 @@
     }
 
     function handleImageReceived(data, action) {
+      var oldData = options.data;
       options.data = data;
+      trigger('change', {data: data}, {data: oldData});
 
       if(!data) {
         removeLoader();
@@ -324,7 +346,7 @@
           post.storage[imageStorageKey] = options.data;
           post.storage[ratioStorageKey] = ratio;
           post.save();
-          trigger('saved', options.data);
+          trigger('save', options.data);
 
           if(action){
             trigger(action, options.data);
@@ -344,8 +366,18 @@
 
     function displayImage() {
       if(image) {
-        $el.css('background-image', 'url('+image.src+')').addClass('ut-image-active');
+        var cssurl = 'url('+image.src+')';
+        if($el.css('background-image') !== cssurl){
+          $el.css('background-image', cssurl).addClass('ut-image-active');
+        }
         displayEmptyPlaceHolder(false);
+      }
+    }
+
+    /* return the data from the parent post */
+    function reuse() {
+      if(!post.storage[imageStorageKey] && post.collection('parent') && post.collection('parent')[imageStorageKey]){
+        return post.collection('parent')[imageStorageKey];
       }
     }
 
@@ -356,6 +388,7 @@
           .removeData('utImage')
           .removeClass('ut-image ut-image-active media-placeholder')
           .empty();
+        $el.off(handlePostResize);
       });
     }
 
@@ -443,6 +476,7 @@
 
   $.fn.utImage.defaults = {
     autoSave: true,
+    reuse: false,
     flexRatio: true,
     minSize: '100px',
     editable: undefined, // true in edit mode, false in player mode

@@ -6,7 +6,7 @@
   UT.Expression.ready(function(post) {
     $("#meme")
       .utImage({
-        post: post
+        reuse: true
       })
       .on('utImage:resized',function() {
         post.size({'height':$(this).outerHeight()});
@@ -26,7 +26,8 @@
        maxFontSize: "72px",
        minFontSize: 36,
        fixedSize: true,
-       chars: 60
+       chars: 60,
+       reuse: true
      })
      .on('utText:saved',function() {
       checkValidContent();
