@@ -2,10 +2,10 @@
 
 ;(function(UT, $) {
   "use strict";
-
   UT.Expression.ready(function(post) {
+
     $("#meme")
-      .utImage({})
+      .utImage()
       .on('utImage:resize',function() {
         post.size({'height':$(this).outerHeight()});
       });

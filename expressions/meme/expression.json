@@ -10,7 +10,8 @@
     "bookmarklet"
   ],
   "dependencies": [
-    { "path": "js/editor.js"},
+    { "path": "js/editor.js","context":"editor"},
+    { "path": "js/player.js","context":"player"},
     { "path": "css/exp.css"}
   ]
 }
