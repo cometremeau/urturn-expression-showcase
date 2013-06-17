@@ -1,13 +1,29 @@
 {
   "title": "Puzzle",
   "system_name": "puzzle",
-  "version": "1.0.209",
+  "version": "1.0.224",
   "api_version": "0.8.1",
   "dependencies": [
     {
       "type": "stylesheet",
       "path": "puzzle.css"
+    },
+    {
+      "type": "javascript",
+      "path": "editor.js",
+      "context": "editor"
+    },
+    {
+      "type": "javascript",
+      "path": "player.js",
+      "context": "player"
     }
+  ],
+  "indexed_keys": [
+    "puuzzleKey"
+  ],
+  "assets": [
+    "selectedTile.png"
   ],
   "collections": [
     {
