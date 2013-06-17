@@ -15,7 +15,7 @@ UT.Expression.ready(function(post) {
   $background.utImage()
     // set the post height to the image height
     // and update the state
-    .on('utImage:loaded', function(){
+    .on('utImage:load', function(){
       state.hasImage = true;
       // resize the post
       post.size($(this).height(), function(){
@@ -26,7 +26,7 @@ UT.Expression.ready(function(post) {
     })
     // keep the actual size and disable the
     // add sticker button
-    .on('utImage:removed', function(){
+    .on('utImage:remove', function(){
       state.hasImage = false;
       stickerManager.disable();
       stickerManager.removeAll();
@@ -89,7 +89,7 @@ UT.Expression.ready(function(post) {
         })
         // listen to the remove event to invalidate the post and remove
         // the associated data from collection
-        .on('utSticker:remove', function(event){
+        .on('utSticker:destroy', function(event){
           $.each(collection, function(idx){
             if(this.stickerId === data.stickerId){
               collection.splice(idx, 1);

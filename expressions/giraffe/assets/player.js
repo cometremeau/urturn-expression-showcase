@@ -11,7 +11,7 @@ UT.Expression.ready(function(post) {
   };
 
   $background.utImage()
-    .on('utImage:loaded', function(){
+    .on('utImage:load', function(){
       post.size($(this).height());
 
       $.each(post.storage.stickers, function(){
