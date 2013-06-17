@@ -42,7 +42,7 @@
 
   function checkValidContent() {
     console.log("valid ?",$("#meme").hasClass('ut-image-placeholder'));
-    if ($("#header_text .ut-text-content")[0].innerText.length !== 0 &&
+    if ($("#header_text .ut-text-content")[0].innerHTML.length !== 0 &&
         !$("#meme").hasClass('ut-image-placeholder')) {
       post.valid(true);
     } else {
