@@ -1,40 +1,29 @@
-<!--
-
-TODO :
--> Make More go to a better search :(than puzzle)
-    OR : Expression page (implement it into SDK)
--> Help Board
--> Clean Code
-
-
--->
-
-<div style="width : 100%; margin : 0px; padding : 0px;" id='container'>
-<canvas id='c' width='640' height='640' style='width:100%'> 
-
-</canvas>
+<!-- The game board -- >
+<div id='container'>
+  <canvas id='theCanvas' width='640' height='640'> 
+  </canvas>
 </div>
+
+<!-- In Game bottom bar -->
 <div id='scores'>
-
-  <div style='width : 25%; background-color : #dadada; color : #888' class='bottomButton'>Help</div>
-  <div style='width : 60%; background-color : #b5061b; color : #fafafa' class='bottomButton' onclick='restart()'>Restart</div>  
-  <div style='width : 10%; background-color : #fafafa;' class='bottomButton'><span id='uscore'>0</span> </div>
-
+  <div class='bottomButton help'>Help</div>
+  <div class='bottomButton restart' onclick='restart()'>Restart</div>
+  <div class='bottomButton currentScore'><span id='uscore'>0</span> </div>
 </div>
 
-
-<div id='highscores' style='display : none'>
-
-  <div style='width : 60%; background-color : #b5061b; color : #fafafa' class='bottomButtonr' onclick='restart()'>Restart</div>  
-  <div style='width : 35%; background-color : #fafafa;' class='bottomButtonr' onclick='goExpPage()'> More </div>
-
+<!-- High Scores Bottom Bar -->
+<div id='highscores'>
+  <div class='bottomButtonr restart' onclick='restart()'>Restart</div>  
+  <div class='bottomButtonr more' onclick='goExpPage()'> More </div>
 </div>
 
-<div id='youJustDid' class='box yourScoreTopBar' id='hs'>
+<!-- Highscores Top Bar -->
+<div id='youJustDid' class='box yourScoreTopBar'>
   You just did : &nbsp;&nbsp;&nbsp;&nbsp;<span id='yourScore'> </span>
 </div>
 
-<div style='display : none; width : 80%; position : absolute; top:100px; left: 10%;' class='box' id='hs'>
+<!-- LeaderBoard -->
+<div class='box' id='hs'>
   <table>
     <thead>
       <tr>
@@ -50,13 +39,13 @@ TODO :
       </tr>
     </thead>
     <tbody id='others'>
-
     </tbody>
   </table>
 </div>
 
-<div class='box' id='creatorBox' style='display:none;width : 80%; position : absolute; bottom : 10%; left : 10%; padding-top : 20px; padding-bottom : 20px'>
-  <div style='width : 70px; margin-right : 20px; margin-left :20px; float : left'>
+<!-- Board creator Card -->
+<div class='box' id='creatorBox'>
+  <div id='thumbContainer'>
     <img id='thumb' src='' width='70px' height='70px' />
   </div>
   <div style='float:left'>

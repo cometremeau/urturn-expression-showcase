@@ -1,7 +1,7 @@
 {
   "title": "Puzzle",
   "system_name": "puzzle",
-  "version": "1.0.224",
+  "version": "1.0.227",
   "api_version": "0.8.1",
   "dependencies": [
     {
@@ -23,7 +23,11 @@
     "puuzzleKey"
   ],
   "assets": [
-    "selectedTile.png"
+    "selectedTile.png",
+    "assets/cooprblk-webfont.woff",
+    "assets/cooprblk-webfont.ttf",
+    "assets/cooprblk-webfont.eot",
+    "assets/cooprblk-webfont.svg"
   ],
   "collections": [
     {

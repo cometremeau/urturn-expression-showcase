@@ -45,7 +45,7 @@ UT.Expression.ready(function(exp){
 });
 
 function init() {
-  canvas = document.getElementById('c');
+  canvas = document.getElementById('theCanvas');
   canvas.addEventListener('mousedown', mouseDown);
   canvas.addEventListener('mouseup', mouseUp);
   canvas.addEventListener('touchstart', touchstart);
