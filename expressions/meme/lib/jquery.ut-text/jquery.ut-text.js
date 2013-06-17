@@ -219,8 +219,6 @@
            break;
          }
       }
-
-
     }
 
     /* Adapt size and save */
@@ -269,6 +267,7 @@
     function reuse() {
       if(!storage[storageKey] && post.collection('parent') && post.collection('parent')[storageKey]){
         $contentDomNode.html(post.collection('parent')[storageKey]);
+        $contentDomNode.attr('data-div-placeholder-content', 'true');
         saveData();
       }
     }

@@ -60,7 +60,7 @@
     $('#minheight').utImage();
 
     // general behavior
-    $('.ut-image').on('utImage:resized', function(event){
+    $('.ut-image').on('utImage:resize', function(event){
       console.log("resize triggered from", event.target)
       post.size($('.content').height());
     });

@@ -86,10 +86,10 @@
         if(!initialized){
           initialized = true;
           displayEmptyPlaceHolder(true);
-          loadImage();
+          loadImage(function(){
+            trigger('change', {data: options.data}, {data: undefined});
+          });
           trigger('ready');
-        } else {
-          trigger('change', [options, options /*WRONG*/]);
         }
 
         post.on('resize', handlePostResize);
@@ -318,7 +318,6 @@
         }
         defineSize();
         displayImage();
-        trigger('load', image);
         if(onload){
           onload(image, ratio);
         }
@@ -333,7 +332,6 @@
     function handleImageReceived(data, action) {
       var oldData = options.data;
       options.data = data;
-      trigger('change', {data: data}, {data: oldData});
 
       if(!data) {
         removeLoader();
@@ -345,14 +343,16 @@
         if (options.autoSave === true) {
           post.storage[imageStorageKey] = options.data;
           post.storage[ratioStorageKey] = ratio;
-          post.save();
-          trigger('save', options.data);
-
+          trigger('change', [options.data, oldData]);
+          if(options.autoSave){
+            post.save();
+            trigger('save', options.data);
+          }
           if(action){
             trigger(action, options.data);
           }
         }
-      });
+      }, oldData);
     }
 
     function addLoader() {
