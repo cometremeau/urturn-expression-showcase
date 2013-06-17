@@ -21,8 +21,8 @@ var PARTICLES = [];
 var PAINT = null;
 
 // Bootstrap you expression editor
-UT.Expression.ready(function(exp){
-  post = exp;
+UT.Expression.ready(function(postInstance){
+  post = postInstance;
   post.resize(post.node.offsetWidth + 55);
   MAP = JSON.parse(post.storage.map);
   HIGH_SCORES = post.collection('scores');
@@ -89,7 +89,7 @@ function otherScoresCallback(items) {
 }
 
 function goExpPage() {
-  post.navigate('search', 'PuzzleBoards');
+  post.navigate('browse', 'http://urturn.com/pld/puzzle');
 }
 
 function createScoreLine(className, position, username, score, linked, others) {
