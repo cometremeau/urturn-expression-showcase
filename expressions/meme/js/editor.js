@@ -6,7 +6,8 @@
   UT.Expression.ready(function(post) {
     $("#meme")
       .utImage({
-        reuse: true
+        reuse: true,
+        minSize: 400
       })
       .on('utImage:resize',function() {
         post.size({'height':$(this).outerHeight()});
