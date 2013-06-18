@@ -21,26 +21,30 @@ UT.Expression.ready(function(post) {
         adaptUI: true
       },
       filter: [
-          {
-            filter: "imageoverlay",
-            parameters: {
-              'url':frameURL,
-              'x': 0,
-              'y': 0,
-              'width': 1,
-              'height': 1,
-              'rotation': 0,
-              'postFilter': 1,
-              'merge': false
-            }
+        {
+          filter: "imageoverlay",
+          parameters: {
+            'url':frameURL,
+            'x': 0,
+            'y': 0,
+            'width': 1,
+            'height': 1,
+            'rotation': 0,
+            'postFilter': 1,
+            'merge': false
           }
+        }
       ],
       flexRatio: false,
       autoCrop: true
-    }).on('utImage:load', function() {
-      post.valid(true);
-    }).on('utImage:remove', function() {
-      post.valid(false);
+    })
+    .on('utImage:change', function(event, newValues){
+      var hasImage = !!newValues.data;
+      if(hasImage) {
+        post.valid(true);
+      } else {
+        post.valid(false);
+      }
     });
   });
 
