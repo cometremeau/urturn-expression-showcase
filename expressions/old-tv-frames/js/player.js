@@ -20,8 +20,6 @@ UT.Expression.ready(function (post) {
     that.data.currentElement = post.storage.design || 0;
     that.data.isPlayed = false;
     that.data.expWidth = $(post.node).width();
-    that.data.isMobileDesign = (that.data.expWidth <= 480);
-    that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
 
     /**
      * expression's methods
@@ -47,41 +45,11 @@ UT.Expression.ready(function (post) {
     obj.addClass("video" + (that.data.currentElement+1));
 
     // set scale as width/576 * 100%
-    obj.css("font-size", (that.data.isMobileDesign ? that.data.expWidth/3.2 : that.data.expWidth/5.76) + "%");
-    var player = $("#videoPlayer").utVideo({ ui:{ play:false, playing:false } });
+    obj.css("font-size", (that.data.expWidth/5.76) + "%");
+    $("#videoPlayer").utVideo();
 
     // show content
     that.ui.container.addClass("show");
-
-    $(".video_element .play").on("click", function(e) {
-      $("#videoPlayer").utVideo("play");
-      that.methods.onPlay();
-      e.stopPropagation();
-      e.preventDefault();
-    });
-
-    $(".video_element .pause").on("click", function(e) {
-      $("#videoPlayer").utVideo("pause");
-      e.stopPropagation();
-      e.preventDefault();
-    });
-
-    $(".video_element .play-pause").on("click", function(e) {
-      if(that.data.isPlayed) {
-        $("#videoPlayer").utVideo("pause");
-      } else {
-        $("#videoPlayer").utVideo("play");
-        that.methods.onPlay();
-      }
-      e.stopPropagation();
-      e.preventDefault();
-    });
-
-    player.on("utVideo:play", that.methods.onPlay);
-    player.on("utVideo:pause", that.methods.onPause);
-    player.on("utVideo:stop", that.methods.onPause);
-    player.on("utVideo:finish", that.methods.onPause);
-    player.on("utVideo:error", that.methods.onPause);
   });
   post.size({ 'height':$(post.node).width()/post.storage.ratio });
   return this;
