@@ -15,21 +15,19 @@ UT.Expression.ready(function(post) {
   $background.utImage()
     // set the post height to the image height
     // and update the state
-    .on('utImage:loaded', function(){
-      state.hasImage = true;
-      // resize the post
-      post.size($(this).height(), function(){
-        // once done, display the sticker manager and revalidate
-        stickerManager.enable();
-        validates();
-      });
-    })
-    // keep the actual size and disable the
-    // add sticker button
-    .on('utImage:removed', function(){
-      state.hasImage = false;
-      stickerManager.disable();
-      stickerManager.removeAll();
+    .on('utImage:change', function(event, newValues){
+      console.log(state.hasImage = !!newValues.data);
+      if(state.hasImage) {
+        // resize the post
+        post.size($(this).height(), function(){
+          // once done, display the sticker manager and revalidate
+          stickerManager.enable();
+        });
+      } else {
+        state.hasImage = false;
+        stickerManager.disable();
+        stickerManager.removeAll();
+      }
       validates();
     });
 
@@ -89,7 +87,7 @@ UT.Expression.ready(function(post) {
         })
         // listen to the remove event to invalidate the post and remove
         // the associated data from collection
-        .on('utSticker:remove', function(event){
+        .on('utSticker:destroy', function(event){
           $.each(collection, function(idx){
             if(this.stickerId === data.stickerId){
               collection.splice(idx, 1);
@@ -144,7 +142,7 @@ UT.Expression.ready(function(post) {
       enable: enableScene,
       disable: disableScene,
       removeAll: function(){
-        $('.sticker-giraffe').utSticker('remove');
+        $('.sticker-giraffe').utSticker('destroy');
       }
     };
   }());
