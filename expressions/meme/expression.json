@@ -2,8 +2,8 @@
   "title": "MEME Generator",
   "description": "Yet another one",
   "system_name": "meme",
-  "version": "0.2.2",
-  "api_version": "0.9.0-beta12",
+  "version": "0.2.3",
+  "api_version": "0.9.0-beta13",
   "platform": [
     "desktop",
     "ios",

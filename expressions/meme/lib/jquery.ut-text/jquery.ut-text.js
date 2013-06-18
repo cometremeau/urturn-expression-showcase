@@ -286,8 +286,9 @@
     init();
 
     return {
-      options: options,
-      destroy: destroy
+      options:    options,
+      destroy:    destroy,
+      sizeChange: sizeChange
     };
   }
 

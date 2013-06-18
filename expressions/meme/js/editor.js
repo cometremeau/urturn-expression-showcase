@@ -16,10 +16,12 @@
       .on('utImage:change',function(event, newValues, oldValues) {
         if (newValues.data && !oldValues.data) {
           $(post.node).addClass('image-is-present');
+          jQuery(":utText").utText('sizeChange');
         } else if(!newValues.data && oldValues.data) {
           $(post.node).removeClass('image-is-present');
         } else if(newValues.data && oldValues.data) {
           post.size({'height':$(this).outerHeight()});
+          jQuery(":utText").utText('sizeChange');
         }
       });
    $("#header_text")
