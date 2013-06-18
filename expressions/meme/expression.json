@@ -2,14 +2,15 @@
   "title": "MEME Generator",
   "description": "Yet another one",
   "system_name": "meme",
-  "version": "0.2.3",
-  "api_version": "0.9.0-beta13",
+  "version": "0.2.4",
+  "api_version": "0.9.0-beta12",
   "platform": [
     "desktop",
     "ios",
     "bookmarklet"
   ],
   "dependencies": [
+    { "path" : "lib/jquery.ut-text/jquery.ut-text.js"},
     { "path": "js/editor.js","context":"editor"},
     { "path": "js/player.js","context":"player"},
     { "path": "css/exp.css"}
