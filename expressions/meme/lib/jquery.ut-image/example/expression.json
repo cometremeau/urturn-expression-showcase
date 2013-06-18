@@ -1,0 +1,27 @@
+{
+  "title": "UT Image Component",
+  "description": "",
+  "system_name": "ut-image-example",
+  "version": "0.1.7",
+  "api_version": "0.9.0-beta7",
+  "platform": [
+    "desktop"
+  ],
+  "dependencies": [
+    {
+      "path": "lib/jquery.ut-image/jquery.ut-image.js"
+    },
+    {
+      "path": "lib/jquery.ut-image/jquery.ut-image.css"
+    },
+    {
+      "path": "lib/urturn-expression-css/css/styles.css"
+    },
+    {
+      "path": "css/exp.css"
+    },
+    {
+      "path": "js/main.js"
+    }
+  ]
+}

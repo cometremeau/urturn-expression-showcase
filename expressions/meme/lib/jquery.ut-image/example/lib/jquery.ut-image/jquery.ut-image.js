@@ -375,8 +375,6 @@
     /* return the data from the parent post */
     function reuse() {
       if(!post.storage[imageStorageKey] && post.collection('parent') && post.collection('parent')[imageStorageKey]){
-        post.storage[imageStorageKey] = post.collection('parent')[imageStorageKey];
-        post.save();
         return post.collection('parent')[imageStorageKey];
       }
     }

@@ -14,15 +14,18 @@
         post.size({'height':$(this).outerHeight()});
       })
       .on('utImage:change',function(event, newValues, oldValues) {
-        if (newValues.data && !oldValues.data) {
+        if (newValues && newValues.data) {
           $(post.node).addClass('image-is-present');
           jQuery(":utText").utText('sizeChange');
-        } else if(!newValues.data && oldValues.data) {
+          post.size({'height':$(this).outerHeight()});
+        }
+        if(!newValues.data && oldValues.data) {
           $(post.node).removeClass('image-is-present');
-        } else if(newValues.data && oldValues.data) {
+        } else if(newValues && newValues.data && oldValues && oldValues.data) {
           post.size({'height':$(this).outerHeight()});
           jQuery(":utText").utText('sizeChange');
         }
+        checkValidContent();
       });
    $("#header_text")
      .utText({

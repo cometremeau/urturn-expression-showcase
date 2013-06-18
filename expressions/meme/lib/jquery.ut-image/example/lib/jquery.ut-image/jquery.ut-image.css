@@ -1,0 +1,47 @@
+/*
+ * This source code is licensed under version 3 of the AGPL.
+ *
+ * Copyright (c) 2013 by urturn
+ *
+ * Addendum to the license AGPL-3:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+ * PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+ * FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+ * OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+.ut-image {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  background-position: 50% 50%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.ut-image-img {
+  width: 100%;
+  height: auto;
+}
+
+.ut-image-overlay {
+  top: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.ut-image-edit-button,
+.ut-image-remove-button {
+  display: block;
+}
+
+.ut-image-add-button {
+  display: inline-block;
+}

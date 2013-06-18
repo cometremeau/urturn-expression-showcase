@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-image",
-  "version": "0.9.7",
+  "version": "0.9.6",
   "dependencies": {
     "jquery": ">=1.8.0",
     "urturn-expression-css": ">=0.6.0"
