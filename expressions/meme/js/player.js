@@ -2,7 +2,12 @@
 
 ;(function(UT, $) {
   "use strict";
+  
   UT.Expression.ready(function(post) {
+
+    if (post.context.player === true) {
+      $(post.node).addClass('image-is-present');
+    }
 
     $("#meme")
       .utImage()
@@ -11,7 +16,6 @@
       });
    $("#header_text")
      .utText({
-       placeholder: "Write here",
        maxFontSize: "72px",
        minFontSize: 36,
        fixedSize: true,
@@ -20,7 +24,6 @@
      });
    $("#footer_text")
      .utText({
-       placeholder: "And here...",
        maxFontSize: 72,
        minFontSize: 36,
        fixedSize: true,

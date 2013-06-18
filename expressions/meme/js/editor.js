@@ -4,20 +4,20 @@
   "use strict";
 
   UT.Expression.ready(function(post) {
+
     $("#meme")
       .utImage({
         reuse: true,
         minSize: 400
       })
-      .on('utImage:resize',function() {
-        post.size({'height':$(this).outerHeight()});
-        checkValidContent();
-      })
-      .on('utImage:remove',function() {
-        checkValidContent();
-      })
-      .on('utImage:load',function() {
-        checkValidContent();
+      .on('utImage:change',function(event, newValues, oldValues) {
+        if (newValues.data && !oldValues.data) {
+          $(post.node).addClass('image-is-present');
+        } else if(!newValues.data && oldValues.data) {
+          $(post.node).removeClass('image-is-present');
+        } else if(newValues.data && oldValues.data) {
+          // content edited
+        }
       });
    $("#header_text")
      .utText({

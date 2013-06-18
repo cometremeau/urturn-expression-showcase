@@ -19,6 +19,14 @@ footer {
   min-height: 20%;
 }
 
+.ut-text {
+  display: none;
+}
+
+.image-is-present .ut-text {
+  display: inline-block;
+}
+
 .ut-text-countdown {
   display: none;
 }

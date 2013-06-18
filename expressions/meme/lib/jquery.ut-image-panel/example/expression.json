@@ -2,7 +2,7 @@
   "title": "UT Image Component",
   "description": "",
   "system_name": "ut-image-example",
-  "version": "0.1.4",
+  "version": "0.1.7",
   "api_version": "0.9.0-beta7",
   "platform": [
     "desktop"

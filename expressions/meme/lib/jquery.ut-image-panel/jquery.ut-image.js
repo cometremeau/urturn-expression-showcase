@@ -49,7 +49,7 @@
         post;               // the post instance
 
     function init() {
-      $el.addClass('ut-image media-placeholder');
+      $el.addClass('ut-image ut-media-placeholder');
 
       UT.Expression.ready(function(p){
         post = p;
@@ -109,9 +109,9 @@
 
     function displayEmptyPlaceHolder(enabled){
       if(enabled) {
-        $el.addClass('media-placeholder');
+        $el.addClass('ut-media-placeholder');
       } else {
-        $el.removeClass('media-placeholder');
+        $el.removeClass('ut-media-placeholder');
       }
     }
 
@@ -168,10 +168,10 @@
 
     function renderEdit() {
       var actionButtons = '<ul class="tls horizontal index spaced ut-image-action-list">'+
-          '<li><a href="#" class="ut-image-edit-button edit-button action-button icon_camera spaced-right large-button button">Edit</a></li>'+
-          '<li><a href="#" class="ut-image-remove-button remove-button action-button icon_trash large-button button"></a></li>'+
+          '<li><a href="#" class="ut-image-edit-button ut-edit-button icon_camera spaced-right">Edit</a></li>'+
+          '<li><a href="#" class="ut-image-remove-button ut-edit-button icon_trash"></a></li>'+
           '</ul>'+
-          '<a href="#" class="ut-image-add-button icon_camera media-button button">Add Image</a></div>';
+          '<a href="#" class="ut-image-add-button icon_camera ut-media-button ut-button">Add Image</a></div>';
 
       $el
         .append(actionButtons)
@@ -248,22 +248,20 @@
 
     function addImage(e) {
       if (e) { e.preventDefault(); }
-
-      $('.add-button',$el).addClass('is-hidden');
-
       post.dialog('image', imageOptions(options, 'add'), function(data, error){
         addLoader();
-        if(error) {
+        if(error || !data) {
           removeLoader();
           return;
         }
+        $('.ut-image-add-button',$el).addClass('is-hidden');
         handleImageReceived(data,'added');
       });
     }
 
     function removeImage(e) {
       e.preventDefault();
-      $el.removeClass('ut-image-active').addClass('media-placeholder').css('background-image', '');
+      $el.removeClass('ut-image-active').addClass('ut-media-placeholder').css('background-image', '');
       $(image).remove();
       image = null;
       if (options.autoSave === true) {
@@ -386,7 +384,7 @@
         trigger('destroy');
         $el
           .removeData('utImage')
-          .removeClass('ut-image ut-image-active media-placeholder')
+          .removeClass('ut-image ut-image-active ut-media-placeholder')
           .empty();
         $el.off(handlePostResize);
       });

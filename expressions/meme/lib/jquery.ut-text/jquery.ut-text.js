@@ -70,7 +70,7 @@
       }
 
       if (options.chars) {
-        $countdownDomNode = $('<div>').addClass('ut-text-countdown action-button small-button button');
+        $countdownDomNode = $('<div>').addClass('ut-text-countdown ut-action-button ut-small-button ut-button');
         $el.append($countdownDomNode);
         updateCharactersCounter();
       }
