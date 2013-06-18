@@ -11,11 +11,10 @@ UT.Expression.ready(function(post) {
   };
 
   $background.utImage()
-    .on('utImage:load', function(){
+    .on('utImage:change', function(){
       post.size($(this).height());
 
-      $.each(post.storage.stickers, function(){
-        console.log('data', this);
+      $.each(post.storage.stickers, function() {
         drawSticker(this);
       });
     });

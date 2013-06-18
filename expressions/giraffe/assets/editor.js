@@ -15,21 +15,19 @@ UT.Expression.ready(function(post) {
   $background.utImage()
     // set the post height to the image height
     // and update the state
-    .on('utImage:load', function(){
-      state.hasImage = true;
-      // resize the post
-      post.size($(this).height(), function(){
-        // once done, display the sticker manager and revalidate
-        stickerManager.enable();
-        validates();
-      });
-    })
-    // keep the actual size and disable the
-    // add sticker button
-    .on('utImage:remove', function(){
-      state.hasImage = false;
-      stickerManager.disable();
-      stickerManager.removeAll();
+    .on('utImage:change', function(event, newValues){
+      console.log(state.hasImage = !!newValues.data);
+      if(state.hasImage) {
+        // resize the post
+        post.size($(this).height(), function(){
+          // once done, display the sticker manager and revalidate
+          stickerManager.enable();
+        });
+      } else {
+        state.hasImage = false;
+        stickerManager.disable();
+        stickerManager.removeAll();
+      }
       validates();
     });
 
@@ -144,7 +142,7 @@ UT.Expression.ready(function(post) {
       enable: enableScene,
       disable: disableScene,
       removeAll: function(){
-        $('.sticker-giraffe').utSticker('remove');
+        $('.sticker-giraffe').utSticker('destroy');
       }
     };
   }());
