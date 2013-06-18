@@ -1,12 +1,12 @@
 ### TODOS
 
 - [*] Firefox compatibility
-- [*] Mobile input (partial)
-- [*] Integration with others components (partial, UX needed)
+- [*] Mobile input
+- [*] Integration with others components
 - [*] Charaters limitations
 - [*] Size limitations
 - [*] Save
 - [*] View mode (partial)
 - [*] Events
-- [ ] Paste text
-- [ ] Formating, return lines etc...
+- [*] Paste text
+- [*] Formating, return lines etc...

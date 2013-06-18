@@ -37,9 +37,9 @@ UT.Expression.ready(function(post) {
       ],
       flexRatio: false,
       autoCrop: true
-    }).on('utImage:loaded', function() {
+    }).on('utImage:load', function() {
       post.valid(true);
-    }).on('utImage:removed', function() {
+    }).on('utImage:remove', function() {
       post.valid(false);
     });
   });

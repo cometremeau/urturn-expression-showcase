@@ -4,21 +4,23 @@
   "use strict";
 
   UT.Expression.ready(function(post) {
+
     $("#meme")
       .utImage({
-        post: post
+        reuse: true,
+        minSize: 400
       })
-      .on('utImage:resized',function() {
+      .on('utImage:ready',function() {
         post.size({'height':$(this).outerHeight()});
-        checkValidContent();
       })
-      .on('utImage:removed',function() {
-        console.warn("remov");
-        checkValidContent();
-      })
-      .on('utImage:added',function() {
-        console.warn("added");
-        checkValidContent();
+      .on('utImage:change',function(event, newValues, oldValues) {
+        if (newValues.data && !oldValues.data) {
+          $(post.node).addClass('image-is-present');
+        } else if(!newValues.data && oldValues.data) {
+          $(post.node).removeClass('image-is-present');
+        } else if(newValues.data && oldValues.data) {
+          post.size({'height':$(this).outerHeight()});
+        }
       });
    $("#header_text")
      .utText({
@@ -26,9 +28,10 @@
        maxFontSize: "72px",
        minFontSize: 36,
        fixedSize: true,
-       chars: 60
+       chars: 60,
+       reuse: true
      })
-     .on('utText:saved',function() {
+     .on('utText:save',function() {
       checkValidContent();
      });
    $("#footer_text")
@@ -41,7 +44,6 @@
      });
 
   function checkValidContent() {
-    console.log("valid ?",$("#meme").hasClass('ut-image-placeholder'));
     if ($("#header_text .ut-text-content")[0].innerHTML.length !== 0 &&
         !$("#meme").hasClass('ut-image-placeholder')) {
       post.valid(true);

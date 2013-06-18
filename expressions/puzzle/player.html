@@ -6,7 +6,7 @@
 
 <!-- In Game bottom bar -->
 <div id='scores'>
-  <div class='bottomButton help'>Help</div>
+  <div class='bottomButton help' onclick='help()'>Help</div>
   <div class='bottomButton restart' onclick='restart()'>Restart</div>
   <div class='bottomButton currentScore'><span id='uscore'>0</span> </div>
 </div>
@@ -46,14 +46,37 @@
 <!-- Board creator Card -->
 <div class='box' id='creatorBox'>
   <div id='thumbContainer'>
-    <img id='thumb' src='' width='70px' height='70px' />
+    <img id='thumb' src='' width='10%' />
   </div>
   <div style='float:left'>
     This board was created by : <br/>
     <div style='width : 100%; overflow : hidden'>
-      <span style='font-size : 25px; color : #b5061b'>
+      <span style='font-size : 20px; color : #b5061b'>
        @<a id='authorProfile' onclick='goProfile(this)'></a>
       </span>
     </div>
+  </div>
+</div>
+
+
+
+<!-- A tutorial popup shown when user click help -->
+<div id='tuto' class='box tutorialPopup' style='display : none'>
+  <div class='tutorial'>
+    <h1>How to play?</h1>
+
+    <p>
+      <img src='assets/tuto_player_1.png' /><br/>
+      Click on / touch a square to select it. Then Click / touch to propagate first square color. 
+    </p>
+    <p>
+      <img src='assets/tuto_player_2.png' /><br />
+      Once all board is of an unique color, you have win.
+    </p>
+    <p>
+      Try to unifie board colors using as little step as possible!
+    </p>
+    <input type='button' value='Start playing now!' class='btn success big' onclick='hideHelp()' />
+    <br/>
   </div>
 </div>

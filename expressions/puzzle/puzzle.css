@@ -172,12 +172,13 @@ tr {
   display : none;
   width : 80%;
   position : absolute;
-  top : 20px;
+  top : 5%;
   left : 10%;
-  font-size : 25px;
+  font-size : 20px;
   padding-top : 10px;
   padding-bottom : 10px;
-  text-align : center
+  text-align : center;
+  max-height : 10%;
 }
 
 .greyOverlay {
@@ -226,4 +227,8 @@ tr {
   margin-right : 20px; 
   margin-left :20px; 
   float : left
+}
+
+img {
+  width : 100%;
 }

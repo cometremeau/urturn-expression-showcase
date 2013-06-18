@@ -94,6 +94,9 @@ function goExpPage() {
 
 function createScoreLine(className, position, username, score, linked, others) {
   var tr = document.createElement('tr');
+  if (username.length > 12) {
+    username = username.substring(0, 9) + '...';
+  }
   tr.className = className;
   tr.innerHTML = '<td>' 
           + position 
@@ -356,8 +359,8 @@ function setHighScore() {
     if (OTHERS_HIGHSCORES[i].username == USERNAME) {
       OTHERS_HIGHSCORES[i].score = SCORE;
       userAlreadyHaveScored = 1;
-      ++i;
     }
+    ++i;
   }
   if (!userAlreadyHaveScored) {
     OTHERS_HIGHSCORES.push(userHighScore);
@@ -490,6 +493,14 @@ function renderParticles() {
     ++i;
 
   }
+}
+
+function help() {
+  document.getElementById('tuto').style.display = 'block';
+}
+
+function hideHelp() {
+    document.getElementById('tuto').style.display = 'none';
 }
 
 function loop() {

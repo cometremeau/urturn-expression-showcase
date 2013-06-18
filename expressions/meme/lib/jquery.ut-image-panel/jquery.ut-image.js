@@ -49,7 +49,7 @@
         post;               // the post instance
 
     function init() {
-      $el.addClass('ut-image media-placeholder');
+      $el.addClass('ut-image ut-media-placeholder');
 
       UT.Expression.ready(function(p){
         post = p;
@@ -66,8 +66,13 @@
         ratioStorageKey = storagePrefix+options.id+'_ratio';
 
         // Default image came from storage if not in options
-        if (!options.data) {
+        if (!options.data && !options.reuse) {
           options.data = post.storage[imageStorageKey];
+        }
+
+        // Default image come from the parent post triggered by the "ur" event
+        if (!options.data && options.reuse) {
+          options.data = reuse();
         }
 
         ratio = post.storage[ratioStorageKey];
@@ -81,17 +86,19 @@
         if(!initialized){
           initialized = true;
           displayEmptyPlaceHolder(true);
-          loadImage();
+          loadImage(function(){
+            trigger('change', {data: options.data}, {data: undefined});
+          });
           trigger('ready');
-        } else {
-          trigger('change');
         }
 
-        post.on('resize', function(){
-          defineSize();
-          displayImage();
-        });
+        post.on('resize', handlePostResize);
       });
+    }
+
+    function handlePostResize () {
+      defineSize();
+      displayImage();
     }
 
     function trigger(name, data){
@@ -102,9 +109,9 @@
 
     function displayEmptyPlaceHolder(enabled){
       if(enabled) {
-        $el.addClass('media-placeholder');
+        $el.addClass('ut-media-placeholder');
       } else {
-        $el.removeClass('media-placeholder');
+        $el.removeClass('ut-media-placeholder');
       }
     }
 
@@ -123,18 +130,32 @@
      *    e) css#min-height
      */
     function defineSize() {
+      var oldWidth = $el.width(),
+          oldHeight = $el.height(),
+          newWidth,
+          newHeight;
+
       if(options.width){
         $el.width(options.width).css('min-width', options.minSize);
+        newWidth = $el.width();
+      } else {
+        newWidth = oldWidth;
       }
       if(ratio){
-        $el.height(Math.round($el.width()*ratio));
+        newHeight = Math.round($el.width()*ratio);
+        $el.height(newHeight);
       } else if(options.height){
         $el.height(options.height);
+        newHeight = $el.height();
+      } else {
+        newHeight = oldHeight;
       }
       if($el.css('min-height') === '0px'){
         $el.css('min-height', options.minSize);
       }
-      trigger('resized');
+      if(newHeight !== oldHeight || newWidth !== oldWidth){
+        trigger('resize', {width: newWidth, height: newHeight});
+      }
     }
 
     function setVisible(el, value){
@@ -147,10 +168,10 @@
 
     function renderEdit() {
       var actionButtons = '<ul class="tls horizontal index spaced ut-image-action-list">'+
-          '<li><a href="#" class="ut-image-edit-button edit-button action-button icon_camera spaced-right large-button button">Edit</a></li>'+
-          '<li><a href="#" class="ut-image-remove-button remove-button action-button icon_trash large-button button"></a></li>'+
+          '<li><a href="#" class="ut-image-edit-button ut-edit-button icon_camera spaced-right">Edit</a></li>'+
+          '<li><a href="#" class="ut-image-remove-button ut-edit-button icon_trash"></a></li>'+
           '</ul>'+
-          '<a href="#" class="ut-image-add-button icon_camera media-button button">Add Image</a></div>';
+          '<a href="#" class="ut-image-add-button icon_camera ut-media-button ut-button">Add Image</a></div>';
 
       $el
         .append(actionButtons)
@@ -227,30 +248,27 @@
 
     function addImage(e) {
       if (e) { e.preventDefault(); }
-
-      $('.add-button',$el).addClass('is-hidden');
-
       post.dialog('image', imageOptions(options, 'add'), function(data, error){
         addLoader();
-        if(error) {
+        if(error || !data) {
           removeLoader();
           return;
         }
+        $('.ut-image-add-button',$el).addClass('is-hidden');
         handleImageReceived(data,'added');
       });
     }
 
     function removeImage(e) {
       e.preventDefault();
-      $el.removeClass('ut-image-active').addClass('media-placeholder').css('background-image', '');
+      $el.removeClass('ut-image-active').addClass('ut-media-placeholder').css('background-image', '');
       $(image).remove();
       image = null;
       if (options.autoSave === true) {
         post.storage[imageStorageKey] = null;
         post.save();
       }
-
-      $el.removeData('image');
+      var oldValue = options.data;
       options.data = null;
 
       if (options.autoAdd === true) {
@@ -258,7 +276,8 @@
       }
       displayControls();
 
-      trigger('removed');
+      trigger('change', [{data: undefined}, {data: oldValue}]);
+      trigger('remove');
     }
 
     function recropImage(e) {
@@ -285,7 +304,6 @@
       if(!options.data){
         return;
       }
-      $(image).remove();
 
       image = new Image();
       image.onload = function() {
@@ -298,7 +316,6 @@
         }
         defineSize();
         displayImage();
-        trigger('loaded', options.data);
         if(onload){
           onload(image, ratio);
         }
@@ -311,6 +328,7 @@
     }
 
     function handleImageReceived(data, action) {
+      var oldData = options.data;
       options.data = data;
 
       if(!data) {
@@ -323,14 +341,16 @@
         if (options.autoSave === true) {
           post.storage[imageStorageKey] = options.data;
           post.storage[ratioStorageKey] = ratio;
-          post.save();
-          trigger('saved', options.data);
-
+          trigger('change', [{data: options.data}, {data: oldData}]);
+          if(options.autoSave){
+            post.save();
+            trigger('save', options.data);
+          }
           if(action){
             trigger(action, options.data);
           }
         }
-      });
+      }, oldData);
     }
 
     function addLoader() {
@@ -344,8 +364,18 @@
 
     function displayImage() {
       if(image) {
-        $el.css('background-image', 'url('+image.src+')').addClass('ut-image-active');
+        var cssurl = 'url('+image.src+')';
+        if($el.css('background-image') !== cssurl){
+          $el.css('background-image', cssurl).addClass('ut-image-active');
+        }
         displayEmptyPlaceHolder(false);
+      }
+    }
+
+    /* return the data from the parent post */
+    function reuse() {
+      if(!post.storage[imageStorageKey] && post.collection('parent') && post.collection('parent')[imageStorageKey]){
+        return post.collection('parent')[imageStorageKey];
       }
     }
 
@@ -354,8 +384,9 @@
         trigger('destroy');
         $el
           .removeData('utImage')
-          .removeClass('ut-image ut-image-active media-placeholder')
+          .removeClass('ut-image ut-image-active ut-media-placeholder')
           .empty();
+        $el.off(handlePostResize);
       });
     }
 
@@ -443,6 +474,7 @@
 
   $.fn.utImage.defaults = {
     autoSave: true,
+    reuse: false,
     flexRatio: true,
     minSize: '100px',
     editable: undefined, // true in edit mode, false in player mode
