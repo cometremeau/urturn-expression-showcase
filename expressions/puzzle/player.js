@@ -94,6 +94,9 @@ function goExpPage() {
 
 function createScoreLine(className, position, username, score, linked, others) {
   var tr = document.createElement('tr');
+  if (username.length > 12) {
+    username = username.substring(0, 9) + '...';
+  }
   tr.className = className;
   tr.innerHTML = '<td>' 
           + position 
