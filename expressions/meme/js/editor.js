@@ -10,13 +10,16 @@
         reuse: true,
         minSize: 400
       })
+      .on('utImage:ready',function() {
+        post.size({'height':$(this).outerHeight()});
+      })
       .on('utImage:change',function(event, newValues, oldValues) {
         if (newValues.data && !oldValues.data) {
           $(post.node).addClass('image-is-present');
         } else if(!newValues.data && oldValues.data) {
           $(post.node).removeClass('image-is-present');
         } else if(newValues.data && oldValues.data) {
-          // content edited
+          post.size({'height':$(this).outerHeight()});
         }
       });
    $("#header_text")
