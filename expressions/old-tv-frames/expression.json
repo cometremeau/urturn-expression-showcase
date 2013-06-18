@@ -3,8 +3,8 @@
   "description": "Old TV frames...",
   "system_name": "old-tv-frames",
   "version": "1.0.49",
-  "admins":["stephban", "dmitry", "emmanuel"],
-  "api_version":"0.9.0-beta2",
+  "admins":["Alexey"],
+  "api_version":"0.9.0-beta12",
   "indexed_keys": ["indexedContent"],
   "assets":[
   ],
