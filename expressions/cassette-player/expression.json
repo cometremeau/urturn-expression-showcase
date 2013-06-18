@@ -2,9 +2,9 @@
   "title": "Cassette player",
   "description": "Cassette player",
   "system_name": "cassette-player",
-  "version": "1.0.14",
+  "version": "1.0.16",
   "admins":["stephban", "dmitry", "emmanuel"],
-  "api_version":"0.9.0-beta2",
+  "api_version":"0.9.0-beta12",
   "indexed_keys": ["indexedContent"],
   "assets":[
     "sounds/noise.mp3",
@@ -23,14 +23,9 @@
   "dependencies":[
     {"path":"js/knobKnob.jquery.js"},
 
-    {                    "path":"components/jquery.ut-audio-master/js/jquery.ut-audio-engine.js"},
-    {                    "path":"components/jquery.ut-audio-master/js/jquery.ut-audio.js"},
-    {                    "path":"components/jquery.ut-audio-master/js/jquery.jplayer.min.js"},
-
     {                    "path": "css/common.css" },
     {"context":"editor", "path": "css/editor.css" },
     {"context":"player", "path": "css/player.css" },
-
     {                    "path":"css/cassette.css"},
 
     {"context":"editor", "path":"js/editor.js"},

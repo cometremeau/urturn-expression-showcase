@@ -1,7 +1,7 @@
 {
   "title": "Puzzle",
   "system_name": "puzzle",
-  "version": "1.0.240",
+  "version": "1.0.243",
   "api_version": "0.8.1",
   "dependencies": [
     {
