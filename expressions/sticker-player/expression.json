@@ -2,9 +2,9 @@
   "title": "Sticker player",
   "description": "Nice and amazing sticker with music player inside",
   "system_name": "sticker-player",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "admins": [ "dmitry, yury, james bond, harry potter" ],
-  "api_version": "0.9.1",
+  "api_version": "0.9.2",
   "platform": [ "desktop", "ios"],
   "assets": [],
   "dependencies": [

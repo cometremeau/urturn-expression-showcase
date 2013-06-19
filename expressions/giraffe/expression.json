@@ -2,8 +2,8 @@
   "title": "giraffe",
   "description": "",
   "system_name": "giraffe",
-  "version": "2.2.9",
-  "api_version": "0.9.1",
+  "version": "2.2.10",
+  "api_version": "0.9.2",
   "dependencies": [
     {
       "path": "assets/main-styles.css"

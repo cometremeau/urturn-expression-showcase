@@ -47,6 +47,7 @@ UT.Expression.ready(function(post) {
      remove:false
     }
   });
+  that.view.sticker.utSticker('hide');
 
   that.view.list.find('li').on('click', function(){
     var url = $(this).data('value');
@@ -63,7 +64,6 @@ UT.Expression.ready(function(post) {
   });
 
   that.createAudioSticker = function(){
-    console.log('create sticker',post.storage.audioUrl)
     that.view.player.empty().utAudio({
       data:post.storage.audioUrl,
       skin:'myskin',

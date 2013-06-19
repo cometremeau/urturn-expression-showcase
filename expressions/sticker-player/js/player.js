@@ -12,17 +12,19 @@ UT.Expression.ready(function(post) {
     that.setHeight(that.view.image.height());
   });
 
-  that.view.player.utAudio({
-    data:"https://soundcloud.com/londongrammar/london-grammar-wasting-my",
-    skin:'myskin',
-    ui:{
-      title:false,
-      progress:false,
-      source: false,
-      time: false
-    },
-    editable: false
-  });
+  that.createAudioSticker = function(){
+    that.view.player.empty().utAudio({
+      data:post.storage.audioUrl,
+      skin:'myskin',
+      ui:{
+        title:false,
+        progress:false,
+        source: false,
+        time: false
+      },
+      editable: false
+    });
+  };
 
   that.setHeight = function(height){
     post.size({
@@ -31,4 +33,6 @@ UT.Expression.ready(function(post) {
       that.view.sticker.utSticker();
     });
   };
+
+  that.createAudioSticker();
 });
