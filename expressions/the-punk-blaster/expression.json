@@ -2,9 +2,9 @@
   "title": "The Punk Blaster",
   "description": "",
   "system_name": "the-punk-blaster",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "admins":["Alexey Belchenko"],
-  "api_version":"0.9.0",
+  "api_version":"0.9.1",
   "indexed_keys": ["indexedContent"],
   "assets":[
     "sounds/noise.mp3",

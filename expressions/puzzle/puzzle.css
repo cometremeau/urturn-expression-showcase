@@ -18,10 +18,21 @@
 }
 
 body {
-  font-family: 'Cooper Heavy';
+  font-family: 'Cooper Heavy' !important;
   width : 100%;
   margin : 0px;
   padding : 0px;
+  font-size : 20px !important;
+}
+
+.urturn_expression_wrapper {
+  font-family: 'Cooper Heavy' !important;
+  font-size : 15px !important;
+}
+
+.webdoc_expression_wrapper {
+  font-family: 'Cooper Heavy' !important;
+  font-size : 15px !important;
 }
 
 .box {
@@ -104,7 +115,7 @@ body {
   padding : 0px;
   height : 40px;
   width : 100%;
-  margin-top : -4px;
+  margin-top : -6px;
   overflow : hidden;
   letter-spacing: 2px;
 }
@@ -230,5 +241,5 @@ tr {
 }
 
 img {
-  width : 100%;
+  width : 80%;
 }
