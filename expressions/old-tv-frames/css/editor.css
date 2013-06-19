@@ -9,6 +9,10 @@
   font-style: normal;
 }
 
+.container {
+  background-color: rgb(247,247,247);
+}
+
 /********************************************************************************
  * video element styles
  ********************************************************************************/
@@ -19,48 +23,17 @@
   height: 0;
 }
 
-.mobile.slide_animation .video_element {
+.slide_animation .video_element {
   -webkit-transition: opacity 100ms linear, -webkit-transform 100ms linear;
   -moz-transition: opacity 100ms linear, -moz-transform 100ms linear;
   -ms-transition: opacity 100ms linear, -ms-transform 100ms linear;
   -o-transition: opacity 100ms linear, -o-transform 100ms linear;
   transition: opacity 100ms linear, transform 100ms linear;
 }
-.video_element:not(.selected) {
-  cursor: pointer;
-}
 
-/********************************************************************************
- * notification tip styles
- ********************************************************************************/
-.swipe_notify {
-  position: absolute;
-  display: none;
-  top: 5px;
-  left: 50%;
-  width: 114px;
-  height: 28px;
-  margin-left: -57px;
-
-  font-family: "CasinoHandRegular";
-  font-weight: normal;
-  color: #fff;
-  text-align: center;
-  line-height: 28px;
-
-  border-radius: 5px;
-  text-shadow: 0 0 15px rgba(0,0,0,1);
-  z-index: 101;
-}
-
-.mobile .swipe_notify {
-  display: block;
-}
-
-.swipe_notify span {
-  font-size: 16px;
-  vertical-align: middle;
-}
+/*.video_element:not(.selected) {*/
+  /*cursor: pointer;*/
+/*}*/
 
 /********************************************************************************
  * desctop style switcher
@@ -88,10 +61,15 @@
   -ms-transform: rotateX(0);
   -o-transform: rotateX(0);
   transform: rotateX(0);
+  -webkit-transition: background-color .3s linear;
+  -moz-transition: background-color .3s linear;
+  -ms-transition: background-color .3s linear;
+  -o-transition: background-color .3s linear;
+  transition: background-color .3s linear;
 }
 
-.mobile .style_switcher {
-  display: none;
+.style_switcher.error {
+  background-color: #ff0000;
 }
 
 .style_switcher .text {
@@ -120,6 +98,11 @@
 
 .scroll_button.to-right {
   right: 0;
+}
+
+.mobile .scroll_button.to-left,
+.mobile .scroll_button.to-right {
+  display: none;
 }
 
 .style_switcher ul {

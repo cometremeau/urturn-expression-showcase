@@ -1,12 +1,17 @@
 {
-  "title": "Old TV frame",
-  "description": "Old TV frames...",
+  "title": "Old TV frames",
+  "description": "",
   "system_name": "old-tv-frames",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "admins":["Alexey"],
   "api_version":"0.9.0-beta12",
   "indexed_keys": ["indexedContent"],
   "assets":[
+    "images/1_export.png",
+    "images/2_export.png",
+    "images/3_export.png",
+    "images/4_export.png",
+    "images/5_export.png"
   ],
   "dependencies":[
     {                    "path": "css/common.css" },
