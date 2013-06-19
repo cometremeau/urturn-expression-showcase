@@ -16,7 +16,7 @@ UT.Expression.ready(function(post) {
 
   that.addButton = $("<a href='#'>").addClass("ut-edit-button icon_camera spaced-right").text("Add Image").appendTo(that.addButtonWrap);
 
-  that.removeButton = $("<a href='#'>").addClass("ut-edit-button icon_trash").appendTo(that.desc);
+  that.removeButton = $("<a href='#'>").addClass("ut-edit-button icon_trash remove-button").appendTo(that.desc);
 
   that.showImageDialog = function() {
     post.dialog('image', {size: { width: 576, height: false, flexRatio: true, autoCrop: true }}, function(data, error) {
