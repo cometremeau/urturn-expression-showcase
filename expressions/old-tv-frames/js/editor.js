@@ -59,7 +59,7 @@ UT.Expression.ready(function(post) {
 
     // update videoPlayer position
     if(that.ui.videoPlayer) {
-      //that.ui.videoPlayer.utVideo("stop");
+      that.ui.videoPlayer.utVideo("stop");
     }
 
     obj = $(that.ui.videos[that.data.currentElement]).find(".video");
@@ -72,7 +72,9 @@ UT.Expression.ready(function(post) {
         that.ui.videoPlayer = $("<div>", {"id":"videoPlayer"});
         obj.append(that.ui.videoPlayer);
         that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false}} : {});
-        that.ui.videoPlayer.on("utVideo:finish", that.methods.onPlayFinished);
+        that.ui.videoPlayer.on("utVideo:change", function(){
+          post.valid(true);
+        });
       } else {
         that.ui.videoPlayer.detach();
         obj.append(that.ui.videoPlayer);
@@ -154,10 +156,20 @@ UT.Expression.ready(function(post) {
   /**
    * move to next frame
    */
+  that.methods.redFlash = function() {
+    $(".style_switcher").addClass("error");
+    setTimeout(function(){
+      $(".style_switcher").removeClass("error");
+    }, 500);
+  };
+
   that.methods.toNext = function(e) {
     that.data.currentElement++;
 
     if(e) {
+      if(e.type === "click" && that.data.currentElement >= that.data.frameRatios.length) {
+        that.methods.redFlash();
+      }
       e.stopPropagation();
     }
     that.methods.updateElementPosition();
@@ -170,6 +182,9 @@ UT.Expression.ready(function(post) {
     that.data.currentElement--;
 
     if(e) {
+      if(e.type === "click" && that.data.currentElement < 0) {
+        that.methods.redFlash();
+      }
       e.stopPropagation();
     }
     that.methods.updateElementPosition();
@@ -187,7 +202,13 @@ UT.Expression.ready(function(post) {
   /**
    * update video element sizes and positions
    */
+  var skipResize = false;
   that.methods.onResize = function(noUpdPos) {
+    if(skipResize) {
+      skipResize = false;
+      return;
+    }
+
     // retrieve new epression size
     that.data.expWidth = $(post.node).width();
     that.data.expHeight = $(post.node).height();
@@ -228,12 +249,18 @@ UT.Expression.ready(function(post) {
       });
     });
 
-    that.ui.container.css({
-      "left": Math.round((that.data.expWidth - maxWidth)/2) + "px",
-      "top": Math.round((that.data.expHeight - maxHeight)/2) + "px",
-      "width": maxWidth + "px",
-      "height": maxHeight + "px"
-    });
+    if(!that.isTouch) {
+      if(maxHeight !== that.data.expHeight) {
+        skipResize = true;
+        post.size({"height":maxHeight});
+      }
+//      that.ui.container.css({
+//        "left": Math.round((that.data.expWidth - maxWidth)/2) + "px",
+//        "top": Math.round((that.data.expHeight - maxHeight)/2) + "px",
+//        "width": maxWidth + "px",
+//        "height": maxHeight + "px"
+//      });
+    }
 
     if(noUpdPos !== false) {
       that.methods.updateElementPosition();
@@ -246,7 +273,9 @@ UT.Expression.ready(function(post) {
   // attach events
   if(that.isTouch) {
     that.ui.container.addClass("mobile");
+    $(".style_switcher .text").html("Swipe frames");
   } else {
+    $(".style_switcher .text").html("Choose a frame");
     that.ui.prev.on("click", that.methods.toPrev);
     that.ui.next.on("click", that.methods.toNext);
     that.ui.styleSwitcher.on("click", "ul li", that.methods.onChangeStyleClick);
@@ -257,7 +286,10 @@ UT.Expression.ready(function(post) {
   // create and attach videoPlayer to first frame
   that.ui.videoPlayer = $("<div>", {"id":"videoPlayer"});
   $(that.ui.videos.get(0)).find(".video").append(that.ui.videoPlayer);
-  that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false}} : {});
+  that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false, title:false, source:false }} : {});
+  that.ui.videoPlayer.on("utVideo:change", function(){
+    post.valid(true);
+  });
 
   // update element position
   post.on("resize", that.methods.onResize);
@@ -267,7 +299,7 @@ UT.Expression.ready(function(post) {
   setTimeout(function(){ that.ui.container.addClass("slide_animation"); }, 0);
 
   // allow post
-  post.valid(true);
+  post.valid(false);
 
   // show content
   that.ui.container.addClass("show");

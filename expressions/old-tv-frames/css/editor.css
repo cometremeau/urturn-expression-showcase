@@ -68,6 +68,10 @@
   transition: background-color .3s linear;
 }
 
+.mobile .style_switcher {
+  bottom: 20px;
+}
+
 .style_switcher.error {
   background-color: #ff0000;
 }
@@ -110,10 +114,10 @@
   display: block;
   left: 50%;
   bottom: 5px;
-  width: 64px;
+  width: 80px;
   height: 16px;
   padding: 0;
-  margin: 0 0 0 -32px;
+  margin: 0 0 0 -40px;
   white-space: nowrap;
 }
 

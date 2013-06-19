@@ -71,7 +71,7 @@ a, a:hover, a:active {
 
 /******************** design 1 ********************/
 .video_element.video1 {
-  padding: 9em 17em 8.1em 6.7em;
+  padding: 9.3em 17.3em 8.4em 7.0em;
   overflow: hidden;
   background-image: url(../images/1_export.png);
 }
@@ -84,7 +84,7 @@ a, a:hover, a:active {
 
 /******************** design 2 ********************/
 .video_element.video2 {
-  padding: 6.3em 17.5em 8em 7em;
+  padding: 6.6em 17.8em 8.3em 7.3em;
   overflow: hidden;
   background-image: url(../images/2_export.png);
 }
@@ -97,7 +97,7 @@ a, a:hover, a:active {
 
 /******************** design 3 ********************/
 .video_element.video3 {
-  padding: 13em 13em 25em 13em;
+  padding: 13.3em 13.3em 25.3em 13.3em;
   overflow: hidden;
   background-image: url(../images/3_export.png);
 }
@@ -110,7 +110,7 @@ a, a:hover, a:active {
 
 /******************** design 4 ********************/
 .video_element.video4 {
-  padding: 6.5em 15.7em 7em 6.7em;
+  padding: 6.8em 16.0em 7.3em 7.0em;
   overflow: hidden;
   background-image: url(../images/4_export.png);
 }
@@ -123,7 +123,7 @@ a, a:hover, a:active {
 
 /******************** design 4 ********************/
 .video_element.video5 {
-  padding: 7.7em 17.6em 11.9em 7.2em;
+  padding: 8.0em 17.9em 12.2em 7.5em;
   overflow: hidden;
   background-image: url(../images/5_export.png);
 }
