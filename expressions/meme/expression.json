@@ -2,11 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-<<<<<<< HEAD
   "version": "0.3.7",
-=======
-  "version": "0.3.6",
->>>>>>> 160c14abecf180fb1326e0a42abea50267e62c14
   "api_version": "0.9.1",
   "platform": [
     "desktop",
