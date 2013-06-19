@@ -2,8 +2,8 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.3.5",
-  "api_version": "0.9.0",
+  "version": "0.3.7",
+  "api_version": "0.9.1",
   "platform": [
     "desktop",
     "ios",
