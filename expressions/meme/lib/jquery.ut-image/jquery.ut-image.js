@@ -66,7 +66,7 @@
         ratioStorageKey = storagePrefix+options.id+'_ratio';
 
         // Default image came from storage if not in options
-        if (!options.data && options.reuse === false) {
+        if (!options.data && !options.reuse) {
           options.data = post.storage[imageStorageKey];
         }
 
@@ -440,7 +440,8 @@
       image: imageAccessor,
       ratio: ratioAccessor,
       overlay: overlay,
-      update: update
+      update: update,
+      dialog : addImage
     };
   }
 

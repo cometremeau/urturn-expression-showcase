@@ -45,12 +45,24 @@
        maxFontSize: 72,
        minFontSize: 36,
        fixedSize: true,
-       chars: 60
+       chars: 60,
+       reuse: true
+     })
+     .on('utText:save',function() {
+      checkValidContent();
      });
 
+  function textLength(node){
+    var v = node.html().replace(/<br\s*\/?>/mg,"\n");
+    v = v.replace(/(<([^>]+)>)/ig,'');
+    return $.trim(v.replace(/&nbsp;/ig,'')).length;
+  }
+
   function checkValidContent() {
-    if ($("#header_text .ut-text-content")[0].innerHTML.length !== 0 &&
-        !$("#meme").hasClass('ut-image-placeholder')) {
+    // check if image is present, and either one or the other text is filled
+    if ((textLength($("#header_text .ut-text-content")) !== 0 ||
+      textLength($("#footer_text .ut-text-content")) !== 0 ) &&
+      $("#meme").utImage('data')) {
       post.valid(true);
     } else {
       post.valid(false);

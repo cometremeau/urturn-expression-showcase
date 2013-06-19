@@ -58,7 +58,9 @@ footer {
 
 footer .ut-text-content {
   padding: 0 10px 0 10px;
-  vertical-align:bottom;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .ut-text-content[data-placeholder]:not([data-div-placeholder-content]):before {

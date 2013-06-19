@@ -4,7 +4,7 @@
   "dependencies": {
     "jquery": ">=2.0.0",
     "urturn-expression-css": "*",
-    "jquery.ut-image-panel": "*",
+    "jquery.ut-image": "git://github.com/urturn/jquery.ut-image.git",
     "jquery.ut-text": "git://github.com/urturn/jquery.ut-text.git"
   }
 }

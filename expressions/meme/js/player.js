@@ -11,8 +11,13 @@
 
     $("#meme")
       .utImage()
-      .on('utImage:resize',function() {
+      .on('utImage:ready',function() {
         post.size({'height':$(this).outerHeight()});
+        jQuery(":utText").utText('sizeChange');
+      })
+      .on('utImage:change',function(event, newValues, oldValues) {
+        post.size({'height':$(this).outerHeight()});
+        jQuery(":utText").utText('sizeChange');
       });
    $("#header_text")
      .utText({
