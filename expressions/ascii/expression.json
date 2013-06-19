@@ -2,8 +2,8 @@
   "title":"ASCII",
   "description": "ASCII",
   "system_name":"ascii",
-  "version":"1.1.54",
-  "api_version": "0.9.1",
+  "version":"1.1.6",
+  "api_version": "1.0.0",
   "platform": ["desktop", "ios"],
   "dependencies":[
     {                    "path":"css/common.css"},
