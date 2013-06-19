@@ -58,16 +58,24 @@
     return $.trim(v.replace(/&nbsp;/ig,'')).length;
   }
 
+  function indexContent() {
+    var text = '';
+    text += $("#header_text .ut-text-content").text();
+    text += " ";
+    text += $("#footer_text .ut-text-content").text();
+    post.storage.indexedContent = text;
+  }
+
   function checkValidContent() {
     // check if image is present, and either one or the other text is filled
     if ((textLength($("#header_text .ut-text-content")) !== 0 ||
       textLength($("#footer_text .ut-text-content")) !== 0 ) &&
       $("#meme").utImage('data')) {
       post.valid(true);
+      indexContent();
     } else {
       post.valid(false);
     }
-
   }
   });
 }(UT, jQuery));

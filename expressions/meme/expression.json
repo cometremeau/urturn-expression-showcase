@@ -9,6 +9,7 @@
     "ios",
     "bookmarklet"
   ],
+  "indexed_keys": ["indexedContent"],
   "dependencies": [
     {
       "path": "lib/jquery.ut-text/jquery.ut-text.js"
