@@ -8,7 +8,7 @@ UT.Expression.ready(function(post) {
     player: jQuery('#player')
   };
 
-  that.view.image.utImage().on('utImage:loaded', function(event, image) {
+  that.view.image.utImage().on('utImage:change', function(event, image) {
     that.setHeight(that.view.image.height());
   });
 

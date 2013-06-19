@@ -23,3 +23,50 @@
   height: 100%;
   width: 100%;
 }
+
+#list{
+  top: 0;
+  right: 0;
+  z-index: 10;
+  position: absolute;
+  background: rgba(0,0,0,0.8);
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  color: white;
+  font-size: 13px;
+  max-width: 80%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition:    all 0.3s ease-in-out;
+  -o-transition:      all 0.3s ease-in-out;
+  transition:         all 0.3s ease-in-out;
+}
+
+#list.hidden_list{
+  right: -80%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition:    all 0.3s ease-in-out;
+  -o-transition:      all 0.3s ease-in-out;
+  transition:         all 0.3s ease-in-out;
+}
+
+
+#list li{
+  line-height: 30px;
+  padding: 0 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+#list li:hover{
+  background: rgba(0,0,0,1);
+}
+
+.button-add-sticker{
+  top: 0;
+  right: 0;
+  z-index: 9;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
