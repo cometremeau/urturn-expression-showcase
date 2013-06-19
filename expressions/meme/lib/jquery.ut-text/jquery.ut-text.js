@@ -116,6 +116,9 @@
 
       $el.on('click',function() {
         $contentDomNode.trigger('focus');
+        if ($contentDomNode[0].textContent.length === 0) {
+          $contentDomNode.html('<br/>');
+        }
       });
       /* here is the meat and potates */
       $contentDomNode.attr('data-placeholder',options.placeholder);
@@ -161,7 +164,7 @@
           if(timer) {
             clearTimeout(timer);
           }
-          timer = setTimeout(adaptAndSave, 100);
+          timer = setTimeout(adaptAndSave, 50);
 
         });
       }
