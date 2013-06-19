@@ -9,7 +9,7 @@ UT.Expression.ready(function(post) {
     image: jQuery('#image')
   };
 
-  post.on('resize', function() {
+  post.size({'height': that.view.desc.width() / 0.7529}, function() {
     that.view.desc.show();
     that.view.image.utImage({
       post: post,
@@ -47,6 +47,4 @@ UT.Expression.ready(function(post) {
       }
     });
   });
-
-  post.size({'height': that.view.desc.width() / 0.7529});
 });

@@ -33,6 +33,8 @@ UT.Expression.ready(function (post) {
   that.ui.playerWrapper = $(".player-wrapper");
   that.ui.playerContainer = $("#player");
 
+  post.size({'height': Math.round(that.ui.container.width() / that.settings.imageRatio)});
+
   if (that.settings.isTouch) {
     that.ui.container.addClass('is-touch');
   }
@@ -89,23 +91,23 @@ UT.Expression.ready(function (post) {
   that.ui.playerContainer.on('utAudio:play', function (e, data) {
     that.ui.tapeContainer.addClass('animate');
     that.methods.setTapeRotation(true);
-    that.ui.noisePlayer.play();
+    //that.ui.noisePlayer.play();
   });
 
   that.ui.playerContainer.on('utAudio:pause', function (e, data) {
     that.methods.setTapeRotation(false);
     that.ui.tapeContainer.removeClass('animate');
     that.methods.setStartRotate();
-    that.ui.noisePlayer.pause();
+    //that.ui.noisePlayer.pause();
   });
 
   that.ui.playerContainer.on('utAudio:finish', function () {
     clearInterval(that.settings.seekInterval);
     that.settings.rotateAngle = 45;
-    that.ui.noisePlayer.pause();
+    //that.ui.noisePlayer.pause();
   });
 
-  that.ui.noisePlayer = document.getElementById('noise-player');
+  //that.ui.noisePlayer = document.getElementById('noise-player');
 
   that.ui.rwd = $("<div class='rwd'></div>").appendTo(that.ui.playerWrapper).on(that.settings.isTouch ? 'touchstart' : 'mousedown', function(){
     $(this).addClass('active');
@@ -235,8 +237,6 @@ UT.Expression.ready(function (post) {
       'transform': 'rotate(' + degR + 'deg)'
     });
   };
-
-  post.resize({'height': that.ui.container.width() / that.settings.imageRatio});
 
   return that;
 });
