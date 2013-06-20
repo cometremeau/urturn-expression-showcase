@@ -69,7 +69,7 @@
         $el.addClass('ut-text-fixed');
       }
 
-      if (options.chars) {
+      if (options.chars && mode && mode.editor === true) {
         $countdownDomNode = $('<div>').addClass('ut-text-countdown ut-action-button ut-small-button ut-button');
         $el.append($countdownDomNode);
         updateCharactersCounter();
