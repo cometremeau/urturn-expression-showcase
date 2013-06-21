@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "Urturn",
     "email": "dev@urturn.com"
@@ -23,11 +23,11 @@
   "devDependencies": {
     "qunit": "~1.11.0"
   },
-  "gitHead": "851b28de6489797a785873f820ff9bb6815425c2",
-  "readme": "### TODOS\n\n- [*] Firefox compatibility\n- [*] Mobile input\n- [*] Integration with others components\n- [*] Charaters limitations\n- [*] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [*] Events\n- [*] Paste text\n- [*] Formating, return lines etc...",
+  "gitHead": "221780ceb0392f1546706a671c4091d866f290b7",
+  "readme": "### TODOS\n\n- [*] Firefox compatibility\n- [*] Mobile input\n- [*] Integration with others components\n- [*] Charaters limitations\n- [*] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [*] Events\n- [*] Paste text\n- [*] Formating, return lines etc...\n- [ ] Parse text for hashtags and mentions",
   "readmeFilename": "README.md",
-  "_id": "jquery.ut-text@0.2.3",
-  "description": "- [*] Firefox compatibility - [*] Mobile input - [*] Integration with others components - [*] Charaters limitations - [*] Size limitations - [*] Save - [*] View mode (partial) - [*] Events - [*] Paste text - [*] Formating, return lines etc...",
+  "_id": "jquery.ut-text@0.2.4",
+  "description": "- [*] Firefox compatibility - [*] Mobile input - [*] Integration with others components - [*] Charaters limitations - [*] Size limitations - [*] Save - [*] View mode (partial) - [*] Events - [*] Paste text - [*] Formating, return lines etc... - [ ] Parse text for hashtags and mentions",
   "repository": {
     "type": "git",
     "url": "git://github.com/urturn/jquery.ut-text.git"

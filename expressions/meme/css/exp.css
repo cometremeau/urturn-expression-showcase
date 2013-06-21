@@ -15,8 +15,11 @@ footer {
   position: absolute;
   width: 100%;
   z-index: 3;
-  max-height: 33%;
-  min-height: 20%;
+  height: 33%;
+}
+
+#meme {
+  height: 100%;
 }
 
 .ut-text {
@@ -70,6 +73,7 @@ footer .ut-text-content {
   color: rgba(255,255,255,0.7);
   content: attr(data-placeholder);
   font-style: inherit;
-  font-size: 72px;
+  font-size: inherit;
   font-family: inherit;
+  z-index: -1;
 }

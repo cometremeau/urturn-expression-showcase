@@ -10,3 +10,4 @@
 - [*] Events
 - [*] Paste text
 - [*] Formating, return lines etc...
+- [ ] Parse text for hashtags and mentions

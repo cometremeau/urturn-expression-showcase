@@ -2,14 +2,16 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.4.5",
-  "api_version": "1.0.0",
+  "version": "0.5.0",
+  "api_version": "1.0.1",
   "platform": [
     "desktop",
     "ios",
     "bookmarklet"
   ],
-  "indexed_keys": ["indexedContent"],
+  "indexed_keys": [
+    "indexedContent"
+  ],
   "dependencies": [
     {
       "path": "lib/jquery.ut-text/jquery.ut-text.js"

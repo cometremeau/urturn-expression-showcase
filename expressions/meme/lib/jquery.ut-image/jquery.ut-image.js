@@ -66,7 +66,7 @@
         ratioStorageKey = storagePrefix+options.id+'_ratio';
 
         // Default image came from storage if not in options
-        if (!options.data) {
+        if (!options.data && !options.reuse) {
           options.data = post.storage[imageStorageKey];
         }
 
@@ -378,8 +378,6 @@
         post.storage[imageStorageKey] = post.collection('parent')[imageStorageKey];
         post.save();
         return post.collection('parent')[imageStorageKey];
-      } else {
-        return null;
       }
     }
 

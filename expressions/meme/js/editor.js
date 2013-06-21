@@ -7,8 +7,7 @@
 
     $("#meme")
       .utImage({
-        reuse: true,
-        minSize: 400
+        reuse: true
       })
       .on('utImage:ready',function() {
         post.size({'height':$(this).outerHeight()});
@@ -16,22 +15,23 @@
       .on('utImage:change',function(event, newValues, oldValues) {
         if (newValues && newValues.data) {
           $(post.node).addClass('image-is-present');
-          jQuery(":utText").utText('sizeChange');
           post.size({'height':$(this).outerHeight()});
         }
         if(!newValues.data && oldValues.data) {
           $(post.node).removeClass('image-is-present');
         } else if(newValues && newValues.data && oldValues && oldValues.data) {
           post.size({'height':$(this).outerHeight()});
-          jQuery(":utText").utText('sizeChange');
         }
+        setTimeout(function() {
+          jQuery(":utText").utText('sizeChange');
+        }, 50);
         checkValidContent();
       });
    $("#header_text")
      .utText({
        placeholder: "Write here",
-       maxFontSize: "72px",
-       minFontSize: 36,
+       maxFontSize: 72,
+       minFontSize: 12,
        fixedSize: true,
        chars: 60,
        reuse: true
@@ -43,7 +43,7 @@
      .utText({
        placeholder: "And here...",
        maxFontSize: 72,
-       minFontSize: 36,
+       minFontSize: 12,
        fixedSize: true,
        chars: 60,
        reuse: true

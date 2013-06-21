@@ -127,6 +127,7 @@
         $contentDomNode.on('touchstart',function() {
           post.dialog('text',{'value':cleanUpData(), 'max':options.chars || null, 'multiline':true}, function(text){
             $contentDomNode.html(text).trigger('input');
+            trigger('mobileInput',text);
             if (text.length >= 1) {
               $contentDomNode.attr('data-div-placeholder-content', 'true');
             }
@@ -291,7 +292,9 @@
     return {
       options:    options,
       destroy:    destroy,
-      sizeChange: sizeChange
+      sizeChange: sizeChange,
+      getText:    cleanUpData,
+      saveText:   saveData
     };
   }
 
