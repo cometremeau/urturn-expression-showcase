@@ -2,7 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "api_version": "1.0.1",
   "platform": [
     "desktop",
@@ -20,7 +20,7 @@
 
     { "path": "js/editor.js", "context": "editor" },
     { "path": "js/player.js", "context": "player" },
-    
+
     { "path": "css/exp.css" }
   ]
 }
