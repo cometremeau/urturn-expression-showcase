@@ -41,6 +41,7 @@
         namespace       = 'utImage',
         $el             = $(el),
         initialized     = false,
+        reusePost       = false,
         $overlay,           // the selector that will retrieve an overlay dom node
         ratio,              // the image ratio h/w
         imageStorageKey,    // the UT.Image instance storage key
@@ -179,7 +180,7 @@
         .on('click','.ut-image-edit-button', recropImage )
         .on('click','.ut-image-remove-button', removeImage);
 
-      if (options.data && options.reuse && reuse()) {
+      if (options.data && options.reuse && reusePost) {
         $('.ut-image-action-list li',$el).eq(0).addClass('is-hidden');
       }
       
@@ -382,9 +383,8 @@
       if(!post.storage[imageStorageKey] && post.collection('parent') && post.collection('parent')[imageStorageKey]){
         post.storage[imageStorageKey] = post.collection('parent')[imageStorageKey];
         post.save();
+        reusePost = true;
         return post.collection('parent')[imageStorageKey];
-      } else {
-        return null;
       }
     }
 
