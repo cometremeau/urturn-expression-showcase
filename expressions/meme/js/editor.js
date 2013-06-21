@@ -15,13 +15,11 @@
       .on('utImage:change',function(event, newValues, oldValues) {
         if (newValues && newValues.data) {
           $(post.node).addClass('image-is-present');
-          post.size({'height':$(this).outerHeight()});
         }
         if(!newValues.data && oldValues.data) {
           $(post.node).removeClass('image-is-present');
-        } else if(newValues && newValues.data && oldValues && oldValues.data) {
-          post.size({'height':$(this).outerHeight()});
         }
+        post.size({'height':$(this).outerHeight()});
         setTimeout(function() {
           jQuery(":utText").utText('adaptFontSize');
         }, 50);
