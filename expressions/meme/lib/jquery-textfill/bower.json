@@ -1,0 +1,8 @@
+{
+  "name": "jquery-textfill",
+  "version": "0.3.5",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:maiis/jquery-textfill.git"
+  }
+}

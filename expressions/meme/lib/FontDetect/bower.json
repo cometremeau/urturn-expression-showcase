@@ -1,0 +1,9 @@
+{
+  "name": "FontDetect",
+  "version": "0.0.0",
+  "commit": "2081bc9924737c1244e0f44fdb8d93a716b39e90",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:maiis/FontDetect.git"
+  }
+}

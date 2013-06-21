@@ -9,8 +9,10 @@
     "ios"
   ],
   "dependencies": [
-
-
+    { "path" : "lib/FontDetect/fontdetect.2.1.js"},
+    { "path" : "lib/jquery-textfill/jquery.textfill.js"},
+    { "path" : "jquery.ut-text.js"},
+    { "path" : "jquery.ut-text.css"},
     { "path": "js/editor.js"},
     { "path": "css/exp.css"}
   ]

@@ -1,4 +1,4 @@
-/*global UT: true, jQuery: true, navigator: true */
+/*global UT: true, jQuery: true, navigator: true, fontdetect: true */
 /*
  * This source code is licensed under version 3 of the AGPL.
  *
@@ -42,21 +42,10 @@
       isUtimage       = $el.data('utImage'),
       isIosApp        = /(urturn)/i.test(navigator.userAgent),
       isIE            = /(msie)/i.test(navigator.userAgent),
-      $contentDomNode,timer,$countdownDomNode,imageHeight,minFontSizePercent;
+      $contentDomNode,timer,$countdownDomNode,imageHeight;
 
     function init() {
       $contentDomNode = $('<div>').addClass('ut-text-content');
-
-      if (maxFontSize) {
-        $el.css({
-          'font-size':maxFontSize/10+'em',
-          'line-height': 1
-        });
-      }
-
-      if (minFontSize && maxFontSize) {
-        minFontSizePercent = minFontSize*100/maxFontSize;
-      }
 
       $el
       .addClass('ut-text')
@@ -188,7 +177,7 @@
         }
       }
 
-      if (options.chars) {
+      if (options.chars && mode && mode.editor === true) {
         updateCharactersCounter();
       }
     }
@@ -206,23 +195,23 @@
     }
 
     function adaptFontSize() {
-      var max_w = $el.width(),
-      max_y = $el.height(),
-      size = minFontSizePercent;
+      var fontName = fontdetect.whichFont(el);
 
-      $contentDomNode.css({
-        "font-size": size+"%",
-      });
-      while($contentDomNode.width() < max_w && $contentDomNode.height() < max_y){
-        size += 1;
-        $contentDomNode.css({
-          "font-size": size+'%'
+      fontdetect.onFontLoaded(fontName, function(){
+        $el.textfill({
+          debug: false,
+          maxFontPixels: maxFontSize,
+          minFontPixels: minFontSize,
+          innerTag: '.ut-text-content'
         });
-
-        if(size >= 100) {
-           break;
-         }
-      }
+      }, function(){
+        $el.textfill({
+          debug: false,
+          maxFontPixels: maxFontSize,
+          minFontPixels: minFontSize,
+          innerTag: '.ut-text-content'
+        });
+       }, {msInterval: 100, msTimeout: 10000});
     }
 
     /* Adapt size and save */
@@ -290,11 +279,12 @@
     init();
 
     return {
-      options:    options,
-      destroy:    destroy,
-      sizeChange: sizeChange,
-      getText:    cleanUpData,
-      saveText:   saveData
+      options:        options,
+      destroy:        destroy,
+      sizeChange:     sizeChange,
+      adaptFontSize:  adaptFontSize,
+      getText:        cleanUpData,
+      saveText:       saveData
     };
   }
 

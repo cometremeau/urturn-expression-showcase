@@ -66,7 +66,7 @@
         ratioStorageKey = storagePrefix+options.id+'_ratio';
 
         // Default image came from storage if not in options
-        if (!options.data && !options.reuse) {
+        if (!options.data) {
           options.data = post.storage[imageStorageKey];
         }
 
@@ -179,6 +179,10 @@
         .on('click','.ut-image-edit-button', recropImage )
         .on('click','.ut-image-remove-button', removeImage);
 
+      if (options.data && options.reuse && reuse()) {
+        $('.ut-image-action-list li',$el).eq(0).addClass('is-hidden');
+      }
+      
       if (!options.data && options.autoAdd === true) {
           addImage();
       }
@@ -262,6 +266,7 @@
     function removeImage(e) {
       e.preventDefault();
       $el.removeClass('ut-image-active').addClass('ut-media-placeholder').css('background-image', '');
+      $('.ut-image-action-list li',$el).eq('0').removeClass('is-hidden');
       $(image).remove();
       image = null;
       if (options.autoSave === true) {
@@ -378,6 +383,8 @@
         post.storage[imageStorageKey] = post.collection('parent')[imageStorageKey];
         post.save();
         return post.collection('parent')[imageStorageKey];
+      } else {
+        return null;
       }
     }
 

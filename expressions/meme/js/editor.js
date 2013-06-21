@@ -23,7 +23,7 @@
           post.size({'height':$(this).outerHeight()});
         }
         setTimeout(function() {
-          jQuery(":utText").utText('sizeChange');
+          jQuery(":utText").utText('adaptFontSize');
         }, 50);
         checkValidContent();
       });
@@ -31,7 +31,7 @@
      .utText({
        placeholder: "Write here",
        maxFontSize: 72,
-       minFontSize: 12,
+       minFontSize: 24,
        fixedSize: true,
        chars: 60,
        reuse: true
@@ -43,7 +43,7 @@
      .utText({
        placeholder: "And here...",
        maxFontSize: 72,
-       minFontSize: 12,
+       minFontSize: 24,
        fixedSize: true,
        chars: 60,
        reuse: true

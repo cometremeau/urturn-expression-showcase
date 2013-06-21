@@ -2,7 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.5.0",
+  "version": "0.5.13",
   "api_version": "1.0.1",
   "platform": [
     "desktop",
@@ -18,6 +18,12 @@
     },
     {
       "path": "lib/jquery.ut-image/jquery.ut-image.js"
+    },
+    {
+      "path": "lib/FontDetect/fontdetect.2.1.js"
+    },
+    {
+      "path": "lib/jquery-textfill/jquery.textfill.js"
     },
     {
       "path": "js/editor.js",

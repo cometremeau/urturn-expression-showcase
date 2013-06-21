@@ -5,6 +5,8 @@
     "jquery": ">=2.0.0",
     "urturn-expression-css": "*",
     "jquery.ut-image": "git://github.com/urturn/jquery.ut-image.git",
-    "jquery.ut-text": "git://github.com/urturn/jquery.ut-text.git"
+    "jquery.ut-text": "git://github.com/urturn/jquery.ut-text.git",
+    "jquery-textfill": "git@github.com:maiis/jquery-textfill.git",
+    "FontDetect": "git@github.com:maiis/FontDetect.git"
   }
 }

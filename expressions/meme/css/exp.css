@@ -44,10 +44,11 @@ footer {
   line-height: inherit;
   display:block;
   overflow: visible;
+  line-height: 1;
 }
 
 header {
-  top: 20px;
+  top: 3%;
 }
 
 header .ut-text-content {
@@ -56,7 +57,7 @@ header .ut-text-content {
 }
 
 footer {
-  bottom: 20px;
+  bottom: 3%;
 }
 
 footer .ut-text-content {
