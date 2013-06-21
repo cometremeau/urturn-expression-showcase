@@ -2,7 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.5.13",
+  "version": "0.6.0",
   "api_version": "1.0.1",
   "platform": [
     "desktop",
@@ -13,28 +13,14 @@
     "indexedContent"
   ],
   "dependencies": [
-    {
-      "path": "lib/jquery.ut-text/jquery.ut-text.js"
-    },
-    {
-      "path": "lib/jquery.ut-image/jquery.ut-image.js"
-    },
-    {
-      "path": "lib/FontDetect/fontdetect.2.1.js"
-    },
-    {
-      "path": "lib/jquery-textfill/jquery.textfill.js"
-    },
-    {
-      "path": "js/editor.js",
-      "context": "editor"
-    },
-    {
-      "path": "js/player.js",
-      "context": "player"
-    },
-    {
-      "path": "css/exp.css"
-    }
+    { "path": "lib/jquery.ut-text/jquery.ut-text.js" },
+    { "path": "lib/jquery.ut-image/jquery.ut-image.js" },
+    { "path": "lib/FontDetect/fontdetect.2.1.js" },
+    { "path": "lib/jquery-textfill/jquery.textfill.js" },
+
+    { "path": "js/editor.js", "context": "editor" },
+    { "path": "js/player.js", "context": "player" },
+    
+    { "path": "css/exp.css" }
   ]
 }
