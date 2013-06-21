@@ -2,7 +2,7 @@
   "title": "The Punk Blaster",
   "description": "",
   "system_name": "the-punk-blaster",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "admins":["Alexey Belchenko"],
   "api_version":"0.9.3",
   "indexed_keys": ["indexedContent"],

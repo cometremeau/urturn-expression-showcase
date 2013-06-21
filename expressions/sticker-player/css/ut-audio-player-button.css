@@ -1,4 +1,4 @@
-.ut-audio-skin-myskin.ut-audio-ui {
+.ut-audio-skin-button.ut-audio-ui {
   width: 100%;
   height: 100%;
   font-family: Arial, helvetica, arial, sans-serif;
@@ -11,17 +11,17 @@
   user-select: none;
 }
 
-.ut-audio-skin-myskin.ut-audio-ui div,
-.ut-audio-skin-myskin.ut-audio-ui h1,
-.ut-audio-skin-myskin.ut-audio-ui a {
+.ut-audio-skin-button.ut-audio-ui div,
+.ut-audio-skin-button.ut-audio-ui h1,
+.ut-audio-skin-button.ut-audio-ui a {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
 
 /*----------------------  ADD AND EDIT  -----------------------------------*/
 
-.ut-audio-skin-myskin .ut-audio-ui-add,
-.ut-audio-skin-myskin .ut-audio-ui-remove{
+.ut-audio-skin-button .ut-audio-ui-add,
+.ut-audio-skin-button .ut-audio-ui-remove{
   display: none;
   text-align: center;
   cursor: pointer;
@@ -33,10 +33,10 @@
   vertical-align: middle;
 }
 
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-launch .ut-audio-ui-remove,
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-seek   .ut-audio-ui-remove,
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-play   .ut-audio-ui-remove,
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-pause  .ut-audio-ui-remove{
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-launch .ut-audio-ui-remove,
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-seek   .ut-audio-ui-remove,
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-play   .ut-audio-ui-remove,
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-pause  .ut-audio-ui-remove{
   display: block;
   position: absolute;
   top: 10px;
@@ -49,8 +49,8 @@
   background: rgba(0,0,0,0.75);
 }
 
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-empty .ut-audio-ui-add,
-.ut-audio-skin-myskin.ut-audio-mode-editor.ut-audio-state-error .ut-audio-ui-add {
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-empty .ut-audio-ui-add,
+.ut-audio-skin-button.ut-audio-mode-editor.ut-audio-state-error .ut-audio-ui-add {
   display: block;
   position: absolute;
   top: 50%;
@@ -70,19 +70,19 @@
   font-family: 'Helvetica Neue', helvetica, arial, sans-serif;
 }
 
-.ut-audio-skin-myskin .ut-audio-ui-add:hover {
+.ut-audio-skin-button .ut-audio-ui-add:hover {
   background: rgba(40,40,40,1);
   text-shadow: 0 1px 1px rgba(0,0,0,0.5);
   box-shadow: -1px 1px 0 0 rgba(30,30,30,1), 1px -1px 0 0 rgba(60,60,60,1);
 }
 
-.ut-audio-skin-myskin .ut-audio-ui-add:active {
+.ut-audio-skin-button .ut-audio-ui-add:active {
   color: rgba(20,20,20,1);
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.05);
   box-shadow: 1px -1px 0 0 rgba(30,30,30,1), -1px 1px 0 0 rgba(60,60,60,1);
 }
 
-.ut-audio-skin-myskin .ut-audio-ui-add[class*="icon_"]:before{
+.ut-audio-skin-button .ut-audio-ui-add[class*="icon_"]:before{
   font-size: 28px;
   display: block;
   padding: 15px 0 5px 0;
@@ -90,7 +90,7 @@
 
 /*----------------------  ARTWORK  PANEL  -----------------------------------*/
 
-.ut-audio-skin-myskin .ut-audio-ui-artwork {
+.ut-audio-skin-button .ut-audio-ui-artwork {
   width: 100%;
   height: 100%;
   z-index: 0;
@@ -104,16 +104,16 @@
   box-shadow: 0 0 0 1px rgba(255,255,255,0.5) inset, 0 0 2px 0 rgba(0,0,0,0.5)
 }
 
-.ut-audio-skin-myskin.ut-audio-state-launch .ut-audio-ui-artwork,
-.ut-audio-skin-myskin.ut-audio-state-seek .ut-audio-ui-artwork,
-.ut-audio-skin-myskin.ut-audio-state-play .ut-audio-ui-artwork,
-.ut-audio-skin-myskin.ut-audio-state-pause .ut-audio-ui-artwork{
+.ut-audio-skin-button.ut-audio-state-launch .ut-audio-ui-artwork,
+.ut-audio-skin-button.ut-audio-state-seek .ut-audio-ui-artwork,
+.ut-audio-skin-button.ut-audio-state-play .ut-audio-ui-artwork,
+.ut-audio-skin-button.ut-audio-state-pause .ut-audio-ui-artwork{
   display: block;
 }
 
 /*----------------------  PLAY BUTTON  -----------------------------------*/
 
-.ut-audio-skin-myskin .ut-audio-ui-play {
+.ut-audio-skin-button .ut-audio-ui-play {
   display: none;
   width: 80px;
   height: 80px;
@@ -134,19 +134,19 @@
   text-align: center;
 }
 
-.ut-audio-skin-myskin.ut-audio-touch-false .ut-audio-ui-play:hover {
+.ut-audio-skin-button.ut-audio-touch-false .ut-audio-ui-play:hover {
   background: rgba(230,15,0,1);
 }
 
-.ut-audio-skin-myskin.ut-audio-touch-false .ut-audio-ui-play:active {
+.ut-audio-skin-button.ut-audio-touch-false .ut-audio-ui-play:active {
   background: rgba(183,15,0,1);
   color: rgba(130,10,0,1);
 }
 
-.ut-audio-skin-myskin.ut-audio-state-launch .ut-audio-ui-play,
-.ut-audio-skin-myskin.ut-audio-state-seek   .ut-audio-ui-play,
-.ut-audio-skin-myskin.ut-audio-state-play   .ut-audio-ui-play,
-.ut-audio-skin-myskin.ut-audio-state-pause  .ut-audio-ui-play{
+.ut-audio-skin-button.ut-audio-state-launch .ut-audio-ui-play,
+.ut-audio-skin-button.ut-audio-state-seek   .ut-audio-ui-play,
+.ut-audio-skin-button.ut-audio-state-play   .ut-audio-ui-play,
+.ut-audio-skin-button.ut-audio-state-pause  .ut-audio-ui-play{
   display: block;
 }
 
@@ -161,30 +161,30 @@
   left: 0;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-launch  .ut-audio-ui-play .ut-audio-ui-play-icon,
-.ut-audio-skin-myskin.ut-audio-state-pause   .ut-audio-ui-play .ut-audio-ui-play-icon{
+.ut-audio-skin-button.ut-audio-state-launch  .ut-audio-ui-play .ut-audio-ui-play-icon,
+.ut-audio-skin-button.ut-audio-state-pause   .ut-audio-ui-play .ut-audio-ui-play-icon{
   display: block;
   padding-left: 10px;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-play  .ut-audio-ui-play .ut-audio-ui-pause-icon{
+.ut-audio-skin-button.ut-audio-state-play  .ut-audio-ui-play .ut-audio-ui-pause-icon{
   display: block;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-seek .ut-audio-ui-play .ut-audio-ui-seek-icon{
+.ut-audio-skin-button.ut-audio-state-seek .ut-audio-ui-play .ut-audio-ui-seek-icon{
   display: block;
 }
 
 /*----------------------- LOADING PANEL ---------------------------------*/
 
-.ut-audio-skin-myskin .ut-audio-ui-loading {
+.ut-audio-skin-button .ut-audio-ui-loading {
   position: absolute;
   width: 100%;
   height: 100%;
   display: none;
 }
 
-.ut-audio-skin-myskin .ut-audio-ui-loading div {
+.ut-audio-skin-button .ut-audio-ui-loading div {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -199,20 +199,20 @@
 }
 
 
-.ut-audio-skin-myskin.ut-audio-state-loading .ut-audio-ui-loading {
+.ut-audio-skin-button.ut-audio-state-loading .ut-audio-ui-loading {
   display: block;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-launch .ut-audio-ui-loading,
-.ut-audio-skin-myskin.ut-audio-state-play .ut-audio-ui-loading,
-.ut-audio-skin-myskin.ut-audio-state-pause .ut-audio-ui-loading,
-.ut-audio-skin-myskin.ut-audio-state-error .ut-audio-ui-loading {
+.ut-audio-skin-button.ut-audio-state-launch .ut-audio-ui-loading,
+.ut-audio-skin-button.ut-audio-state-play .ut-audio-ui-loading,
+.ut-audio-skin-button.ut-audio-state-pause .ut-audio-ui-loading,
+.ut-audio-skin-button.ut-audio-state-error .ut-audio-ui-loading {
   display: none;
 }
 
 /*----------------------- ERROR PANEL ---------------------------------*/
 
-.ut-audio-skin-myskin .ut-audio-ui-error {
+.ut-audio-skin-button .ut-audio-ui-error {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -221,7 +221,7 @@
   display: none;
 }
 
-.ut-audio-skin-myskin .ut-audio-ui-error div{
+.ut-audio-skin-button .ut-audio-ui-error div{
   position: absolute;
   width: 100%;
   height: 30px;
@@ -234,14 +234,14 @@
   text-align: right;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-loading .ut-audio-ui-error,
-.ut-audio-skin-myskin.ut-audio-state-play   .ut-audio-ui-error,
-.ut-audio-skin-myskin.ut-audio-state-launch  .ut-audio-ui-error,
-.ut-audio-skin-myskin.ut-audio-state-pause   .ut-audio-ui-error{
+.ut-audio-skin-button.ut-audio-state-loading .ut-audio-ui-error,
+.ut-audio-skin-button.ut-audio-state-play   .ut-audio-ui-error,
+.ut-audio-skin-button.ut-audio-state-launch  .ut-audio-ui-error,
+.ut-audio-skin-button.ut-audio-state-pause   .ut-audio-ui-error{
   display: none;
 }
 
-.ut-audio-skin-myskin.ut-audio-state-error .ut-audio-ui-error{
+.ut-audio-skin-button.ut-audio-state-error .ut-audio-ui-error{
   display: block;
 }
 
