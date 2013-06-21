@@ -8,7 +8,15 @@
 }
 
 #image{
-  position: relative;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+}
+
+#utimage{
+  position: absolute;
   top:0;
   left:0;
   width: 100%;
@@ -17,12 +25,72 @@
 
 #sticker{
 
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0px 0px 4px 1px rgba(0,0,0,0.3) inset, 0px 0px 4px 1px rgba(0,0,0,0.3);
+  text-align: center;
+  text-shadow:  0 0 5px rgba(0,0,0,0.6);
+  background-color: white;
+  background-image: url(../images/logo.png);
+  background-size:cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
 #player{
-  height: 100%;
+  height: 40px;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
 }
+
+#logo{
+  width: 185px;
+  height: 80px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url(../images/logo.png);
+  background-size:cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  z-index: 40;
+}
+
+#player-area{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
+}
+
+#player-area{
+  background: rgba(140,140,140,0.7);
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 20;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(200,200,200,0.9);
+  text-shadow:  0 0 5px rgba(0,0,0,0.6);
+}
+
+/*============================= BUTTONS ==============================*/
+
+.button-add-sticker{
+  z-index: 9;
+  position: absolute;
+  bottom: 60px;
+  left: 10px;
+}
+
+/*============================== MENU ================================*/
 
 #list{
   top: 0;
@@ -35,24 +103,25 @@
   list-style-type: none;
   color: white;
   font-size: 13px;
-  max-width: 80%;
+  width: 100%;
+  height: 100%;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition:    all 0.3s ease-in-out;
   -o-transition:      all 0.3s ease-in-out;
   transition:         all 0.3s ease-in-out;
+  z-index: 100;
 }
 
 #list.hidden_list{
-  right: -80%;
+  right: 100%;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition:    all 0.3s ease-in-out;
   -o-transition:      all 0.3s ease-in-out;
   transition:         all 0.3s ease-in-out;
 }
 
-
 #list li{
-  line-height: 30px;
+  line-height: 50px;
   padding: 0 20px;
   border-top: 1px solid rgba(255,255,255,0.1);
   cursor: pointer;
@@ -62,11 +131,3 @@
   background: rgba(0,0,0,1);
 }
 
-.button-add-sticker{
-  top: 0;
-  right: 0;
-  z-index: 9;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
