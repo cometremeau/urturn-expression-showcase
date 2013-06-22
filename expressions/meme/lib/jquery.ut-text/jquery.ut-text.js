@@ -195,28 +195,36 @@
     }
 
     function adaptFontSize() {
-      //fontdetect.onFontLoaded('antonregular', function(){
-      //  $el.textfill({
-      //    debug: false,
-      //    maxFontPixels: maxFontSize,
-      //    minFontPixels: minFontSize,
-      //    innerTag: '.ut-text-content'
-      //  });
-      //}, function(){
-      //  $el.textfill({
-      //    debug: false,
-      //    maxFontPixels: maxFontSize,
-      //    minFontPixels: minFontSize,
-      //    innerTag: '.ut-text-content'
-      //  });
-      // }, {msInterval: 100, msTimeout: 10000});
 
-      $el.textfill({
-        debug: false,
-        maxFontPixels: maxFontSize,
-        minFontPixels: minFontSize,
-        innerTag: '.ut-text-content'
-      });
+      var sFontname = fontdetect.whichFont($contentDomNode[0]);
+      var isLoaded = fontdetect.isFontLoaded(sFontname);
+
+      if (isLoaded) {
+        $el.textfill({
+          debug: false,
+          maxFontPixels: maxFontSize,
+          minFontPixels: minFontSize,
+          innerTag: '.ut-text-content'
+        });
+        jQuery(".testfont").remove();
+      } else {
+        fontdetect.onFontLoaded(sFontname, function() {
+          $el.textfill({
+            debug: false,
+            maxFontPixels: maxFontSize,
+            minFontPixels: minFontSize,
+            innerTag: '.ut-text-content'
+          });
+        }, {
+          onFail: function(){
+            $el.textfill({
+              debug: false,
+              maxFontPixels: maxFontSize,
+              minFontPixels: minFontSize,
+              innerTag: '.ut-text-content'
+            });
+          }, msInterval: 100, msTimeout: 10000});
+      }
     }
 
     /* Adapt size and save */

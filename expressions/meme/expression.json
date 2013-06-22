@@ -2,7 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "api_version": "1.0.1",
   "platform": [
     "desktop",
@@ -11,6 +11,9 @@
   ],
   "indexed_keys": [
     "indexedContent"
+  ],
+  "assets":[
+    "fonts/anton/anton-webfont.woff"
   ],
   "dependencies": [
     { "path": "lib/jquery.ut-text/jquery.ut-text.js" },
