@@ -11,17 +11,13 @@
 
     $("#meme")
       .utImage()
-      .on('utImage:ready',function() {
-        post.size({'height':$(this).outerHeight()});
-        jQuery(":utText").utText('sizeChange');
-      })
-      .on('utImage:change',function(event, newValues, oldValues) {
-        post.size({'height':$(this).outerHeight()});
-        jQuery(":utText").utText('sizeChange');
+      .on('utImage:change', function(){
+        post.size($(this).height());        
       });
+
    $("#header_text")
      .utText({
-       maxFontSize: "72px",
+       maxFontSize: 72,
        minFontSize: 24,
        fixedSize: true,
        chars: 60,
