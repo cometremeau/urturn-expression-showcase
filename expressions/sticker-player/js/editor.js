@@ -17,10 +17,11 @@ UT.Expression.ready(function(post) {
   };
 
   that.adaptPlayButton = function() {
-    var hh = $("#sticker").height();
+    var obj = $("#sticker");
+    var hh = obj.height();
     if(hh > 0) {
-      $("#sticker").css('fontSize', hh + 'px');
-      $("#sticker").css('lineHeight', (hh+6) + 'px');
+      obj.css('fontSize', hh + 'px');
+      obj.css('lineHeight', (hh+6) + 'px');
     }
   };
 
@@ -84,24 +85,7 @@ UT.Expression.ready(function(post) {
     that.view.utimage.utImage('dialog');
   });
 
-//  that.view.sticker.utSticker({
-//    top: 100,
-//    left: 100, //Math.round(that.view.desc.width() / 3),
-//    width: 100, //Math.round(that.view.desc.width() / 3),
-//    height: 100, //Math.round(that.view.desc.width() / 3),
-//    autoSave: true,
-//    ui:{
-//     remove:false
-//    }
-//  });
-//  that.view.sticker.on('utSticker:change', function(e,v){
-//    if(v.height){
-//      that.adaptPlayButton();
-//    }
-//  });
-
   that.adaptPlayButton();
-//  that.view.sticker.utSticker('hide');
 
   that.showList = function(){
     post.valid(false);
@@ -111,6 +95,7 @@ UT.Expression.ready(function(post) {
   };
 
   that.hideList = function(e){
+    that.view.list.find(".preplay").utAudio("pause");
     that.view.list.addClass('hidden_list');
     that.view.listbutton.show();
     if(e) {
@@ -132,9 +117,8 @@ UT.Expression.ready(function(post) {
       originalWidth: 0.3,
       originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
     }],
-//    classResize: "resize icon_fullscreen",
     parameters: that.data.stickerData,
-    rotateable: true,
+    rotateable: false,
     scaleable: true,
     movableArea: {left:0, top:0, width:1, height:1 - 40/that.view.image.height() },
     deleteButton: false,
@@ -142,40 +126,44 @@ UT.Expression.ready(function(post) {
     flipContent: false,
     minSize: { width: 0.01, height: 0.01 },
     maxSize: { width: 1, height: 1 },
-//    zIndexByClick: true,
-//    onRemove: function(key, data) {
-//      that.parameters.itemsdata = data;
-//      that.removeItemById(key);
-//      that.saveParametersData();
-//      that.checkValidContent();
-//      if(that.parameters.items.length <= 0) {
-//        that.currentSelectedKey = "";
-//      } else {
-//        that.image.utStickersBoard("selectItem", that.parameters.items[that.parameters.items.length-1].id);
-//      }
-//    },
     onChanging: function() {
       that.adaptPlayButton();
-//      jQuery(this).find(".scPlayerContainer").utCirclePlayer("updatePlayerSize");
     },
     onChanged: function(data) {
       that.data.stickerData = data;
       post.storage.stickerData = that.data.stickerData;
       post.save();
       that.adaptPlayButton();
-//      that.saveParametersData();
     }
-//    onSelected: function(key) {
-//      that.currentSelectedKey = key;
-//    },
-//    onFocus: function() {
-//      that.image.utImagePanel("killFocus");
-//    },
-//    onBlur: function(){
-//      that.currentSelectedKey = "";
-//    }
   });
   that.view.stickerArea.utStickersBoard("edit");
+
+  that.attachPlayer = function(obj, url, num) {
+    var playerObj = obj.find(".preplay");
+    playerObj.attr("id", num);
+    playerObj.utAudio({
+      data: url,
+      skin: 'preplay',
+      ui:{
+        play:    true,
+        progress:false,
+        time:    false,
+        title:   false,
+        source:  false,
+        artwork: false
+      },
+      editable: false
+    });
+    playerObj.on("click", function(e){ e.stopPropagation(); });
+  };
+
+  var tmp = that.view.list.find("li");
+  var qq;
+  for(qq = 0; qq < tmp.length; qq++) {
+    var obj = $(tmp.get(qq));
+    var url = obj.attr("data-value");
+    that.attachPlayer(obj, url, "prePlayer"+qq);
+  }
 
   that.view.list.find('li').on('click', function(){
     var url = $(this).data('value');

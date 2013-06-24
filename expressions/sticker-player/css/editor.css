@@ -51,6 +51,7 @@
 }
 
 #list li{
+  position: relative;
   line-height: 49px;
   padding: 0 20px 0 47px;
   border-bottom: 1px solid rgba(30,30,30,1);
@@ -86,6 +87,15 @@
   text-align: center;
   color: rgba(30,30,30,1);
   font-size: 1.4em;
+  cursor: pointer;
+}
+
+.preplay {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
 }
 
