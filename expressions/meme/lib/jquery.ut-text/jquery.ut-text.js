@@ -42,18 +42,25 @@
       isUtimage       = $el.data('utImage'),
       isIosApp        = /(urturn)/i.test(navigator.userAgent),
       isIE            = /(msie)/i.test(navigator.userAgent),
-      $contentDomNode,timer,$countdownDomNode,imageHeight;
+      $contentDomNode,timer,$countdownDomNode,imageHeight,fontName,isFontLoaded;
 
     function init() {
       $contentDomNode = $('<div>').addClass('ut-text-content');
+
+      // redifine mix/max font size if we are on mobile or other device
+      if (options.fixedSize && $(post.node).width() < 576 && maxFontSize && minFontSize) {
+        maxFontSize = Math.round($(post.node).width()/576*maxFontSize);
+        minFontSize = Math.round($(post.node).width()/576*minFontSize);
+      }
 
       $el
       .addClass('ut-text')
       .append($contentDomNode);
 
+      checkFont();
+
       if (!options.fixedSize) {
         $el.addClass('ut-text-flex');
-
       } else {
         $el.addClass('ut-text-fixed');
       }
@@ -73,10 +80,6 @@
       if (storage && storage[storageKey]) {
         $contentDomNode.text(storage[storageKey]);
         $contentDomNode.attr('data-div-placeholder-content', 'true');
-
-        setTimeout(function() {
-          sizeChange();
-        }, 50);
       }
 
       if (isUtimage) {
@@ -88,8 +91,32 @@
         reuse();
       }
 
-      trigger('ready');
+      adaptFontSize();
 
+      post.on('resize', function() {
+        adaptFontSize();
+      });
+
+      trigger('ready');
+    }
+
+    /* 
+      - check if font is loaded, and load it if not
+    */
+    function checkFont() {
+      fontName      = fontdetect.whichFont($contentDomNode[0]);
+      isFontLoaded  = fontdetect.isFontLoaded(fontName);
+
+      if (!isFontLoaded) {
+        $el.append(jQuery('<div/>').css('fontFamily',fontName).addClass('ut-font-detect'));
+        fontdetect.onFontLoaded(fontName, function(){
+          isFontLoaded = true;
+          $('.ut-font-detect',$el).remove();
+        }, function(){
+          isFontLoaded = false;
+          $('.ut-font-detect',$el).remove();
+        }, {msInterval: 100, msTimeout: 10000});
+      }
     }
 
     function trigger(name, data){
@@ -195,36 +222,12 @@
     }
 
     function adaptFontSize() {
-
-      var sFontname = fontdetect.whichFont($contentDomNode[0]);
-      var isLoaded = fontdetect.isFontLoaded(sFontname);
-
-      if (isLoaded) {
-        $el.textfill({
-          debug: false,
-          maxFontPixels: maxFontSize,
-          minFontPixels: minFontSize,
-          innerTag: '.ut-text-content'
-        });
-        jQuery(".testfont").remove();
-      } else {
-        fontdetect.onFontLoaded(sFontname, function() {
-          $el.textfill({
-            debug: false,
-            maxFontPixels: maxFontSize,
-            minFontPixels: minFontSize,
-            innerTag: '.ut-text-content'
-          });
-        }, {
-          onFail: function(){
-            $el.textfill({
-              debug: false,
-              maxFontPixels: maxFontSize,
-              minFontPixels: minFontSize,
-              innerTag: '.ut-text-content'
-            });
-          }, msInterval: 100, msTimeout: 10000});
-      }
+      $el.textfill({
+        debug: false,
+        maxFontPixels: maxFontSize,
+        minFontPixels: minFontSize,
+        innerTag: '.ut-text-content'
+      });
     }
 
     /* Adapt size and save */
