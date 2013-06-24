@@ -1,0 +1,23 @@
+.utStickersBoard {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.utStickersBoard,
+.utStickersBoard > * {
+  box-sizing: border-box;
+  -o-sizing: border-box;
+  -ms-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.utStickersBoard_box > .content {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}

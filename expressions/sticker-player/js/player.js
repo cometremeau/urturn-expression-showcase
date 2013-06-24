@@ -5,25 +5,74 @@ UT.Expression.ready(function(post) {
     desc:       jQuery("#desc"),
     image:      jQuery('#image'),
     utimage:    jQuery('#utimage'),
-    sticker:    jQuery('#sticker'),
-    player:     jQuery('#player')
+    player:     jQuery('#player'),
+    stickerArea:jQuery('#stickerArea')
   };
+
+  that.data = { stickerData: post.storage.stickerData };
 
   that.view.player.hide();
 
   that.state = 'launch';
 
   that.adaptPlayButton = function(){
-    that.view.sticker.css('fontSize',that.view.sticker.height()+'px');
-    that.view.sticker.css('lineHeight',that.view.sticker.height()+6+'px');
+    var hh = $("#sticker").height();
+    if(hh > 0) {
+      $("#sticker").css('fontSize', hh + 'px');
+      $("#sticker").css('lineHeight', (hh+6) + 'px');
+    }
   };
 
-  that.view.utimage.utImage()
-  .on('utImage:resize', function(event, image) {
-    post.size(image.height);
+  that.view.utimage.utImage();
+  that.view.utimage.on('utImage:resize', function(event, image) {
+    post.size(image.height, function(){
+      that.addSticker();
+    });
   });
 
-  that.view.sticker.utSticker({editable:false});
+  that.addSticker = function() {
+    that.view.stickerArea.empty();
+    that.view.stickerArea.utStickersBoard({
+      post: post,
+      items: [{
+        object: '<div id="sticker" class="ut-audio-skin-bottom-over ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
+        key: "sticker",
+        originalWidth: 0.3,
+        originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
+      }],
+      parameters: that.data.stickerData,
+      rotateable: true,
+      scaleable: true,
+      movableArea: {left:0, top:0, width:1, height:1 },
+      deleteButton: false,
+      design: 7,
+      flipContent: false,
+      minSize: { width: 0.01, height: 0.01 },
+      maxSize: { width: 1, height: 1 },
+      onChanging: function() {
+        that.adaptPlayButton();
+      },
+      onChanged: function(data) {
+        that.data.stickerData = data;
+        post.storage.stickerData = that.data.stickerData;
+        post.save();
+        that.adaptPlayButton();
+      }
+    });
+    setTimeout(function(){
+      that.adaptPlayButton();
+    }, 0);
+    that.adaptPlayButton();
+
+    $("#sticker").on('click', function(){
+      if(that.state !== "play") {
+        that.view.player.utAudio('play');
+      } else {
+        that.view.player.utAudio('pause');
+      }
+      that.view.player.show();
+    });
+  };
 
   that.view.player.empty().utAudio({
     data:post.storage.audioUrl,
@@ -41,60 +90,27 @@ UT.Expression.ready(function(post) {
     //console.log('--- utAudio:canplay -> audio ready to be played', data);
   }).on('utAudio:play',function(){
     //console.log('--- utAudio:play -> audio started to play');
-    that.view.sticker.alterClass('ut-audio-state-*', 'ut-audio-state-play');
+    $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
     that.state = 'play';
   }).on('utAudio:pause',function(){
     //console.log('--- utAudio:pause -> audio paused');
-    that.view.sticker.alterClass('ut-audio-state-*', 'ut-audio-state-pause');
+    $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-pause');
     that.state = 'pause';
   }).on('utAudio:stop',function(){
     //console.log('--- utAudio:stop -> audio stopped');
-    that.view.sticker.alterClass('ut-audio-state-*', 'ut-audio-state-launch');
+    $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-launch');
     that.state = 'launch';
   }).on('utAudio:finish',function(){
     //console.log('--- utAudio:finish -> audio finished');
   }).on('utAudio:timeupdate',function(e,s){
     //console.log('--- utAudio:timeupdate -> audio time updated', s);
-    that.view.sticker.alterClass('ut-audio-state-*', 'ut-audio-state-play');
+    $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
     that.state = 'play';
   }).on('utAudio:seek',function(){
     //console.log('--- utAudio:seek -> audio seek started');
-    that.view.sticker.alterClass('ut-audio-state-*', 'ut-audio-state-seek');
+    $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
     that.state = 'seek';
   });
 
-  that.adaptPlayButton();
-
-  that.view.sticker.on('click', function(){
-    that.view.player.utAudio('play');
-    that.view.player.show();
-  });
+  $("#container").addClass("show");
 });
-
-
-if(!$.fn.alterClass) {
-
-  $.fn.alterClass = function (removals, additions) {
-    var self = this;
-    if ( removals.indexOf( '*' ) === -1 ) {
-      self.removeClass( removals );
-      return !additions ? self : self.addClass( additions );
-    }
-
-    var patt = new RegExp( '\\s' +
-      removals.
-      replace( /\*/g, '[A-Za-z0-9-_]+' ).
-      split( ' ' ).
-      join( '\\s|\\s' ) +
-      '\\s', 'g' );
-
-    self.each( function ( i, it ) {
-      var cn = ' ' + it.className + ' ';
-      while ( patt.test( cn ) ) {
-        cn = cn.replace( patt, ' ' );
-      }
-      it.className = cn.trim();
-    });
-    return !additions ? self : self.addClass( additions );
-  };
-}

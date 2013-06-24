@@ -2,7 +2,7 @@
   "title": "Sticker player",
   "description": "Nice and amazing sticker with music player inside",
   "system_name": "sticker-player",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "admins": [
     "dmitry, yury, james bond, harry potter"
   ],
@@ -13,19 +13,22 @@
   ],
   "assets": [],
   "dependencies": [
-    {
-      "path": "css/common.css"
-    },
-    {
-      "path": "css/ut-audio-player-bottom-over.css"
-    },
-    {
-      "context": "editor",
-      "path": "js/editor.js"
-    },
-    {
-      "context": "player",
-      "path": "js/player.js"
-    }
+    { "path": "js/ext.js" },
+
+    { "context": "editor", "path": "css/utSticker_edit.css" },
+    { "context": "editor", "path": "css/utStickersBoard_edit.css" },
+    { "context": "player", "path": "css/utSticker_view.css" },
+    { "context": "player", "path": "css/utStickersBoard_view.css" },
+
+    { "context": "editor", "path": "js/utSticker_edit.js" },
+    { "context": "editor", "path": "js/utStickersBoard_edit.js" },
+    { "context": "player", "path": "js/utSticker_view.js" },
+    { "context": "player", "path": "js/utStickersBoard_view.js" },
+
+    { "path": "css/common.css" },
+    { "context": "editor", "path": "css/editor.css" },
+    { "path": "css/ut-audio-player-bottom-over.css" },
+    { "context": "editor", "path": "js/editor.js" },
+    { "context": "player", "path": "js/player.js" }
   ]
 }
