@@ -11,24 +11,39 @@
   left: 10px;
 }
 
+.desc.hasAudio #listbutton {
+  display: none;
+}
+
+#stickerArea {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.desc.hasAudio #stickerArea {
+  opacity: 1;
+  visibility: visible;
+}
+
 /*============================== MENU ================================*/
 
 #list {
   position: absolute;
-  right: 50%;
-  top: 5%;
-  width: 476px;
-  height: 90%;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 376px;
   overflow: hidden;
   background: rgba(30,30,30,1);
   padding: 0;
-  margin-right: -238px;
+  margin-right: -288px;
+  margin-top: -188px;
   color: white;
   font-size: 16px;
-  -webkit-transition: right 0.3s ease-in-out;
-  -moz-transition:    right 0.3s ease-in-out;
-  -o-transition:      right 0.3s ease-in-out;
-  transition:         right 0.3s ease-in-out;
+  -webkit-transition: top 0.3s ease-in-out;
+  -moz-transition:    top 0.3s ease-in-out;
+  -o-transition:      top 0.3s ease-in-out;
+  transition:         top 0.3s ease-in-out;
   z-index: 100;
   padding-top: 100px;
   -webkit-transform: rotateX(0);
@@ -39,7 +54,7 @@
 }
 
 #list.hidden_list{
-  right: 150%;
+  top: -100%;
 }
 
 #list ul{
@@ -57,10 +72,15 @@
   border-bottom: 1px solid rgba(30,30,30,1);
   cursor: pointer;
   background-color: rgba(50,50,50,1);
+  font-family: "Roboto";
+  font-size: 16px;
+  color: rgb(230,230,230);
 }
 
-#list li:hover{
-  background: rgba(30,30,30,1);
+@media only screen and (min-device-width : 480px) {
+  #list li:hover {
+    background: rgba(40,40,40,1);
+  }
 }
 
 #list .logo {
@@ -77,15 +97,14 @@
 
 #list .close {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0;
+  top: 0;
   width: 32px;
   height: 32px;
-  background-color: #787878;
   border-radius: 32px;
   line-height: 32px;
   text-align: center;
-  color: rgba(30,30,30,1);
+  color: #787878;
   font-size: 1.4em;
   cursor: pointer;
 }
@@ -99,35 +118,40 @@
   cursor: pointer;
 }
 
-@media only screen and (max-device-width : 480px) {
+@media only screen and (max-device-width : 350px) { /* 320px */
   #list {
     position: absolute;
     left: 0;
-    right: auto;
     top: 0;
-    width: 270px; /* 316px */
+    width: 270px;
     height: 100%;
-    /*overflow: hidden;*/
-    /*background: rgba(30,30,30,1);*/
-    /*padding: 0;*/
     margin: 0;
-    /*color: white;*/
-    /*font-size: 16px;*/
     -webkit-transition: left 0.3s ease-in-out;
     -moz-transition:    left 0.3s ease-in-out;
     -o-transition:      left 0.3s ease-in-out;
     transition:         left 0.3s ease-in-out;
-    /*z-index: 100;*/
-    /*padding-top: 100px;*/
-    /*-webkit-transform: rotateX(0);*/
-    /*-moz-transform: rotateX(0);*/
-    /*-ms-transform: rotateX(0);*/
-    /*-o-transform: rotateX(0);*/
-    /*transform: rotateX(0);*/
   }
-
   #list.hidden_list{
+    top: 0;
     left: -100%;
-    right: auto;
+  }
+}
+
+@media only screen and (min-device-width : 350px) and (max-device-width : 480px) { /* 416px */
+  #list {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 360px;
+    height: 100%;
+    margin: 0;
+    -webkit-transition: left 0.3s ease-in-out;
+    -moz-transition:    left 0.3s ease-in-out;
+    -o-transition:      left 0.3s ease-in-out;
+    transition:         left 0.3s ease-in-out;
+  }
+  #list.hidden_list{
+    top: 0;
+    left: -100%;
   }
 }

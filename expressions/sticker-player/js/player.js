@@ -86,8 +86,14 @@ UT.Expression.ready(function(post) {
     //console.log('--- utAudio:change -> audio data/parameters was changed');
   }).on('utAudio:ready',function(e){
     //console.log('--- utAudio:ready -> audio component ready to accept events');
-  }).on('utAudio:canplay',function(e, data){
+  }).on('utAudio:canplay',function(e, data) {
     //console.log('--- utAudio:canplay -> audio ready to be played', data);
+    $("#sticker").css("background-image", "url(" + data.artwork_url + ")");
+      if(data.service_name === "soundcloud") {
+        $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on SoundCloud</a>');
+      } else {
+        $("#sourceTip").html('<a href="' + post.storage.audioUrl + ' target="_blank">Listen on iTunes</a>');
+      }
   }).on('utAudio:play',function(){
     //console.log('--- utAudio:play -> audio started to play');
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
@@ -110,6 +116,12 @@ UT.Expression.ready(function(post) {
     //console.log('--- utAudio:seek -> audio seek started');
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
     that.state = 'seek';
+  });
+
+  var src_lick = that.view.player.find(".ut-audio-ui-source");
+  src_lick.on("click", function() {
+    $("#sourceTip").toggleClass("show");
+    return false;
   });
 
   $("#container").addClass("show");

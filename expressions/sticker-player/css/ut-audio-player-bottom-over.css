@@ -39,7 +39,8 @@
   text-overflow: ellipsis;
   font-weight: bold;
   color: rgba(255,255,255,1);
-  text-shadow: 0 0 5px rgba(0,0,0,1);
+  text-shadow: 0 0 3px rgba(0,0,0,.5);
+  font-family: "Roboto";
   text-align: left;
   font-size: 16px;
 }
@@ -70,7 +71,7 @@
   text-overflow: ellipsis;
   font-weight: normal;
   color: rgba(255,255,255,1);
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 1);
   text-shadow: 0 0 0 transparent;
   text-align: left;
   font-size: 24px;
@@ -388,7 +389,7 @@
   left: 0;
   color: rgba(255,255,255,1);
   cursor: pointer;
-  font-size: 0.5em;
+  font-size: 0.4em;
 }
 
 .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-play:hover {

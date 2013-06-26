@@ -26,7 +26,6 @@ UT.Expression.ready(function(post) {
   };
 
   that.onImageSizeChangedOutside = function(size) {
-    console.log("onImageSizeChangedOutside", size.width, size.height);
     var height = size.height || that.view.desc.height();
     var width = size.width || that.view.desc.width();
     var dwidth = Math.floor(width*(that.view.desc.height()/height));
@@ -60,11 +59,26 @@ UT.Expression.ready(function(post) {
     flexRatio: true,
     autoCrop: true
   });
+  that.view.utimage.on('utImage:ready', function(event, image) {
+    if(!image.data) {
+      that.view.utimage.utImage('dialog');
+    } else {
+      $("#container").addClass("show");
+    }
+  });
+  that.view.utimage.on('utImage:cancelDialog', function(event, image) {
+    $("#container").addClass("show");
+  });
+  that.view.utimage.on('utImage:resize', function(event, image) {
+    that.onImageSizeChangedOutside(image);
+  });
   that.view.utimage.on('utImage:change', function(event, newValues){
+    $("#container").addClass("show");
     var hasImage = !!newValues.data;
     if(hasImage) {
       that.data.imagePresent = true;
-      that.view.listbutton.show();
+      that.view.listbutton.css("display", "");
+      that.view.stickerArea.css("display", "");
       if(post.storage.audioUrl) {
         post.valid(true);
         that.hideList();
@@ -72,17 +86,11 @@ UT.Expression.ready(function(post) {
         that.showList();
       }
     } else {
+      that.view.listbutton.css("display", "none");
+      that.view.stickerArea.css("display", "none");
       that.data.imagePresent = false;
-      that.view.stickerArea.hide();
-      that.view.listbutton.hide();
       post.valid(false);
     }
-  });
-  that.view.utimage.on('utImage:resize', function(event, image) {
-    that.onImageSizeChangedOutside(image);
-  });
-  that.view.utimage.on('utImage:ready', function(event, image) {
-    that.view.utimage.utImage('dialog');
   });
 
   that.adaptPlayButton();
@@ -90,20 +98,16 @@ UT.Expression.ready(function(post) {
   that.showList = function(){
     post.valid(false);
     that.view.list.removeClass('hidden_list');
-    that.view.listbutton.hide();
-    that.view.stickerArea.hide();
   };
 
   that.hideList = function(e){
     that.view.list.find(".preplay").utAudio("pause");
     that.view.list.addClass('hidden_list');
-    that.view.listbutton.show();
     if(e) {
       e.stopPropagation();
     }
 
     if(that.data.imagePresent && post.storage.audioUrl) {
-      that.view.stickerArea.show();
       that.adaptPlayButton();
       post.valid(true);
     }
@@ -117,11 +121,13 @@ UT.Expression.ready(function(post) {
       originalWidth: 0.3,
       originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
     }],
+    classResize: "resize icon_fullscreen",
     parameters: that.data.stickerData,
     rotateable: false,
     scaleable: true,
     movableArea: {left:0, top:0, width:1, height:1 - 40/that.view.image.height() },
     deleteButton: false,
+    editButton: true,
     design: 7,
     flipContent: false,
     minSize: { width: 0.01, height: 0.01 },
@@ -134,6 +140,16 @@ UT.Expression.ready(function(post) {
       post.storage.stickerData = that.data.stickerData;
       post.save();
       that.adaptPlayButton();
+    },
+    onRemove: function() {
+      post.storage.audioUrl =  null;
+      post.save();
+      post.valid(false);
+      that.view.desc.removeClass("hasAudio");
+      return false;
+    },
+    onEditClick: function() {
+      that.showList();
     }
   });
   that.view.stickerArea.utStickersBoard("edit");
@@ -154,6 +170,9 @@ UT.Expression.ready(function(post) {
       },
       editable: false
     });
+    playerObj.on('utAudio:canplay',function(e, data) {
+      playerObj.attr("data-art", data.artwork_url);
+    });
     playerObj.on("click", function(e){ e.stopPropagation(); });
   };
 
@@ -166,21 +185,26 @@ UT.Expression.ready(function(post) {
   }
 
   that.view.list.find('li').on('click', function(){
+    var artwork = $(this).find(".preplay").attr("data-art");
+    if(artwork) {
+      $("#sticker").css("background-image", "url(" + artwork + ")");
+    } else {
+      $("#sticker").css("background-image", "");
+    }
+
     var url = $(this).data('value');
     post.storage.audioUrl = url;
     post.save();
     that.hideList();
-    that.view.listbutton.html("Change song");
+    that.view.desc.addClass("hasAudio");
+
+    that.view.stickerArea.utStickersBoard("selectItem", "sticker", false);
   });
 
   $("#list .close").on("click", that.hideList);
   $("#list ul").thinScrollBar({});
   that.view.listbutton.on('click', that.showList);
-
-  if(post.storage.audioUrl) {
-    that.hideList();
-    that.view.listbutton.html("Change song");
-  }
-
-  $("#container").addClass("show");
+  that.view.listbutton.css("display", "none");
+  that.view.stickerArea.css("display", "none");
+  that.hideList();
 });
