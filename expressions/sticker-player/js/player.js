@@ -19,7 +19,7 @@ UT.Expression.ready(function(post) {
     var hh = $("#sticker").height();
     if(hh > 0) {
       $("#sticker").css('fontSize', hh + 'px');
-      $("#sticker").css('lineHeight', (hh+6) + 'px');
+      $("#sticker").css('lineHeight', (hh+12) + 'px');
     }
   };
 
@@ -67,6 +67,7 @@ UT.Expression.ready(function(post) {
     $("#sticker").on('click', function(){
       if(that.state !== "play") {
         that.view.player.utAudio('play');
+        $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
       } else {
         that.view.player.utAudio('pause');
       }
@@ -89,11 +90,11 @@ UT.Expression.ready(function(post) {
   }).on('utAudio:canplay',function(e, data) {
     //console.log('--- utAudio:canplay -> audio ready to be played', data);
     $("#sticker").css("background-image", "url(" + data.artwork_url + ")");
-      if(data.service_name === "soundcloud") {
-        $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on SoundCloud</a>');
-      } else {
-        $("#sourceTip").html('<a href="' + post.storage.audioUrl + ' target="_blank">Listen on iTunes</a>');
-      }
+    if(data.service_name === "soundcloud") {
+      $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on SoundCloud</a>');
+    } else {
+      $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on iTunes</a>');
+    }
   }).on('utAudio:play',function(){
     //console.log('--- utAudio:play -> audio started to play');
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');

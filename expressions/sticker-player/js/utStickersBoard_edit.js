@@ -128,15 +128,23 @@
 
         that.options = $.extend(true, defaults, options);
         that.focused = null;
-        if(!that.options.rotateable) that.options.workMode = 0;
+        if(!that.options.rotateable) {
+          that.options.workMode = 0;
+        }
 
         $that.addClass('utStickersBoard type' + that.options.design);
-        if($that.css("position") == "static") $that.css("position", "relative");
+        if($that.css("position") === "static") {
+          $that.css("position", "relative");
+        }
 
         that.addNewItemToLayer = function(obj, nn, iData) {
           $("<div>").addClass("content").appendTo(obj).append(iData.object);
-          if(!that.options.parameters[nn]) that.options.parameters[nn] = {};
-          if(iData.key) obj.attr("data-key", iData.key);
+          if(!that.options.parameters[nn]) {
+            that.options.parameters[nn] = {};
+          }
+          if(iData.key) {
+            obj.attr("data-key", iData.key);
+          }
           obj[0].utParameters = that.options.parameters[nn];
           obj.addClass("utStickersBoard_box");
           obj.utSticker({
@@ -151,23 +159,23 @@
             backObject: $("body"),
             design: that.options.design,
             pos: that.options.parameters[nn],
-            useBounds: typeof(iData.useBounds) != "undefined" ? iData.useBounds : that.options.useBounds,
-            proportionalScale: typeof(iData.proportionalScale) != "undefined" ? iData.proportionalScale : that.options.proportionalScale,
-            movableArea: (typeof(iData.movableArea) != "undefined" && !$.isEmptyObject(iData.movableArea)) ? iData.movableArea : that.options.movableArea,
+            useBounds: typeof(iData.useBounds) !== "undefined" ? iData.useBounds : that.options.useBounds,
+            proportionalScale: typeof(iData.proportionalScale) !== "undefined" ? iData.proportionalScale : that.options.proportionalScale,
+            movableArea: (typeof(iData.movableArea) !== "undefined" && !$.isEmptyObject(iData.movableArea)) ? iData.movableArea : that.options.movableArea,
             originalWidth: iData.originalWidth,
             originalHeight: iData.originalHeight,
             workMode: that.options.workMode,
-            flipContent: typeof(iData.flipContent) != "undefined" ? iData.flipContent : that.options.flipContent,
+            flipContent: typeof(iData.flipContent) !== "undefined" ? iData.flipContent : that.options.flipContent,
             useTransform: that.options.useTransform,
-            minSize: (typeof(iData.minSize) != "undefined" && !$.isEmptyObject(iData.minSize)) ? iData.minSize : that.options.minSize,
-            maxSize: (typeof(iData.maxSize) != "undefined" && !$.isEmptyObject(iData.maxSize)) ? iData.maxSize : that.options.maxSize,
-            rotateable: typeof(iData.rotateable) != "undefined" ? iData.rotateable : that.options.rotateable,
-            moveable: typeof(iData.moveable) != "undefined" ? iData.moveable : that.options.moveable,
-            scaleable: typeof(iData.scaleable) != "undefined" ? iData.scaleable : that.options.scaleable,
-            deleteButton: typeof(iData.deleteButton) != "undefined" ? iData.deleteButton : that.options.deleteButton,
-            editButton: typeof(iData.editButton) != "undefined" ? iData.editButton : that.options.editButton,
+            minSize: (typeof(iData.minSize) !== "undefined" && !$.isEmptyObject(iData.minSize)) ? iData.minSize : that.options.minSize,
+            maxSize: (typeof(iData.maxSize) !== "undefined" && !$.isEmptyObject(iData.maxSize)) ? iData.maxSize : that.options.maxSize,
+            rotateable: typeof(iData.rotateable) !== "undefined" ? iData.rotateable : that.options.rotateable,
+            moveable: typeof(iData.moveable) !== "undefined" ? iData.moveable : that.options.moveable,
+            scaleable: typeof(iData.scaleable) !== "undefined" ? iData.scaleable : that.options.scaleable,
+            deleteButton: typeof(iData.deleteButton) !== "undefined" ? iData.deleteButton : that.options.deleteButton,
+            editButton: typeof(iData.editButton) !== "undefined" ? iData.editButton : that.options.editButton,
             additionButtons: that.options.additionButtons,
-            useFontSizeWhileScale: typeof(iData.useFontSizeWhileScale) != "undefined" ? iData.useFontSizeWhileScale : that.options.useFontSizeWhileScale,
+            useFontSizeWhileScale: typeof(iData.useFontSizeWhileScale) !== "undefined" ? iData.useFontSizeWhileScale : that.options.useFontSizeWhileScale,
             snapToGrid: that.options.snapToGrid,
             minAngle: that.options.minAngle,
             maxAngle: that.options.maxAngle,
@@ -404,28 +412,36 @@
 
     edit: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.edit.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.edit.call(this);
+        }
       });
       return this;
     },
 
     view: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.view.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.view.call(this);
+        }
       });
       return this;
     },
 
     show: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.show.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.show.call(this);
+        }
       });
       return this;
     },
 
     hide: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.hide.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.hide.call(this);
+        }
       });
       return this;
     },
@@ -433,77 +449,99 @@
     addItem: function(data) {
       var res = [];
       this.each(function() {
-        this.utStickersBoard && res.push(this.utStickersBoard.addItem.call(this, data));
+        if(this.utStickersBoard) {
+          res.push(this.utStickersBoard.addItem.call(this, data));
+        }
       });
       return res;
     },
 
     selectItem: function(key, changeIndex) {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.selectItem.call(this, key, changeIndex);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.selectItem.call(this, key, changeIndex);
+        }
       });
       return this;
     },
 
     removeItem: function(key) {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.removeItem.call(this, key);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.removeItem.call(this, key);
+        }
       });
       return this;
     },
 
     setFocus: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.setFocus.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.setFocus.call(this);
+        }
       });
       return this;
     },
 
     killFocus: function() {
       this.each(function() {
-        this.utStickersBoard && this.utStickersBoard.killFocus.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.killFocus.call(this);
+        }
       });
       return this;
     },
 
     getPosition: function(key, callback) {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.getPosition.call(this, key, callback);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.getPosition.call(this, key, callback);
+        }
       });
       return this;
     },
 
     setPosition: function(key, posData) {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.setPosition.call(this, key, posData);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.setPosition.call(this, key, posData);
+        }
       });
       return this;
     },
 
     setNextZIndex: function(num) {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.options.zIndexCounter = num;
+        if(this.utStickersBoard) {
+          this.utStickersBoard.options.zIndexCounter = num;
+        }
       });
       return this;
     },
 
     update: function(subCommand) {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.update.call(this, subCommand);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.update.call(this, subCommand);
+        }
       });
       return this;
     },
 
     changeOptions: function(options) {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.changeOptions.call(this, options);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.changeOptions.call(this, options);
+        }
       });
       return this;
     },
 
     removeAllItems: function() {
       this.each(function() {
-        if(this.utStickersBoard) this.utStickersBoard.removeAllItems.call(this);
+        if(this.utStickersBoard) {
+          this.utStickersBoard.removeAllItems.call(this);
+        }
       });
       return this;
     },

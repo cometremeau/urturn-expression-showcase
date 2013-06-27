@@ -2,7 +2,7 @@
   "title": "Playlist Postcard",
   "description": "Nice and amazing sticker with music player inside",
   "system_name": "sticker-player",
-  "version": "1.0.39",
+  "version": "1.0.57",
   "admins": [
     "dmitry, yury, james bond, harry potter"
   ],
@@ -27,6 +27,7 @@
 
     { "path": "css/common.css" },
     { "context": "editor", "path": "css/editor.css" },
+    { "context": "player", "path": "css/player.css" },
     { "path": "css/ut-audio-player-bottom-over.css" },
     { "context": "editor", "path": "css/ut-audio-player-preplay.css" },
     { "context": "editor", "path": "js/editor.js" },
