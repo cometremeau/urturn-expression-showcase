@@ -1,0 +1,40 @@
+/* logo image */
+#logo{
+  background-image: url(../images/logo.png);
+}
+
+/* sticker-player background image*/
+#sticker {
+  background-image: url(../images/logo.png);
+}
+
+/* list background color and transparent */
+#list {
+  background: rgba(30,30,30,1);
+  opacity: .75;
+}
+
+/* list item normal background color, font name and size, text color */
+#list li{
+  background-color: rgba(50,50,50,1);
+  font-family: "Roboto";
+  font-size: 16px;
+  color: rgba(230,230,230,1);
+}
+
+/* list item hover background color */
+@media only screen and (min-device-width : 480px) {
+  #list li:hover {
+    background: rgba(30,30,30,1);
+  }
+}
+
+/* list logo image */
+#list .logo {
+  background-image: url(../images/logo.png);
+}
+
+/* list close button color */
+#list .close {
+  color: rgba(230,230,230,1);
+}

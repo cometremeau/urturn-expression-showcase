@@ -197,15 +197,6 @@
   text-shadow: 0 0 5px rgba(0,0,0,1);
   text-align: center;
   font-size: 38px;
-  cursor: pointer;
-}
-
-.ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:hover {
-  color: rgba(180,180,180,1);
-}
-
-.ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
-  color: rgba(180,180,180,1);
 }
 
 .ut-audio-skin-bottom-over.ut-audio-state-launch .ut-audio-ui-source,
