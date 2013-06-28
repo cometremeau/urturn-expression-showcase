@@ -193,7 +193,7 @@
   overflow: visible;
   text-overflow: ellipsis;
   font-weight: normal;
-  color: rgba(180,180,180,1);
+  color: rgba(255,255,255,1);
   text-shadow: 0 0 5px rgba(0,0,0,1);
   text-align: center;
   font-size: 38px;
@@ -201,11 +201,11 @@
 }
 
 .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:hover {
-  color: rgba(255,255,255,1);
+  color: rgba(180,180,180,1);
 }
 
 .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
-  color: rgba(155,155,155,1);
+  color: rgba(180,180,180,1);
 }
 
 .ut-audio-skin-bottom-over.ut-audio-state-launch .ut-audio-ui-source,
@@ -388,7 +388,6 @@
   top: 0;
   left: 0;
   color: rgba(255,255,255,1);
-  cursor: pointer;
   font-size: 0.4em;
 }
 

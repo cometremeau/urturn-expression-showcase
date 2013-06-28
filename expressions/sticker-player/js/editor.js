@@ -21,7 +21,7 @@ UT.Expression.ready(function(post) {
     var hh = obj.height();
     if(hh > 0) {
       obj.css('fontSize', hh + 'px');
-      obj.css('lineHeight', (hh+6) + 'px');
+      obj.css('lineHeight', (hh+10) + 'px');
     }
   };
 
@@ -46,9 +46,10 @@ UT.Expression.ready(function(post) {
         top: "", height: "", marginTop:""
       });
     }
-    that.view.stickerArea.utStickersBoard("update", {
-      movableArea: {left:0, top:0, width:1, height:1 - 40/that.view.image.height() }
+    that.view.stickerArea.utStickersBoard("changeOptions", {
+      movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height() }
     });
+    that.view.stickerArea.utStickersBoard("update");
     setTimeout(function(){
       that.adaptPlayButton();
     }, 0);
@@ -64,6 +65,14 @@ UT.Expression.ready(function(post) {
       that.view.utimage.utImage('dialog');
     } else {
       $("#container").addClass("show");
+      if(post.storage.audioUrl) {
+        that.view.listbutton.css("display", "");
+        that.view.stickerArea.css("display", "");
+        that.view.desc.addClass("hasAudio");
+      } else {
+        that.view.desc.removeClass("hasAudio");
+      }
+      that.createPlayer();
     }
   });
   that.view.utimage.on('utImage:cancelDialog', function(event, image) {
@@ -97,10 +106,12 @@ UT.Expression.ready(function(post) {
 
   that.showList = function(){
     post.valid(false);
+    that.view.desc.addClass("popupOpened");
     that.view.list.removeClass('hidden_list');
   };
 
   that.hideList = function(e){
+    that.view.desc.removeClass("popupOpened");
     that.view.list.find(".preplay").utAudio("pause");
     that.view.list.addClass('hidden_list');
     if(e) {
@@ -125,7 +136,7 @@ UT.Expression.ready(function(post) {
     parameters: that.data.stickerData,
     rotateable: false,
     scaleable: true,
-    movableArea: {left:0, top:0, width:1, height:1 - 40/that.view.image.height() },
+    movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height() },
     deleteButton: false,
     editButton: true,
     design: 7,
@@ -146,6 +157,7 @@ UT.Expression.ready(function(post) {
       post.save();
       post.valid(false);
       that.view.desc.removeClass("hasAudio");
+      that.createPlayer();
       return false;
     },
     onEditClick: function() {
@@ -176,6 +188,21 @@ UT.Expression.ready(function(post) {
     playerObj.on("click", function(e){ e.stopPropagation(); });
   };
 
+  that.createPlayer = function() {
+    $("#player-area").empty();
+    if(post.storage.audioUrl) {
+      $("#player-area").utAudio({
+        data: post.storage.audioUrl,
+        skin: 'bottom-over',
+        ui:{
+          artwork: false,
+          play:false
+        },
+        editable: false
+      });
+    }
+  };
+
   var tmp = that.view.list.find("li");
   var qq;
   for(qq = 0; qq < tmp.length; qq++) {
@@ -197,7 +224,7 @@ UT.Expression.ready(function(post) {
     post.save();
     that.hideList();
     that.view.desc.addClass("hasAudio");
-
+    that.createPlayer();
     that.view.stickerArea.utStickersBoard("selectItem", "sticker", false);
   });
 
