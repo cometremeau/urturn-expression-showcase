@@ -141,8 +141,8 @@ UT.Expression.ready(function(post) {
     editButton: true,
     design: 7,
     flipContent: false,
-    minSize: { width: 0.01, height: 0.01 },
-    maxSize: { width: 1, height: 1 },
+    minSize: { width: 0.05, height: 0.05 },
+    maxSize: { width: .9, height: .9 },
     onChanging: function() {
       that.adaptPlayButton();
     },
