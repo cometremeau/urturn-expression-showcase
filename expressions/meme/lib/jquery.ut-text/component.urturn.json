@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.3.8",
+  "version": "0.3.93",
   "dependencies": {
     "jquery": ">=2.0.0",
     "urturn-expression-css": ">=0.6.0",
@@ -9,8 +9,6 @@
   },
   "includes": [],
   "main": [
-    "lib/FontDetect/fontdetect.2.1.js",
-    "lib/jquery-textfill/jquery.textfill.js",
     "jquery.ut-text.js",
     "jquery.ut-text.css"
   ]

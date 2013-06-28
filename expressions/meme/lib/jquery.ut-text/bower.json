@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.3.8",
+  "version": "0.3.93",
   "author": {
     "name": "Urturn",
     "email": "dev@urturn.com"
@@ -13,8 +13,8 @@
     }
   ],
   "main": [
-    "lib/FontDetect/fontdetect.2.1.js",
-    "lib/jquery-textfill/jquery.textfill.js",
+    "vendor/jquery.textfill.js",
+    "vendor/fontdetect.2.1.js",
     "jquery.ut-text.js",
     "jquery.ut-text.css"
   ],
@@ -27,10 +27,10 @@
   "devDependencies": {
     "qunit": "~1.11.0"
   },
-  "gitHead": "13dca9c434eace521fedbb9ca43103c52227bf5a",
+  "gitHead": "9e265077b9038cc327d20a6a440ad9c2287f3206",
   "readme": "### TODOS\n\n- [*] Firefox compatibility\n- [*] Mobile input\n- [*] Integration with others components\n- [*] Charaters limitations\n- [*] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [*] Events\n- [*] Paste text\n- [*] Formating, return lines etc...\n- [ ] Parse text for hashtags and mentions",
   "readmeFilename": "README.md",
-  "_id": "jquery.ut-text@0.3.8",
+  "_id": "jquery.ut-text@0.3.93",
   "description": "- [*] Firefox compatibility - [*] Mobile input - [*] Integration with others components - [*] Charaters limitations - [*] Size limitations - [*] Save - [*] View mode (partial) - [*] Events - [*] Paste text - [*] Formating, return lines etc... - [ ] Parse text for hashtags and mentions",
   "repository": {
     "type": "git",
