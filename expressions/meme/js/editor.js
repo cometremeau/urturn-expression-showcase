@@ -28,11 +28,12 @@
    $("#header_text")
      .utText({
        placeholder: "Write here",
-       maxFontSize: 72,
+       maxFontSize: 62,
        minFontSize: 24,
        fixedSize: true,
        chars: 60,
-       reuse: true
+       reuse: true,
+       tabIndex: 1
      })
      .on('utText:save',function() {
       checkValidContent();
@@ -40,11 +41,12 @@
    $("#footer_text")
      .utText({
        placeholder: "And here...",
-       maxFontSize: 72,
+       maxFontSize: 62,
        minFontSize: 24,
        fixedSize: true,
        chars: 60,
-       reuse: true
+       reuse: true,
+       tabIndex: 2
      })
      .on('utText:save',function() {
       checkValidContent();

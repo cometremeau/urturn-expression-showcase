@@ -1,6 +1,6 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.3.0",
+  "version": "0.3.8",
   "author": {
     "name": "Urturn",
     "email": "dev@urturn.com"
@@ -21,16 +21,16 @@
   "dependencies": {
     "jquery": ">=2.0.0",
     "urturn-expression-css": ">=0.6.0",
-    "jquery-textfill": "git@github.com:maiis/jquery-textfill.git",
-    "FontDetect": "git@github.com:maiis/FontDetect.git"
+    "jquery-textfill": "http://github.com/maiis/jquery-textfill.git",
+    "FontDetect": "http://github.com/maiis/FontDetect.git"
   },
   "devDependencies": {
     "qunit": "~1.11.0"
   },
-  "gitHead": "763a78fa5d4d08fd30ddb3a91a2612ae55c7d4dc",
+  "gitHead": "13dca9c434eace521fedbb9ca43103c52227bf5a",
   "readme": "### TODOS\n\n- [*] Firefox compatibility\n- [*] Mobile input\n- [*] Integration with others components\n- [*] Charaters limitations\n- [*] Size limitations\n- [*] Save\n- [*] View mode (partial)\n- [*] Events\n- [*] Paste text\n- [*] Formating, return lines etc...\n- [ ] Parse text for hashtags and mentions",
   "readmeFilename": "README.md",
-  "_id": "jquery.ut-text@0.3.0",
+  "_id": "jquery.ut-text@0.3.8",
   "description": "- [*] Firefox compatibility - [*] Mobile input - [*] Integration with others components - [*] Charaters limitations - [*] Size limitations - [*] Save - [*] View mode (partial) - [*] Events - [*] Paste text - [*] Formating, return lines etc... - [ ] Parse text for hashtags and mentions",
   "repository": {
     "type": "git",

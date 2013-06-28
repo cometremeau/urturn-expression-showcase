@@ -2,8 +2,8 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.8.0",
-  "api_version": "1.0.1",
+  "version": "0.9.0rc1",
+  "api_version": "1.0.2",
   "platform": [
     "desktop",
     "ios",
@@ -18,6 +18,9 @@
   "dependencies": [
     {
       "path": "lib/jquery.ut-text/jquery.ut-text.js"
+    },
+    {
+      "path": "lib/jquery.ut-text/jquery.ut-text.css"
     },
     {
       "path": "lib/jquery.ut-image/jquery.ut-image.js"

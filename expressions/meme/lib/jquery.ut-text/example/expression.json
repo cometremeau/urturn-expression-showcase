@@ -2,8 +2,8 @@
   "title": "jQuery.utText Usage",
   "description": "",
   "system_name": "ut-text-example",
-  "version": "0.2.8",
-  "api_version": "0.9.0-beta8",
+  "version": "0.2.9",
+  "api_version": "0.0.0",
   "platform": [
     "desktop",
     "ios"
@@ -13,7 +13,8 @@
     { "path" : "lib/jquery-textfill/jquery.textfill.js"},
     { "path" : "jquery.ut-text.js"},
     { "path" : "jquery.ut-text.css"},
-    { "path": "js/editor.js"},
+    { "context": "editor", "path" : "js/editor.js"},
+    { "context": "player", "path" : "js/player.js"},
     { "path": "css/exp.css"}
   ]
 }

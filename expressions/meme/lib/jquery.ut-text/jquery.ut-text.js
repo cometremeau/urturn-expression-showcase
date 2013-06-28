@@ -65,23 +65,30 @@
         $el.addClass('ut-text-fixed');
       }
 
+      if (mode && mode.editor === true) {
+        $contentDomNode
+        .attr('contentEditable',true)
+        .attr('spellcheck',false);
+        if (options.tabIndex) {
+          $contentDomNode.attr('tabIndex',options.tabIndex);
+        }
+        bindEvents();
+      }
+      if (storage && storage[storageKey]) {
+        if (mode && mode.player === true) {
+          $contentDomNode.html(post.autoLink(storage[storageKey]));
+        } else {
+          $contentDomNode.text(storage[storageKey]);
+        }
+        $contentDomNode.attr('data-div-placeholder-content', 'true');
+      }
+
       if (options.chars && mode && mode.editor === true) {
         $countdownDomNode = $('<div>').addClass('ut-text-countdown ut-action-button ut-small-button ut-button');
         $el.append($countdownDomNode);
         updateCharactersCounter();
       }
-
-      if (mode && mode.editor === true) {
-        $contentDomNode
-        .attr('contentEditable',true)
-        .attr('spellcheck',false);
-        bindEvents();
-      }
-      if (storage && storage[storageKey]) {
-        $contentDomNode.text(storage[storageKey]);
-        $contentDomNode.attr('data-div-placeholder-content', 'true');
-      }
-
+      
       if (isUtimage) {
         imageHeight = $el.height();
         $el.css({ backgroundSize: 'cover' });
@@ -91,11 +98,16 @@
         reuse();
       }
 
-      adaptFontSize();
-
-      post.on('resize', function() {
+      if (options.fixedSize && maxFontSize && minFontSize) {
         adaptFontSize();
-      });
+        post.on('resize', function() {
+          adaptFontSize();
+        });
+      }
+
+      if (charsCount() === 0) {
+        $contentDomNode.html('<br/>');
+      }
 
       trigger('ready');
     }
@@ -129,13 +141,6 @@
       - handle copy-paste text
     */
     function bindEvents() {
-
-      $el.on('click',function() {
-        $contentDomNode.trigger('focus');
-        if ($contentDomNode[0].textContent.length === 0) {
-          $contentDomNode.html('<br/>');
-        }
-      });
       /* here is the meat and potates */
       $contentDomNode.attr('data-placeholder',options.placeholder);
 
@@ -153,7 +158,7 @@
       } else {
         $contentDomNode.on('paste keypress keydown input',function(e) {
           if (mode && mode.editor === true) {
-            if ($contentDomNode[0].textContent && $contentDomNode[0].textContent.length >= 1) {
+            if ($contentDomNode[0].textContent && charsCount() >= 1) {
               $contentDomNode.attr('data-div-placeholder-content', 'true');
             } else {
               $contentDomNode.removeAttr('data-div-placeholder-content');
@@ -172,7 +177,7 @@
           var keys = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
 
           if( $.inArray(e.keyCode, keys) === -1) {
-            if (options.chars && $contentDomNode[0].innerHTML.length >= options.chars) {
+            if (options.chars && charsCount() >= options.chars) {
               e.preventDefault();
               e.stopPropagation();
             }
@@ -244,9 +249,13 @@
       trigger('save',cleanUpData());
     }
 
+    function charsCount() {
+      return $contentDomNode.html().replace(/<[^>]*>/g, "").length;
+    }
+
     /* in the case we have a character limitation, display and update the counter */
     function updateCharactersCounter() {
-      var remaining = options.chars - $contentDomNode[0].innerHTML.length;
+      var remaining = options.chars - charsCount();
       if (remaining === 0) {
         $countdownDomNode.addClass('ut-text-countdown-max');
       } else {
@@ -264,7 +273,7 @@
 
     function formatPaste() {
       setTimeout(function() {
-        if(options.chars && $contentDomNode[0].innerHTML.length >= options.chars) {
+        if(options.chars && charsCount() >= options.chars) {
           $contentDomNode.text(cleanUpData().substr(0, options.chars));
         } else {
           $contentDomNode.text(cleanUpData());
@@ -346,9 +355,10 @@
     placeholder: 'Enter some text',
     fixedSize: false,
     chars: false,
-    maxFontSize: Number.POSITIVE_INFINITY,
-    minFontSize: Number.NEGATIVE_INFINITY,
-    reuse: false
+    maxFontSize: false,
+    minFontSize: false,
+    reuse: false,
+    tabIndex: false
   };
 
 })(jQuery);

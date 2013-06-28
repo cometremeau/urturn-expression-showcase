@@ -1,14 +1,16 @@
 {
   "name": "jquery.ut-text",
-  "version": "0.3.0",
+  "version": "0.3.8",
   "dependencies": {
     "jquery": ">=2.0.0",
     "urturn-expression-css": ">=0.6.0",
-    "jquery-textfill": "git@github.com:maiis/jquery-textfill.git",
-    "FontDetect": "git@github.com:maiis/FontDetect.git"
+    "jquery-textfill": "http://github.com/maiis/jquery-textfill.git",
+    "FontDetect": "http://github.com/maiis/FontDetect.git"
   },
   "includes": [],
   "main": [
+    "lib/FontDetect/fontdetect.2.1.js",
+    "lib/jquery-textfill/jquery.textfill.js",
     "jquery.ut-text.js",
     "jquery.ut-text.css"
   ]

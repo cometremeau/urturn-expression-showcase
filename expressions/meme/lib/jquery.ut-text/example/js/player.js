@@ -1,25 +1,35 @@
-;(function(UT, $, document) {
+/*global UT: true, jQuery: true */
+
+;(function(UT, $) {
   "use strict";
 
   UT.Expression.ready(function(post) {
     $("#demo")
     .utText({
-      post: post
+      placeholder: "What's on your mind ?"
     });
 
     $("#demo2")
-      .utImagePanel({
+      .utImage({
         post: post
       })
       .utText({
-        post: post
+        placeholder: "What's on your mind ?",
       });
 
-    $("#demo3")
-      .utSticker();
-    $('.text','#demo3')
+    $("#demo4")
       .utText({
-        post: post
+        maxFontSize: 50,
+        minFontSize: 10,
+        fixedSize: true
       });
+
+    $("#demo5")
+      .utText({
+        chars: 140
+      });
+
+    post.valid(true);
+    post.size({'height':"800px"});
   });
-}(UT, jQuery, document));
+}(UT, jQuery));

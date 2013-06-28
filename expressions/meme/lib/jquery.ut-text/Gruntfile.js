@@ -17,7 +17,12 @@ module.exports = function(grunt) {
       all: {
         bower: true,
         manifest: {
-          main: ["<%= pkg.name %>.js", "<%= pkg.name %>.css"]
+          main: [
+            "lib/FontDetect/fontdetect.2.1.js",
+            "lib/jquery-textfill/jquery.textfill.js",
+            "<%= pkg.name %>.js",
+            "<%= pkg.name %>.css"
+          ]
         }
       }
     },
