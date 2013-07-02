@@ -13,13 +13,13 @@
     }
   ],
   "collections": [{
-    "name": "vote",
+    "name": "votes",
     "fields": [{
-      "name": "vote-a",
+      "name": "video-a",
       "type": "boolean",
       "operations": ["count"]
     }, {
-      "name": "vote-b",
+      "name": "video-b",
       "type": "boolean",
       "operations": ["count"]
     }]

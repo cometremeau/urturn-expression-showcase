@@ -13,8 +13,21 @@
   padding: 0;
   margin: 0;
 }
+.winner.vote {
+  color: green;
+}
+.looser.vote {
+  color: red;
+}
 .video-box {
   position: relative;
+}
+.voteResult {
+  font-weight: bold;
+}
+.voteResult:hover {
+  color: black;
+  border: 1px solid black;
 }
 .video {
   position: relative;
@@ -31,4 +44,7 @@
   -moz-transform: skew(20deg); 
   -o-transform: skew(20deg);
   transform: skew(20deg);
+}
+.hidden {
+  display: none;
 }
