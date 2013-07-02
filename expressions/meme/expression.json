@@ -2,8 +2,8 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.8.93",
-  "api_version": "0.0.0",
+  "version": "0.8.97",
+  "api_version": "1.0.2-rc3",
   "platform": [
     "desktop",
     "ios",
@@ -18,19 +18,10 @@
   "dependencies": [
     {
       "path": "lib/jquery.ut-text/jquery.ut-text.js"
-    },
-    {
+      },
+          {
       "path": "lib/jquery.ut-text/jquery.ut-text.css"
-    },
-    {
-      "path": "lib/jquery.ut-image/jquery.ut-image.js"
-    },
-    {
-      "path": "lib/FontDetect/fontdetect.2.1.js"
-    },
-    {
-      "path": "lib/jquery-textfill/jquery.textfill.js"
-    },
+      },
     {
       "path": "js/editor.js",
       "context": "editor"

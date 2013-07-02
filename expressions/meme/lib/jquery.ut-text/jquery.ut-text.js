@@ -177,7 +177,7 @@
           var keys = [8, 9, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 144, 145];
 
           if( $.inArray(e.keyCode, keys) === -1) {
-            if (options.chars && charsCount() >= options.chars) {
+            if (options.chars && charsCount() >= options.chars && !e.metaKey) {
               e.preventDefault();
               e.stopPropagation();
             }
@@ -267,6 +267,7 @@
     /* Clean up the data that come from copy, paste, etc... before saving */
     function cleanUpData(){
       var v = $contentDomNode.html().replace(/<br\s*\/?>/mg,"\n");
+      v = v.replace(/<div>/gi,"\n").replace(/<\/div>/gi,'');
       v = v.replace(/(<([^>]+)>)/ig,'');
       return $.trim(v.replace(/&nbsp;/ig,''));
     }
