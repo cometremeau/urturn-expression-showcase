@@ -1,0 +1,5 @@
+{
+  "browser"       : true,     // Web Browser (window, document, etc),
+  "jquery"        : true,    // jQuery
+  "predef"        : [UT]
+}
