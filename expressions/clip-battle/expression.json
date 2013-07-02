@@ -2,7 +2,7 @@
   "title": "Clip Battle",
   "description": "Vote for the best video clip.",
   "system_name": "clip-battle",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "api_version": "1.0.2-rc3",
   "dependencies": [
     {
@@ -12,16 +12,25 @@
       "path": "assets/main.js"
     }
   ],
-  "collections": [{
-    "name": "votes",
-    "fields": [{
-      "name": "video-a",
-      "type": "boolean",
-      "operations": ["count"]
-    }, {
-      "name": "video-b",
-      "type": "boolean",
-      "operations": ["count"]
-    }]
-  }]
+  "collections": [
+    {
+      "name": "votes",
+      "fields": [
+        {
+          "name": "video-a",
+          "type": "boolean",
+          "operations": [
+            "count"
+          ]
+        },
+        {
+          "name": "video-b",
+          "type": "boolean",
+          "operations": [
+            "count"
+          ]
+        }
+      ]
+    }
+  ]
 }

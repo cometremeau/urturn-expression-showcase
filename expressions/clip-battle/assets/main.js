@@ -12,7 +12,9 @@ UT.Expression.ready(function(post) {
   };
 
   var votes = post.collection('votes');
-  var myVote = votes.getUserItem();
+  console.log(votes);
+  console.log(votes.getUserItem);
+  var myVote = votes && votes.getUserItem && votes.getUserItem();
 
   // Define the post valid state given the current data.
   function validates() {
@@ -23,8 +25,10 @@ UT.Expression.ready(function(post) {
   // The 2 video widgets needs to be displayed with
   // a 16:9 ratio.
   function resize() {
+    window.console && console.log && console.log('Will resize');
     var w = $node.width(); // remove the votes button width
     var h = (w/16)*9;
+    window.console && console.log && console.log(w, 'x', h);
     $video.width(w).height(h);
     post.size(2*h + 50); // 50 = Vote bar size
   }
@@ -87,13 +91,6 @@ UT.Expression.ready(function(post) {
     });
   }
 
-  $video.utVideo()
-    // Validates on change.
-    .on('utVideo:change', function(event, newValue){
-      videoPresence[event.target.id] = !!newValue;
-      validates()
-    });
-
   $voteLink.on('click', handleVote);
   $voteResult.on('click', handleDisplayVoters);
 
@@ -106,5 +103,11 @@ UT.Expression.ready(function(post) {
 
   // Bootstrap
   resize();
+  $video.utVideo()
+    // Validates on change.
+    .on('utVideo:change', function(event, newValue){
+      videoPresence[event.target.id] = !!newValue;
+      validates()
+    });
   printResult();
 });
