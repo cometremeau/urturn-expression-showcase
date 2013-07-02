@@ -1,0 +1,34 @@
+.post-wrapper {
+  height: 500px;
+}
+.vote {
+  display: inline-block;
+  font-size: 32px;
+  text-decoration: none;
+  color: #CCCCCC;
+  width: 49%;
+  height: 50px;
+  text-align: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.video-box {
+  position: relative;
+}
+.video {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+.splitter {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: #ccc;
+  /* Skew */
+  -webkit-transform: skew(20deg); 
+  -moz-transform: skew(20deg); 
+  -o-transform: skew(20deg);
+  transform: skew(20deg);
+}

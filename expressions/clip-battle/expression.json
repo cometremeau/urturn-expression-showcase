@@ -1,0 +1,27 @@
+{
+  "title": "Clip Battle",
+  "description": "Vote for the best video clip.",
+  "system_name": "clip-battle",
+  "version": "0.1.0",
+  "api_version": "1.0.2-rc3",
+  "dependencies": [
+    {
+      "path": "assets/exp.css"
+    },
+    {
+      "path": "assets/main.js"
+    }
+  ],
+  "collections": [{
+    "name": "vote",
+    "fields": [{
+      "name": "vote-a",
+      "type": "boolean",
+      "operations": ["count"]
+    }, {
+      "name": "vote-b",
+      "type": "boolean",
+      "operations": ["count"]
+    }]
+  }]
+}
