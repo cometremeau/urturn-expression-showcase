@@ -3,7 +3,7 @@
   "description": "Vote for the best video clip.",
   "system_name": "clip-battle",
   "version": "0.1.5",
-  "api_version": "1.0.2-rc3",
+  "api_version": "1.0.2-rc4",
   "dependencies": [
     {
       "path": "assets/exp.css"
