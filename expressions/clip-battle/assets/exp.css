@@ -19,12 +19,14 @@
 .video-box {
   position: relative;
 }
+.vote-box {
+  background: rgb(244, 244, 244);
+}
 .voteResult {
   font-weight: bold;
 }
 .voteResult:hover {
   color: black;
-  border: 1px solid black;
 }
 .video {
   position: relative;
