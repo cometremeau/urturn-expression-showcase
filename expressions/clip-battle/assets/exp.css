@@ -2,7 +2,7 @@
   display: inline-block;
   font-size: 32px;
   text-decoration: none;
-  color: #CCCCCC;
+  color: rgb(120,120,120);
   width: 49%;
   height: 50px;
   text-align: center;
@@ -19,8 +19,8 @@
 .video-box {
   position: relative;
 }
-.vote-box {
-  background: rgb(244, 244, 244);
+.post-wrapper {
+  background-color: rgb(252,252,252);
 }
 .voteResult {
   font-weight: bold;
@@ -37,7 +37,7 @@
   position: absolute;
   width: 2px;
   height: 50px;
-  background: #ccc;
+  background: rgb(120,120,120);
   /* Skew */
   -webkit-transform: skew(20deg); 
   -moz-transform: skew(20deg); 

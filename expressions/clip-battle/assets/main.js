@@ -12,8 +12,6 @@ UT.Expression.ready(function(post) {
   };
 
   var votes = post.collection('votes');
-  console.log(votes);
-  console.log(votes.getUserItem);
   var myVote = votes && votes.getUserItem && votes.getUserItem();
 
   // Define the post valid state given the current data.
@@ -103,7 +101,11 @@ UT.Expression.ready(function(post) {
 
   // Bootstrap
   resize();
-  $video.utVideo()
+  $video.utVideo({
+    i18n: {
+      dialogLabel: "Choose a video clip for the battle"
+    }
+  })
     // Validates on change.
     .on('utVideo:change', function(event, newValue){
       videoPresence[event.target.id] = !!newValue;
