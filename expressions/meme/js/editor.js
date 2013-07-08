@@ -10,6 +10,9 @@
         reuse: true
       })
       .on('utImage:ready',function() {
+        if (!$(this).utImage('data').url) {
+          $(this).utImage('dialog');
+        }
         post.size({'height':$(this).outerHeight()});
       })
       .on('utImage:change',function(event, newValues, oldValues) {
