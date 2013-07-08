@@ -11,12 +11,13 @@
 /* list background color and transparent */
 #list {
   background: rgba(30,30,30,1);
-  opacity: .75;
 }
 
 /* list item normal background color, font name and size, text color */
 #list li{
+  border-bottom: 1px solid rgba(30,30,30,1);
   background-color: rgba(50,50,50,1);
+  /*available fonts: Roboto, PlaytimeWithHotToddiesRegular, CasinoHandRegular, Sanchez, Playfair, Gentium*/
   font-family: "Roboto";
   font-size: 16px;
   color: rgba(230,230,230,1);
@@ -34,10 +35,49 @@
 
 /* list logo image */
 #list .logo {
+  left: 20px;
+  top: 20px;
+  width: 120px;
+  height: 60px;
   background-image: url(../images/logo.png);
 }
 
 /* list close button color */
 #list .close {
   color: rgba(230,230,230,1);
+}
+
+/* popup tooltip position */
+.popup-tooltip {
+  top: 40px;
+  left: 155px;
+}
+
+/*popup and logo style for mobile*/
+@media only screen and (max-device-width : 350px) { /* 320px */
+  .popup-tooltip {
+    top: 70px;
+    left: 20px;
+  }
+
+  #list .logo {
+    width: 85px;
+    height: 40px;
+  }
+}
+
+/*play button in popup*/
+.ut-audio-skin-preplay .ut-audio-ui-play {
+  background: rgba(230,230,230,1);
+  color: rgba(50,50,50,1);
+}
+
+/*play button in popup (hover state)*/
+.ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:hover {
+  background: rgba(210,210,210,1);
+}
+
+/*play button in popup (active state)*/
+.ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:active {
+  background: rgba(190,190,190,1);
 }

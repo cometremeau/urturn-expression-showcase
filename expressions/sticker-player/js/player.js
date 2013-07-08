@@ -35,7 +35,7 @@ UT.Expression.ready(function(post) {
     that.view.stickerArea.utStickersBoard({
       post: post,
       items: [{
-        object: '<div id="sticker" class="ut-audio-skin-bottom-over ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
+        object: '<div id="sticker" class="ut-audio-skin-sticker ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
         key: "sticker",
         originalWidth: 0.3,
         originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
@@ -80,7 +80,7 @@ UT.Expression.ready(function(post) {
     skin:'bottom-over',
     ui:{
       artwork: false,
-      play:false
+      play:true
     },
     editable: false
   }).on('utAudio:change',function(){
@@ -93,7 +93,7 @@ UT.Expression.ready(function(post) {
     if(data.service_name === "soundcloud") {
       $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on SoundCloud</a>');
     } else {
-      $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on iTunes</a>');
+      $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Buy on iTunes</a>');
     }
   }).on('utAudio:play',function(){
     //console.log('--- utAudio:play -> audio started to play');

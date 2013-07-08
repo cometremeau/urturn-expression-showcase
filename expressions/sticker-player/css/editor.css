@@ -34,10 +34,28 @@
   opacity: .3;
   height: 40px;
   line-height: 40px;
+}
+
+.player-overlay {
+  display: none;
   width: 100%;
+  height: 45px;
   position: absolute;
   bottom: 0;
-  z-index: 20;
+  z-index: 21;
+}
+
+.hasAudio .player-overlay {
+  display: block;
+}
+
+.preview-mode .player-overlay {
+  display: none;
+}
+
+.preview-mode #player-area,
+.preview-mode #logo{
+  opacity: 1;
 }
 
 .desc:not(.hasAudio) #player-area,
@@ -45,7 +63,8 @@
 .popupOpened #stickerArea,
 .popupOpened #listbutton,
 .popupOpened .ut-image-action-list,
-.popupOpened #logo {
+.popupOpened #logo,
+.popupOpened .ut-preview-action-list {
   display: none !important;
 }
 
@@ -77,6 +96,7 @@
   transform: translateY(0);
   /*opacity: .75;*/
   visibility: visible;
+  opacity: .85;
 }
 
 #list.hidden_list{
@@ -94,19 +114,32 @@
   padding: 0;
   margin: 0;
   height: 100%;
-  overflow: hidden;
+  overflow: scroll;
+  opacity: 0.8;
 }
 
 #list li{
   position: relative;
-  line-height: 49px;
+  height: 49px;
   padding: 0 20px 0 47px;
-  border-bottom: 1px solid rgba(30,30,30,1);
   cursor: pointer;
   /*background-color: rgba(50,50,50,1);*/
   /*font-family: "Roboto";*/
   /*font-size: 16px;*/
   /*color: rgba(230,230,230,1);*/
+}
+
+#list li::before {
+  display: inline-block;
+  content: '';
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+}
+
+#list li > span {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*@media only screen and (min-device-width : 480px) {*/
@@ -117,11 +150,6 @@
 
 #list .logo {
   position: absolute;
-  left: 20px;
-  top: 20px;
-  width: 120px;
-  height: 60px;
-  /*background-image: url(../images/logo.png);*/
   background-size:cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -154,9 +182,7 @@
   #list {
     position: absolute;
     left: 0;
-    top: 0;
     width: 270px;
-    height: 100%;
     margin: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -179,9 +205,7 @@
   #list {
     position: absolute;
     left: 0;
-    top: 0;
     width: 360px;
-    height: 100%;
     margin: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -198,4 +222,43 @@
     opacity: 0;
     visibility: hidden;
   }
+}
+
+.ut-preview-action-list {
+  left: auto;
+  right: 10px;
+}
+
+.edit-btn {
+  display: none;
+}
+
+.preview-mode .edit-btn {
+  display: inline-block;
+}
+
+.preview-mode .preview-btn {
+  display: none;
+}
+
+.preview-mode .ut-image-action-list {
+  display: none;
+}
+
+.popup-tooltip {
+  position: absolute;
+  font: 20px/22px "CasinoHandRegular";
+}
+
+/*============================= SOURCE LINK ==============================*/
+.preview-mode .ut-audio-skin-bottom-over .ut-audio-ui-source {
+  cursor: pointer;
+}
+
+.preview-mode .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:hover {
+  color: rgba(180,180,180,1);
+}
+
+.preview-mode .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
+  color: rgba(180,180,180,1);
 }

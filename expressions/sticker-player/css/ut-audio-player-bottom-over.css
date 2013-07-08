@@ -19,6 +19,48 @@
   -moz-box-sizing: border-box;
 }
 
+/*----------------------  PLAYING CONTROLS  ------------------------------*/
+
+.ut-audio-skin-bottom-over .ut-audio-ui-play {
+  position: absolute;
+  bottom: 24px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 1);
+  background-color: rgb(255, 255, 255);
+  color: black;
+  font-size: 10px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.ut-audio-skin-bottom-over.ut-audio-state-loading .ut-audio-ui-play {
+  display: none;
+}
+
+.ut-audio-skin-bottom-over .ut-audio-ui-play:hover {
+  background-color: rgb(200, 200, 200);
+}
+
+.ut-audio-skin-bottom-over .ut-audio-ui-play:active {
+  background-color: rgb(140, 140, 140);
+}
+
+.ut-audio-skin-bottom-over .ut-audio-ui-play .ut-audio-ui-play-icon {
+  display: block;
+  padding-left: 2px;
+}
+
+.ut-audio-skin-bottom-over.ut-audio-state-play .ut-audio-ui-play .ut-audio-ui-play-icon {
+  display: none;
+}
+
+.ut-audio-skin-bottom-over.ut-audio-state-play .ut-audio-ui-play .ut-audio-ui-pause-icon {
+  display: block;
+}
+
 /*----------------------  TITLE PANEL  -----------------------------------*/
 
 .ut-audio-skin-bottom-over .ut-audio-ui-title{
@@ -26,10 +68,9 @@
   position: absolute;
   z-index: 5;
   bottom: 20px;
-  left: 10px;
-  width: -webkit-calc(100% - 60px);
-  width:         calc(100% - 60px);
-  height: auto;
+  left: 35px;
+  width: -webkit-calc(100% - 85px);
+  width:         calc(100% - 85px);
   white-space: normal;
   line-height: 30px;
   height: 30px;
@@ -94,25 +135,24 @@
   background: rgba(255,255,255,1);
 }
 
-.ut-audio-ui-progress-marker{
+.ut-audio-ui-progress-marker {
   position: absolute;
   bottom: 0;
   left: 20px;
   height: 35px;
   width: 1px;
   background: rgba(155,155,155,1);
-  display: block;
-  opacity: 0;
+  display: none;
   z-index: 40;
 }
 
-.ut-audio-ui-progress-marker.ut-audio-ui-progress-marker-visible{
-  opacity: 1;
+.ut-audio-ui-progress-marker.ut-audio-ui-progress-marker-visible {
+  display: block;
 }
 
-.ut-audio-ui-progress-marker-time{
+.ut-audio-ui-progress-marker-time {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: -20px;
   height: 20px;
   line-height: 20px;
@@ -368,6 +408,7 @@
 
 /*----------------------  PLAY BUTTON (OUTSIDE PLAYER IN STICKER) -----------------------------------*/
 
+/*
 .ut-audio-skin-bottom-over .ut-audio-ui-play {
   display: none;
   width: 100%;
@@ -422,24 +463,4 @@
 .ut-audio-skin-bottom-over.ut-audio-state-seek .ut-audio-ui-play .ut-audio-ui-seek-icon{
   display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/

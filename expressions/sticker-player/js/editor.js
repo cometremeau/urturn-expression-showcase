@@ -2,19 +2,32 @@ UT.Expression.ready(function(post) {
   var that = {};
 
   that.view = {
-    desc:       jQuery("#desc"),
-    image:      jQuery('#image'),
-    utimage:    jQuery('#utimage'),
-    player:     jQuery('#player'),
-    list:       jQuery('#list'),
-    listbutton: jQuery('#listbutton'),
-    stickerArea:jQuery('#stickerArea')
+    desc:       $("#desc"),
+    image:      $('#image'),
+    utimage:    $('#utimage'),
+    player:     $('#player'),
+    list:       $('#list'),
+    hiddenlist: $('.hidden_list'),
+    listbutton: $('#listbutton'),
+    stickerArea:$('#stickerArea'),
+    previewBtn: $('.preview-btn'),
+    editBtn:    $('.edit-btn')
   };
 
   that.data = {
     stickerData: post.storage.stickerData,
     imagePresent: false
   };
+
+  that.settings = {
+    isTouch: 'ontouchstart' in window || window.navigator.msMaxTouchPoints > 0,
+    mode: 'edit',
+    state: 'launch'
+  };
+
+  if (that.settings.isTouch) {
+    that.view.desc.addClass('touch-device');
+  }
 
   that.adaptPlayButton = function() {
     var obj = $("#sticker");
@@ -47,7 +60,7 @@ UT.Expression.ready(function(post) {
       });
     }
     that.view.stickerArea.utStickersBoard("changeOptions", {
-      movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height() }
+      movableArea: {left:0, top:0, width:1, height:1 - 75/that.view.image.height() }
     });
     that.view.stickerArea.utStickersBoard("update");
     setTimeout(function(){
@@ -102,6 +115,10 @@ UT.Expression.ready(function(post) {
     }
   });
 
+  that.view.utimage.on('utImage:focus', function() {
+    that.view.stickerArea.utStickersBoard("killFocus");
+  });
+
   that.adaptPlayButton();
 
   that.showList = function(){
@@ -124,10 +141,12 @@ UT.Expression.ready(function(post) {
     }
   };
 
+  var stickerMinSize = 60 / that.view.image.width();
+
   that.view.stickerArea.utStickersBoard({
     post: post,
     items: [{
-      object: '<div id="sticker" class="ut-audio-skin-bottom-over ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
+      object: '<div id="sticker" class="ut-audio-skin-sticker ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
       key: "sticker",
       originalWidth: 0.3,
       originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
@@ -141,7 +160,7 @@ UT.Expression.ready(function(post) {
     editButton: true,
     design: 7,
     flipContent: false,
-    minSize: { width: 0.05, height: 0.05 },
+    minSize: { width: stickerMinSize, height: stickerMinSize },
     maxSize: { width: .9, height: .9 },
     onChanging: function() {
       that.adaptPlayButton();
@@ -162,6 +181,9 @@ UT.Expression.ready(function(post) {
     },
     onEditClick: function() {
       that.showList();
+    },
+    onFocus: function() {
+      that.view.utimage.utImage('killFocus');
     }
   });
   that.view.stickerArea.utStickersBoard("edit");
@@ -196,12 +218,102 @@ UT.Expression.ready(function(post) {
         skin: 'bottom-over',
         ui:{
           artwork: false,
-          play:false
+          play: true
         },
         editable: false
-      });
+      }).on('utAudio:change',function(){
+          //console.log('--- utAudio:change -> audio data/parameters was changed');
+        }).on('utAudio:ready',function(e){
+          //console.log('--- utAudio:ready -> audio component ready to accept events');
+        }).on('utAudio:canplay',function(e, data) {
+          //console.log('--- utAudio:canplay -> audio ready to be played', data);
+          $("#sticker").css("background-image", "url(" + data.artwork_url + ")");
+          if(data.service_name === "soundcloud") {
+            $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Listen on SoundCloud</a>');
+          } else {
+            $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Buy on iTunes</a>');
+          }
+        }).on('utAudio:play',function(){
+          //console.log('--- utAudio:play -> audio started to play');
+          $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
+          that.settings.state = 'play';
+        }).on('utAudio:pause',function(){
+          //console.log('--- utAudio:pause -> audio paused');
+          $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-pause');
+          that.settings.state = 'pause';
+        }).on('utAudio:stop',function(){
+          //console.log('--- utAudio:stop -> audio stopped');
+          $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-launch');
+          that.settings.state = 'launch';
+        }).on('utAudio:finish',function(){
+          //console.log('--- utAudio:finish -> audio finished');
+        }).on('utAudio:timeupdate',function(e,s){
+          //console.log('--- utAudio:timeupdate -> audio time updated', s);
+          $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
+          that.settings.state = 'play';
+        }).on('utAudio:seek',function(){
+          //console.log('--- utAudio:seek -> audio seek started');
+          $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
+          that.settings.state = 'seek';
+        });
     }
   };
+
+  that.adaptSize =  function(defText, obj) {
+    if (obj.height() > 49) {
+      var text = obj.html();
+      text = text.substring(0, text.length - 1);
+      obj.html(text);
+      that.adaptSize(defText, obj);
+    } else {
+      if (defText !== obj.html()) {
+        var tmp = obj.html();
+        tmp = tmp.substring(0, tmp.length - 3) + '...';
+        obj.html(tmp);
+      }
+    }
+  };
+
+  that.changeMode = function(mode) {
+    if (mode === 'edit') {
+      that.settings.mode = 'edit';
+      that.view.desc.removeClass('preview-mode').addClass('edit-mode');
+      that.view.stickerArea.utStickersBoard("edit");
+    } else {
+      that.settings.mode = 'preview';
+      that.view.desc.removeClass('edit-mode').addClass('preview-mode');
+      that.view.stickerArea.utStickersBoard("view");
+    }
+  };
+
+  that.view.previewBtn.on('click', function(){
+    that.changeMode('preview');
+  });
+
+  that.view.editBtn.on('click', function(){
+    that.changeMode('edit');
+  });
+
+  $("#sticker").on('click', function(){
+    if (that.settings.mode === 'edit') {
+      return false;
+    }
+    if(that.settings.state !== "play") {
+      $("#player-area").utAudio('play');
+      $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
+    } else {
+      $("#player-area").utAudio('pause');
+    }
+    //that.view.player.show();
+  });
+
+  $("#player-area").on("click", ".ut-audio-ui-source" , function() {
+    if (that.settings.mode === 'edit') {
+      return false;
+    }
+    $("#sourceTip").toggleClass("show");
+    return false;
+  });
 
   var tmp = that.view.list.find("li");
   var qq;
@@ -209,6 +321,26 @@ UT.Expression.ready(function(post) {
     var obj = $(tmp.get(qq));
     var url = obj.attr("data-value");
     that.attachPlayer(obj, url, "prePlayer"+qq);
+  }
+
+  //index of last player
+  var lastIndex = tmp.length - 1;
+
+  for (var i = 0; i < tracksList.length; i++) {
+
+    var listNode = $('<li></li>')
+      .appendTo(that.view.hiddenlist)
+      .append('<div class="preplay"></div>')
+      .append('<span>' + tracksList[i].html + '</span>')
+      .attr('data-value', tracksList[i].url);
+
+    that.adaptSize(tracksList[i].html, listNode.find('span'));
+
+    that.attachPlayer(listNode, tracksList[i].url, "prePlayer" + (lastIndex + i + 1));
+  }
+
+  if (that.view.list.outerHeight() > 376) {
+    that.view.list.height(376);
   }
 
   that.view.list.find('li').on('click', function(){
@@ -229,9 +361,11 @@ UT.Expression.ready(function(post) {
   });
 
   $("#list .close").on("click", that.hideList);
-  $("#list ul").thinScrollBar({});
+  //$("#list ul").thinScrollBar({});
   that.view.listbutton.on('click', that.showList);
   that.view.listbutton.css("display", "none");
   that.view.stickerArea.css("display", "none");
   that.hideList();
+
+  that.view.list.css('margin-top', - that.view.list.outerHeight() / 2);
 });

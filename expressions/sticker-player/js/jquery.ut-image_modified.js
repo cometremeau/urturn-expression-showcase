@@ -182,6 +182,12 @@
         .on('click','.ut-image-edit-button', recropImage )
         .on('click','.ut-image-remove-button', removeImage);
 
+      $el.on('click', function(){
+        if(!options.focused) {
+          setFocus();
+        }
+      });
+
       if (options.data && options.reuse && reusePost) {
         $('.ut-image-action-list li',$el).eq(0).addClass('is-hidden');
       }
@@ -254,6 +260,7 @@
     }
 
     function addImage(e) {
+      setFocus();
       if (e) { e.preventDefault(); }
       post.dialog('image', imageOptions(options, 'add'), function(data, error){
         addLoader();
@@ -267,6 +274,28 @@
         $('.ut-image-add-button',$el).addClass('is-hidden');
         handleImageReceived(data,'added');
       });
+    }
+
+    function setFocus() {
+      if(options.focused === true) {
+        return;
+      }
+      options.focused = true;
+      setTimeout(function(){
+        if(options.focused) {
+          $el.addClass("utImagePanel_focus");
+        }
+      }, 0);
+      trigger("focus");
+    }
+
+    function killFocus() {
+      if(options.focused === false) {
+        return;
+      }
+      options.focused = false;
+      $el.removeClass("utImagePanel_focus");
+      trigger("blur");
     }
 
     function removeImage(e) {
@@ -292,6 +321,7 @@
     }
 
     function recropImage(e) {
+      setFocus();
       e.preventDefault();
 
       post.dialog('crop', imageOptions(options,'edit'), function(data,error){
@@ -453,7 +483,8 @@
       ratio: ratioAccessor,
       overlay: overlay,
       update: update,
-      dialog : addImage
+      dialog : addImage,
+      killFocus: killFocus
     };
   }
 
