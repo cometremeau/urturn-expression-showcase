@@ -170,3 +170,8 @@
 #sourceTip.show {
   display: block;
 }
+
+.utSticker {
+  cursor: pointer;
+  z-index: 3;
+}

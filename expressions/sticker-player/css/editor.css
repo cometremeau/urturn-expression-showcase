@@ -30,7 +30,7 @@
   width: 100%;
   position: absolute;
   bottom: 0;
-  z-index: 20;
+  z-index: 1;
   opacity: .3;
   height: 40px;
   line-height: 40px;
@@ -42,7 +42,7 @@
   height: 45px;
   position: absolute;
   bottom: 0;
-  z-index: 21;
+  z-index: 2;
 }
 
 .hasAudio .player-overlay {
@@ -75,7 +75,7 @@
   left: 0;
   top: 50%;
   width: 100%;
-  height: 376px;
+  /*height: 376px;*/
   overflow: hidden;
   /*background: rgba(30,30,30,1);*/
   padding: 0;
@@ -183,6 +183,7 @@
     position: absolute;
     left: 0;
     width: 270px;
+    height: 100%;
     margin: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -206,6 +207,7 @@
     position: absolute;
     left: 0;
     width: 360px;
+    height: 100%;
     margin: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -261,4 +263,9 @@
 
 .preview-mode .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
   color: rgba(180,180,180,1);
+}
+
+.antiscroll-wrapper {
+  height: 100%;
+  position: relative;
 }

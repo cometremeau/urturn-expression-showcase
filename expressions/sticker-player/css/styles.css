@@ -3,9 +3,9 @@
   background-image: url(../images/logo.png);
 }
 
-/* sticker-player background image*/
+/* sticker-player background color or image*/
 #sticker {
-  background-image: url(../images/logo.png);
+  background-color: rgb(70, 70, 70);
 }
 
 /* list background color and transparent */

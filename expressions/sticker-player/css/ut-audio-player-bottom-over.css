@@ -69,9 +69,9 @@
   z-index: 5;
   bottom: 20px;
   left: 35px;
-  width: -webkit-calc(100% - 85px);
-  width:         calc(100% - 85px);
-  white-space: normal;
+  width: -webkit-calc(100% - 130px);
+  width:         calc(100% - 130px);
+  white-space: nowrap;
   line-height: 30px;
   height: 30px;
   margin: 0;

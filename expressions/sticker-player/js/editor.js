@@ -60,7 +60,7 @@ UT.Expression.ready(function(post) {
       });
     }
     that.view.stickerArea.utStickersBoard("changeOptions", {
-      movableArea: {left:0, top:0, width:1, height:1 - 75/that.view.image.height() }
+      movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height()}
     });
     that.view.stickerArea.utStickersBoard("update");
     setTimeout(function(){
@@ -93,6 +93,7 @@ UT.Expression.ready(function(post) {
   });
   that.view.utimage.on('utImage:resize', function(event, image) {
     that.onImageSizeChangedOutside(image);
+    that.adaptPopupSize();
   });
   that.view.utimage.on('utImage:change', function(event, newValues){
     $("#container").addClass("show");
@@ -155,7 +156,7 @@ UT.Expression.ready(function(post) {
     parameters: that.data.stickerData,
     rotateable: false,
     scaleable: true,
-    movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height() },
+    movableArea: {left:0, top:0, width:1, height:1 - 50/that.view.image.height()},
     deleteButton: false,
     editButton: true,
     design: 7,
@@ -274,6 +275,14 @@ UT.Expression.ready(function(post) {
     }
   };
 
+  that.adaptPopupSize = function() {
+    if (that.view.list.outerHeight() > 376 && !that.settings.isTouch) {
+      that.view.list.css('height', '376px');
+    }
+    that.view.list.css('margin-top', - that.view.list.outerHeight() / 2);
+    $('.antiscroll-wrapper').antiscroll();
+  };
+
   that.changeMode = function(mode) {
     if (mode === 'edit') {
       that.settings.mode = 'edit';
@@ -326,22 +335,25 @@ UT.Expression.ready(function(post) {
   //index of last player
   var lastIndex = tmp.length - 1;
 
-  for (var i = 0; i < tracksList.length; i++) {
-
+  for (var j = 0; j < tracksList.length; j++) {
     var listNode = $('<li></li>')
       .appendTo(that.view.hiddenlist)
       .append('<div class="preplay"></div>')
-      .append('<span>' + tracksList[i].html + '</span>')
-      .attr('data-value', tracksList[i].url);
+      .append('<span>' + tracksList[j].html + '</span>')
+      .attr('data-value', tracksList[j].url);
 
-    that.adaptSize(tracksList[i].html, listNode.find('span'));
-
-    that.attachPlayer(listNode, tracksList[i].url, "prePlayer" + (lastIndex + i + 1));
+    that.attachPlayer(listNode, tracksList[j].url, "prePlayer" + (lastIndex + j + 1));
   }
 
-  if (that.view.list.outerHeight() > 376) {
-    that.view.list.height(376);
-  }
+  that.view.hiddenlist.find('li span').each(function(){
+    var self = $(this);
+    fontdetect.onFontLoaded("Roboto", function(){
+      that.adaptSize(self.html(), self);
+      that.adaptPopupSize();
+    }, function(){console.error('BAD .. FONT NOT LOADED IN 10 SEC... editor.js line 339');}, {msInterval: 100, msTimeout: 10000});
+  });
+
+  //that.adaptPopupSize();
 
   that.view.list.find('li').on('click', function(){
     var artwork = $(this).find(".preplay").attr("data-art");
@@ -361,11 +373,8 @@ UT.Expression.ready(function(post) {
   });
 
   $("#list .close").on("click", that.hideList);
-  //$("#list ul").thinScrollBar({});
   that.view.listbutton.on('click', that.showList);
   that.view.listbutton.css("display", "none");
   that.view.stickerArea.css("display", "none");
   that.hideList();
-
-  that.view.list.css('margin-top', - that.view.list.outerHeight() / 2);
 });
