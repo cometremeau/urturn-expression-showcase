@@ -148,6 +148,7 @@
   bottom: 53px;
   width: 152px;
   height: 47px;
+  z-index: 3;
   text-align: center;
   line-height: 40px;
   background-image: url(../images/tip.svg);
