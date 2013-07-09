@@ -42,6 +42,20 @@
   background-image: url(../images/logo.png);
 }
 
+/* list background image */
+#list .background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/background.png);
+  background-color: rgba(30, 30, 30, 0.85);
+  background-position: 0 0;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
 /* list close button color */
 #list .close {
   color: rgba(230,230,230,1);
@@ -63,6 +77,10 @@
   #list .logo {
     width: 85px;
     height: 40px;
+  }
+
+  #list .background {
+    background-size: auto 100%;
   }
 }
 

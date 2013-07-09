@@ -29,6 +29,13 @@ UT.Expression.ready(function(post) {
     that.view.desc.addClass('touch-device');
   }
 
+  //check background for popup
+  var tmpimage = new Image();
+  tmpimage.src = 'images/background.png';
+  tmpimage.onload = function() {
+    that.view.list.css('opacity', '1');
+  };
+
   that.adaptPlayButton = function() {
     var obj = $("#sticker");
     var hh = obj.height();
