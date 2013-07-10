@@ -2,11 +2,12 @@ UT.Expression.ready(function(post) {
   var that = {};
 
   that.view = {
-    desc:       jQuery("#desc"),
-    image:      jQuery('#image'),
-    utimage:    jQuery('#utimage'),
-    player:     jQuery('#player'),
-    stickerArea:jQuery('#stickerArea')
+    desc:       $("#desc"),
+    image:      $('#image'),
+    utimage:    $('#utimage'),
+    player:     $('#player'),
+    stickerArea:$('#stickerArea'),
+    logo:       $('#logo')
   };
 
   that.data = { stickerData: post.storage.stickerData };
@@ -28,6 +29,8 @@ UT.Expression.ready(function(post) {
     post.size(image.height, function(){
       that.addSticker();
     });
+    //adapt logo image height
+    that.view.logo.height(that.view.logo.width()/2.05);
   });
 
   that.addSticker = function() {

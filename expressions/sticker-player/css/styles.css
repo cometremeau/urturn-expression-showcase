@@ -1,103 +1,90 @@
-/* logo image */
-#logo{
-  background-image: url(../images/logo.png);
-}
 
-/* sticker-player background color or image*/
-#sticker {
-  background-color: rgb(70, 70, 70);
-}
+/* CUSTOMIZE THE STYLE OF THE PLAYLIST MENU WITH THE FOLLOWING PARAMETERS */
 
-/* list background color and transparent */
+
+/* To set your logo, simply replace the PNG file named "logo.png" in 
+   the "images" folder by your own 328x160px "logo.png". This image
+   will appear in the top-left corner of each posts and in the 
+   header of the playlist menu */
+
+
+/* ------------------------------------------------------------------- */
+/* Menu */
 #list {
-  background: rgba(30,30,30,1);
+	/* Menu background color */
+  background: rgb(30,30,30);
+  
+  /* You can set a menu background image simply by adding a 640x640px PNG 
+  file named "background.png" in the "images" folder */
 }
+/* ------------------------------------------------------------------- */
 
-/* list item normal background color, font name and size, text color */
+
+/* ------------------------------------------------------------------- */
+/* List */
 #list li{
-  border-bottom: 1px solid rgba(30,30,30,1);
-  background-color: rgba(50,50,50,1);
-  /*available fonts: Roboto, PlaytimeWithHotToddiesRegular, CasinoHandRegular, Sanchez, Playfair, Gentium*/
+	/* Separation lines */
+  border-bottom: 1px solid rgb(30,30,30);
+  
+  /* Items background color */
+  background-color: rgb(50,50,50);
+  
+  /* Font */
+  /* Choose one of the fonts bellow: 
+     Roboto   (Sans Serif)
+     Gentium  (Serif)
+     Sanchez  (Slab Serif)
+     Playfair (Modern)
+     Playtime (Handwritten) */
   font-family: "Roboto";
-  font-size: 16px;
-  color: rgba(230,230,230,1);
+  
+  /* Text color */
+  color: rgb(230,230,230);
 }
+/* ------------------------------------------------------------------- */
 
-/* list item hover and active background color */
+
+/* ------------------------------------------------------------------- */
+/* List (interaction) */
 @media only screen and (min-device-width : 480px) {
+  /* Items background color when the mouse cursor is over */
   #list li:hover {
-    background: rgba(89,89,89,1);
+    background: rgb(90,90,90);
   }
+  
+  /* Items background color on mouse click */
   #list li:active {
-    background: rgba(13,13,13,1);
+    background: rgb(10,10,10);
   }
 }
+/* ------------------------------------------------------------------- */
 
-/* list logo image */
-#list .logo {
-  left: 20px;
-  top: 20px;
-  width: 120px;
-  height: 60px;
-  background-image: url(../images/logo.png);
-}
 
-/* list background image */
-#list .background {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(../images/background.png);
-  background-color: rgba(30, 30, 30, 0.85);
-  background-position: 0 0;
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-}
-
-/* list close button color */
+/* ------------------------------------------------------------------- */
+/* Close icon color */
 #list .close {
-  color: rgba(230,230,230,1);
+  color: rgb(230,230,230);
 }
+/* ------------------------------------------------------------------- */
 
-/* popup tooltip position */
-.popup-tooltip {
-  top: 40px;
-  left: 155px;
-}
 
-/*popup and logo style for mobile*/
-@media only screen and (max-device-width : 350px) { /* 320px */
-  .popup-tooltip {
-    top: 70px;
-    left: 20px;
-  }
-
-  #list .logo {
-    width: 85px;
-    height: 40px;
-  }
-
-  #list .background {
-    background-size: auto 100%;
-  }
-}
-
-/*play button in popup*/
+/* ------------------------------------------------------------------- */
+/* Play button */
 .ut-audio-skin-preplay .ut-audio-ui-play {
-  background: rgba(230,230,230,1);
-  color: rgba(50,50,50,1);
+  /* Background color */
+  background: rgb(230,230,230);
+  
+  /* Icon color */
+  color: rgb(50,50,50);
 }
-
-/*play button in popup (hover state)*/
+/* Play button when the mouse cursor is over */
 .ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:hover {
-  background: rgba(210,210,210,1);
+  /* Background color */
+  background: rgb(210,210,210);
 }
-
-/*play button in popup (active state)*/
+/* Play button on mouse click */
 .ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:active {
-  background: rgba(190,190,190,1);
+  /* Background color */
+  background: rgb(190,190,190);
 }
-
-/*test*/
+/* ------------------------------------------------------------------- */

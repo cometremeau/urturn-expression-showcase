@@ -11,7 +11,8 @@ UT.Expression.ready(function(post) {
     listbutton: $('#listbutton'),
     stickerArea:$('#stickerArea'),
     previewBtn: $('.preview-btn'),
-    editBtn:    $('.edit-btn')
+    editBtn:    $('.edit-btn'),
+    logo:       $('#logo')
   };
 
   that.data = {
@@ -101,6 +102,8 @@ UT.Expression.ready(function(post) {
   that.view.utimage.on('utImage:resize', function(event, image) {
     that.onImageSizeChangedOutside(image);
     that.adaptPopupSize();
+    //adapt logo image height
+    that.view.logo.height(that.view.logo.width()/2.05);
   });
   that.view.utimage.on('utImage:change', function(event, newValues){
     $("#container").addClass("show");

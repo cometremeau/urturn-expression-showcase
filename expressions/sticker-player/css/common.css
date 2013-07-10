@@ -13,12 +13,12 @@
 }
 
 @font-face {
-  font-family: 'PlaytimeWithHotToddiesRegular';
+  font-family: 'Playtime';
   src: url('fonts/playtime/playtime-webfont.eot');
   src: url('fonts/playtime/playtime-webfont.eot?#iefix') format('embedded-opentype'),
   url('fonts/playtime/playtime-webfont.woff') format('woff'),
   url('fonts/playtime/playtime-webfont.ttf') format('truetype'),
-  url('fonts/playtime/playtime-webfont.svg#PlaytimeWithHotToddiesRegular') format('svg');
+  url('fonts/playtime/playtime-webfont.svg#Playtime') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -109,7 +109,7 @@
   box-shadow: 0 0 4px 1px rgba(0,0,0,0.3) inset, 0 0 4px 1px rgba(0,0,0,0.3);
   text-align: center;
   text-shadow:  0 0 5px rgba(0,0,0,0.6);
-  background-color: white;
+  background-color: rgb(70, 70, 70);
   /*background-image: url(../images/logo.png);*/
   background-size:cover;
   background-position: 50% 50%;
@@ -128,9 +128,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 120px;
+  width: 21%;
   height: 60px;
-  /*background-image: url(../images/logo.png);*/
+  background-image: url(../images/logo.png);
   background-size:cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;

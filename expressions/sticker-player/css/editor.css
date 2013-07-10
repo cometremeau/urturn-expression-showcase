@@ -123,9 +123,9 @@
   height: 49px;
   padding: 0 20px 0 47px;
   cursor: pointer;
+  font-size: 16px;
   /*background-color: rgba(50,50,50,1);*/
   /*font-family: "Roboto";*/
-  /*font-size: 16px;*/
   /*color: rgba(230,230,230,1);*/
 }
 
@@ -150,6 +150,11 @@
 
 #list .logo {
   position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 121px;
+  height: 60px;
+  background-image: url(../images/logo.png);
   background-size:cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -249,7 +254,22 @@
 
 .popup-tooltip {
   position: absolute;
+  top: 40px;
+  left: 155px;
   font: 20px/22px "CasinoHandRegular";
+}
+
+/*popup and logo style for mobile*/
+@media only screen and (max-device-width : 350px) { /* 320px */
+  .popup-tooltip {
+    top: 70px;
+    left: 20px;
+  }
+
+  #list .logo {
+    width: 85px;
+    height: 40px;
+  }
 }
 
 /*============================= SOURCE LINK ==============================*/
