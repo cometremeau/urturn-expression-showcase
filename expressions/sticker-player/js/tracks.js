@@ -25,4 +25,16 @@ var tracksList = [
   // Track name (as it will appear in the expression)
   'html': 'HAIM - Falling (Duke Dumont Remix)'},
 
+/* ----------------------------------------------------------------------------------------- */
+{ // Track URL
+  'url': 'https://itunes.apple.com/us/album/get-lucky-feat.-pharrell-williams/id617154241?i=617154366',
+  // Track name (as it will appear in the expression)
+  'html': 'Daft Punk - Get Lucky (feat. Pharrell Williams)'},
+
+/* ----------------------------------------------------------------------------------------- */
+{ // Track URL
+  'url': 'https://itunes.apple.com/gb/album/oceans-feat.-frank-ocean/id669458187?i=669458347',
+  // Track name (as it will appear in the expression)
+  'html': 'Jay Z - Oceans (feat. Frank Ocean)'}
+
 ];

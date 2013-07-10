@@ -295,6 +295,7 @@ UT.Expression.ready(function(post) {
 
   that.changeMode = function(mode) {
     if (mode === 'edit') {
+      $("#player-area").utAudio('pause');
       that.settings.mode = 'edit';
       that.view.desc.removeClass('preview-mode').addClass('edit-mode');
       that.view.stickerArea.utStickersBoard("edit");

@@ -263,12 +263,14 @@
 @media only screen and (max-device-width : 350px) { /* 320px */
   .popup-tooltip {
     top: 70px;
-    left: 20px;
+    left: 5px;
   }
 
   #list .logo {
-    width: 85px;
-    height: 40px;
+    width: 122px;
+    height: 60px;
+    left: 5px;
+    top: 5px;
   }
 }
 
