@@ -9,20 +9,20 @@ var tracksList = [
 
 /* ----------------------------------------------------------------------------------------- */
 { // Track URL
-  'url': 'http.//',
+  'url': 'https://soundcloud.com/haimtime/haim-falling',
   // Track name (as it will appear in the expression)
-  'html': 'Track 1'},
+  'html': 'HAIM - Falling'},
   
 /* ----------------------------------------------------------------------------------------- */
 { // Track URL
-  'url': 'http://',
+  'url': 'https://itunes.apple.com/gb/album/dont-save-me/id575608305?i=575608312',
   // Track name (as it will appear in the expression)
-  'html': 'Track 2'},
+  'html': 'HAIM - Don\'t Save Me'},
   
 /* ----------------------------------------------------------------------------------------- */
 { // Track URL
-  'url': 'http://',
+  'url': 'https://soundcloud.com/haimtime/haim-falling-duke-dumont',
   // Track name (as it will appear in the expression)
-  'html': 'Track 3'},
+  'html': 'HAIM - Falling (Duke Dumont Remix)'},
 
 ];
