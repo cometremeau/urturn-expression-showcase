@@ -1,4 +1,8 @@
 UT.Expression.ready(function(post) {
+  "use strict";
+
+  $(post.node).css("font-size", "10px");
+
   var $background = $('.post-background'), // background utImage panel selector
       $panel = $('.sticker-panel'), // utSticker selector
       state = {
@@ -12,29 +16,29 @@ UT.Expression.ready(function(post) {
     post.valid(state.hasImage && state.stickerCount > 0);
   };
 
-  $background.utImage()
+  $background.utImage();
     // set the post height to the image height
     // and update the state
-    .on('utImage:change', function(event, newValues){
-      console.log(state.hasImage = !!newValues.data);
-      if(state.hasImage) {
-        // resize the post
-        post.size($(this).height(), function(){
-          // once done, display the sticker manager and revalidate
-          stickerManager.enable();
-        });
-      } else {
-        state.hasImage = false;
-        stickerManager.disable();
-        stickerManager.removeAll();
-      }
-      validates();
-    });
+  $background.on('utImage:change', function(event, newValues) {
+    state.hasImage = !!newValues.data;
+    if(state.hasImage) {
+      // resize the post
+      post.size($(this).height(), function(){
+        // once done, display the sticker manager and revalidate
+        stickerManager.enable();
+      });
+    } else {
+      state.hasImage = false;
+      stickerManager.disable();
+      stickerManager.removeAll();
+    }
+    validates();
+  });
 
   // Sticker Manager handle the rendering of the stickers and their addition.
   var stickerManager = (function stickerManagerSingleton(){
     var $addButton = $('.button-add-sticker'), // add sticker button
-        collection = post.storage.stickers || []; // holds the data inside each sticker
+        collection = post.storage.stickers || []; // holds the data inside each sticker
 
     // Handler for when a sticker should be added to the scene.
     var handleAddStickerEvent = function(event){
@@ -72,15 +76,14 @@ UT.Expression.ready(function(post) {
         // make it a sticker with a width of 33% of the post width
         .utSticker({
           id: data.stickerId, // link the sticker to its data using the same generated uuid
-          width: width,
-          height: 'auto',
-          top: parseInt(postSize.height/2 - (width*1.2)/2, 10), // center vertically
-          left: parseInt(postSize.width/2 - width/2, 10) // center horizontally
+          styles:{
+            pos: {
+              width: width
+            }
+          }
         })
         // listen to the image load event (IMG, not utSticker)
         .on('load', function(event){
-          // ensure the sticker is saved with the current image size.
-          $(event.target).utSticker('save');
           // there is one more sticker, officially.
           state.stickerCount ++;
           validates(); // we are probably a valid post at this state.
