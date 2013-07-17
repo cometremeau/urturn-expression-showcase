@@ -33,7 +33,7 @@ UT.Expression.ready(function (post) {
   that.ui.playerWrapper = $(".player-wrapper");
   that.ui.playerContainer = $("#player");
 
-  post.size({'height': Math.round(that.ui.container.width() / that.settings.imageRatio)});
+  post.size(Math.round(that.ui.container.width() / that.settings.imageRatio));
 
   if (that.settings.isTouch) {
     that.ui.container.addClass('is-touch');
