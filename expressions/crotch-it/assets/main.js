@@ -14,6 +14,10 @@ UT.Expression.ready(function(post) {
             id: 'sticker',
               ui: {
                 remove: false,
+              },
+              pos: {
+                width: 50,
+                height: 50
               }
             })
           .show();
