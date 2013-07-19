@@ -1,4 +1,6 @@
 UT.Expression.ready(function(post) {
+  "use strict";
+
   var that = {};
 
   that.view = {
@@ -35,33 +37,42 @@ UT.Expression.ready(function(post) {
 
   that.addSticker = function() {
     that.view.stickerArea.empty();
-    that.view.stickerArea.utStickersBoard({
-      post: post,
-      items: [{
-        object: '<div id="sticker" class="ut-audio-skin-sticker ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>',
-        key: "sticker",
-        originalWidth: 0.3,
-        originalHeight: 0.3 * that.view.image.width()/that.view.image.height()
-      }],
-      parameters: that.data.stickerData,
-      rotateable: true,
-      scaleable: true,
-      movableArea: {left:0, top:0, width:1, height:1 },
-      deleteButton: false,
-      design: 7,
-      flipContent: false,
-      minSize: { width: 0.01, height: 0.01 },
-      maxSize: { width: 1, height: 1 },
-      onChanging: function() {
-        that.adaptPlayButton();
-      },
-      onChanged: function(data) {
-        that.data.stickerData = data;
-        post.storage.stickerData = that.data.stickerData;
-        post.save();
-        that.adaptPlayButton();
-      }
+    $('<div id="sticker" class="ut-audio-skin-sticker ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>')
+      .appendTo(that.view.stickerArea)
+      .utSticker({
+        id: "sticker",
+        editable: {
+          movable: true,
+          resizable: true
+        },
+        ui: {
+          edit: true
+        },
+        styles: {
+          pos: {
+            width: "30%",
+            ratio: 1
+          },
+          parentIndent: {
+            top: "0",
+            left: "0",
+            right: "0",
+            bottom: "45px"
+          },
+          sizeLimits: {
+            minWidth: "60px",
+            minHeight: "60px"
+          }
+        }
+      });
+
+    that.view.stickerArea.on("utSticker:resize", "#sticker", function(){
+      that.adaptPlayButton();
     });
+    that.view.stickerArea.on("utSticker:change", "#sticker", function(){
+      that.adaptPlayButton();
+    });
+
     setTimeout(function(){
       that.adaptPlayButton();
     }, 0);
