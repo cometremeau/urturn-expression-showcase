@@ -9,6 +9,14 @@ UT.Expression.ready(function(post) {
       .on('utImage:change', function(event, newValues, oldValues) {
         resize();
         post.valid(!!newValues) // valid if there is a value;
+        $('.sticker')
+          .utSticker({
+            id: 'sticker',
+              ui: {
+                remove: false,
+              }
+            })
+          .show();
       });
     resize();
   }

@@ -94,3 +94,9 @@
   right: 0;
   background-image: url('slices/corner-br.png');
 }
+
+/* Sticker constrained to the content node */
+
+.sticker {
+  display: none;
+}
