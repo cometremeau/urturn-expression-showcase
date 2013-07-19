@@ -1,0 +1,15 @@
+{
+  "title": "Crotch It",
+  "description": "Awesome demo, try it once.",
+  "system_name": "crotch-it",
+  "version": "1.0.0",
+  "api_version": "1.1.0",
+  "dependencies": [
+    {
+      "path": "assets/exp.css"
+    },
+    {
+      "path": "assets/main.js"
+    }
+  ]
+}
