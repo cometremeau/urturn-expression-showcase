@@ -1,9 +1,9 @@
 {
-  "title": "Clip Battle",
-  "description": "Vote for the best video clip.",
+  "title": "Video Battle",
+  "description": "Let everybody votes for the best video from two of your choice.",
   "system_name": "clip-battle",
-  "version": "0.3.1",
-  "api_version": "1.0.2",
+  "version": "0.4.0",
+  "api_version": "1.0.3",
   "dependencies": [
     {
       "path": "assets/exp.css"
