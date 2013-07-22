@@ -5,7 +5,7 @@
    USE ONLY US AND UK STORES ITUNES TRACKS. 
    OTHER STORES TRACKS WON'T BE AVAILABLE IN ALL COUNTRIES */
 
-var tracksList = [
+window.tracksList = [
 
 /* ----------------------------------------------------------------------------------------- */
 { // Track URL

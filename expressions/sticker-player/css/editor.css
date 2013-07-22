@@ -291,3 +291,8 @@
   height: 100%;
   position: relative;
 }
+
+.ut-sticker .ut-sticker-button-edit {
+  left: -22px;
+  top: -21px;
+}
