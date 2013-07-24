@@ -1,6 +1,6 @@
 UT.Expression.ready(function(post) {
-  "use strict";
 
+  "use strict";
   $(post.node).css("font-size", "10px");
 
   var $background = $('.post-background'), // background utImage panel selector
@@ -16,29 +16,39 @@ UT.Expression.ready(function(post) {
     post.valid(state.hasImage && state.stickerCount > 0);
   };
 
-  $background.utImage();
+  $background.utImage()
     // set the post height to the image height
     // and update the state
-  $background.on('utImage:change', function(event, newValues) {
-    state.hasImage = !!newValues.data;
-    if(state.hasImage) {
-      // resize the post
-      post.size($(this).height(), function(){
-        // once done, display the sticker manager and revalidate
-        stickerManager.enable();
-      });
-    } else {
-      state.hasImage = false;
-      stickerManager.disable();
-      stickerManager.removeAll();
-    }
-    validates();
-  });
+    .on('utImage:change', function(event, newValues,oldValues){
+      console.log(state.hasImage = !!newValues.data);
+      if(state.hasImage) {
+        // resize the post
+        post.size($(this).height(), function(){
+          // once done, display the sticker manager and revalidate
+          stickerManager.enable();
+          if ((!oldValues || (oldValues && !oldValues.data)) && !post.storage.stickers) {
+            stickerManager.add();
+          } else {
+            stickerManager.enable();
+          }
+        });
+      } else {
+        state.hasImage = false;
+        stickerManager.disable();
+        stickerManager.removeAll();
+      }
+      validates();
+    })
+    .on('utImage:ready',function() {
+      if (!$background.utImage('data').url) {
+        $background.utImage('dialog');
+      }
+    });
 
   // Sticker Manager handle the rendering of the stickers and their addition.
   var stickerManager = (function stickerManagerSingleton(){
     var $addButton = $('.button-add-sticker'), // add sticker button
-        collection = post.storage.stickers || []; // holds the data inside each sticker
+        collection = post.storage.stickers || []; // holds the data inside each sticker
 
     // Handler for when a sticker should be added to the scene.
     var handleAddStickerEvent = function(event){
@@ -108,17 +118,20 @@ UT.Expression.ready(function(post) {
     };
     var enableScene = function(){
       $('.sticker-giraffe').utSticker('show');
-      $addButton.show();
+      $addButton.removeClass('is-hidden');
     };
 
     var disableScene = function(){
       $('.sticker-giraffe').utSticker('hide');
-      $addButton.hide();
+      $addButton.addClass('is-hidden');
     };
 
     // Close the panel once a sticker has been selected
     // or the pop state triggered from outside.
-    var closePanel = function(){
+    var closePanel = function(e){
+      if (e) {
+        e.preventDefault();
+      }
       $background.utImage('update', {editable: true});
       $panel.hide();
       enableScene();
@@ -126,16 +139,21 @@ UT.Expression.ready(function(post) {
 
     // display the panel of giraffe and let
     // you choose one.
-    var addStickerWorkflow = function(){
+    var addStickerWorkflow = function(e){
+      if (e) {
+        e.preventDefault();
+      }
       post.pushNavigation('cancel', closePanel);
       $background.utImage('update', {editable: false});
       $panel.show();
+      $panel.css('margin-top',-$panel.height()/2);
       disableScene();
     };
 
     // bind the add button
     $addButton.on('click', addStickerWorkflow);
     $('.button-giraffe').on('click', handleAddStickerEvent);
+    $('.close-button').on('click',closePanel);
 
     $.each(collection, function(){
       drawSticker(this);
@@ -144,9 +162,11 @@ UT.Expression.ready(function(post) {
     return {
       enable: enableScene,
       disable: disableScene,
+      add: addStickerWorkflow,
       removeAll: function(){
         $('.sticker-giraffe').utSticker('destroy');
       }
     };
   }());
+
 });
