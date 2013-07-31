@@ -1,0 +1,126 @@
+.utPopupChooser {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  display: none;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition:    opacity 0.5s ease-in-out;
+  -o-transition:      opacity 0.5s ease-in-out;
+  transition:         opacity 0.5s ease-in-out;
+  z-index: 20000002;
+}
+
+.utPopupChooser.utPopupChooser_show {
+  opacity: 1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition:    opacity 0.2s ease-in-out;
+  -o-transition:      opacity 0.2s ease-in-out;
+  transition:         opacity 0.2s ease-in-out;
+}
+
+.utPopupChooser .utPopupChooser_items {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background-color: rgba(30,30,30,1);
+  padding: 5em 1.8em 1.8em 1.8em;
+}
+
+.utPopupChooser .utPopupChooser_items .close_button {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  z-index: 10;
+}
+
+.utPopupChooser .utPopupChooser_items .close_button:hover {
+  color: rgb(140,140,140);
+  text-decoration: none;
+}
+
+.utPopupChooser .utPopupChooser_items .close_button:active {
+  color: rgb(100,100,100);
+  text-decoration: none;
+}
+
+.utPopupChooser .utPopupChooser_title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  z-index: 5;
+  color: white;
+}
+
+.utPopupChooser .utPopupChooser_title span {
+  font-size: 16px;
+}
+
+.utPopupChooser .utPopupChooser_item {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  display: inline-block;
+}
+
+.utPopupChooser .utPopupChooser_item .content {
+  height: 100%;
+}
+
+.utPopupChooser .utPopupChooser_item .content div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55px;
+  height: 55px;
+  margin-left: -27.5px;
+  margin-top: -27.5px;
+  border-radius: 5px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  cursor: pointer;
+}
+
+.utPopupChooser .utPopupChooser_item.utPopupChooser_item_selected .content div {
+  box-shadow: 0 0 0 5px rgb(95, 185, 245) inset;
+}
+
+.utPopupChooser .utPopupChooser_item .content div:active,
+.utPopupChooser .utPopupChooser_item .content div.active {
+  box-shadow: 0 0 0 5px rgb(95, 185, 245) inset, 0 0 0 5px rgb(0, 0, 0);
+}
+
+.utPopupChooser.utPopupChooser_mobile .utPopupChooser_item {
+  width: 94px;
+  height: 94px;
+}
+
+.utPopupChooser_border {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -32px;
+  width: 64px;
+  height: 6px;
+  background-color: transparent;
+  -webkit-transition:  background-color 0.1s ease-in-out;
+  -moz-transition:     background-color 0.1s ease-in-out;
+  -o-transition:       background-color 0.1s ease-in-out;
+  transition:          background-color 0.1s ease-in-out;
+}
+
+.utPopupChooser:not(.utPopupChooser_mobile) .utPopupChooser_item:hover .utPopupChooser_border {
+  background-color: rgba(70,70,70,1);
+}

@@ -1,0 +1,97 @@
+.desc {
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+}
+
+.desc.show {
+  opacity: 1;
+  visibility: visible;
+  z-index: 1;
+}
+
+.step1 .ut-sticker {
+  display: none;
+}
+
+.step1 .wdchooser_item{
+  visibility: hidden;
+}
+
+/********************************************************************************
+ * content
+ ********************************************************************************/
+
+.ut-sticker .ut-sticker-content {
+  pointer-events: none;
+}
+
+/* hide "remove" button for one item */
+.onceItem .ut-sticker .ut-sticker-button-remove {
+  display: none !important;
+}
+
+.sticker_icon{
+  width: 1.6em;
+  height: 1.6em;
+  display: inline-block;
+  background-image: url(../images/sticker_icon.png);
+  background-position: 0 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+
+.buttons.buttons_left {
+  left: 0;
+  height: 5em;
+  bottom: 0;
+  position: absolute;
+  padding: 0.5em;
+  z-index: 30;
+}
+
+.utPopupChooser{
+  text-align: center;
+}
+
+.utPopupChooser .utPopupChooser_item div:first-child{
+  background-position: 50% 50%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 80px;
+  cursor: pointer;
+}
+
+.utPopupChooser .utPopupChooser_item .skin1{
+  background-image: url(../images/giraffe_angry.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin2{
+  background-image: url(../images/giraffe_cry.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin3{
+  background-image: url(../images/giraffe_drunk.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin4{
+  background-image: url(../images/giraffe_glasses.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin5{
+  background-image: url(../images/giraffe_kiss.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin6{
+  background-image: url(../images/giraffe_regular.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin7{
+  background-image: url(../images/giraffe_smile.png);
+}
+
+.utPopupChooser .utPopupChooser_item .skin8{
+  background-image: url(../images/giraffe_tongue.png);
+}
