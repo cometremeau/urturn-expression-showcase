@@ -36,15 +36,13 @@ UT.Expression.ready(function(post) {
     });
   };
 
-  that.image.on("utImage:mediaReady", function(){
-    that.image.find(".ut-sticker").utSticker("remove");
-    $.each(that.parameters.items, function(i,v) {
-      that._addSticker(v);
-    });
-  });
-
   that.image.on("utImage:resize", function(event, data){
-    post.size(data.height);
+    post.size(data.height, function() {
+      that.image.find(".ut-sticker").utSticker("remove");
+      $.each(that.parameters.items, function(i,v) {
+        that._addSticker(v);
+      });
+    });
   });
 
   that.image.utImage();
