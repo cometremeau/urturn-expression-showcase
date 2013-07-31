@@ -12,27 +12,31 @@ UT.Expression.ready(function(post) {
     logo:       $('#logo')
   };
 
-  that.data = { stickerData: post.storage.stickerData };
-
   that.view.player.hide();
 
   that.state = 'launch';
 
-  that.adaptPlayButton = function(){
-    var hh = $("#sticker").height();
+  that.adaptPlayButton = function() {
+    var $sticker = $("#sticker");
+    var hh = $sticker.height();
     if(hh > 0) {
-      $("#sticker").css('fontSize', hh + 'px');
-      $("#sticker").css('lineHeight', (hh+12) + 'px');
+      $sticker.css('fontSize', hh + 'px');
+      $sticker.css('lineHeight', (hh+12) + 'px');
     }
   };
 
-  that.view.utimage.utImage();
-  that.view.utimage.on('utImage:resize', function(event, image) {
-    post.size(image.height, function(){
+  that.view.utimage.on("utImage:resize", function(event, data) {
+    post.size(data.height, function() {
       that.addSticker();
     });
     //adapt logo image height
     that.view.logo.height(that.view.logo.width()/2.05);
+  });
+
+  that.view.utimage.utImage({
+    ui: {
+      source: false
+    }
   });
 
   that.addSticker = function() {
@@ -141,3 +145,32 @@ UT.Expression.ready(function(post) {
 
   $("#container").addClass("show");
 });
+
+if(!$.fn.alterClass) {
+  $.fn.alterClass = function ( removals, additions ) {
+    "use strict";
+
+    var self = this;
+    if ( removals.indexOf( '*' ) === -1 ) {
+      self.removeClass( removals );
+      return !additions ? self : self.addClass( additions );
+    }
+
+    var patt = new RegExp( '\\s' +
+      removals.
+        replace( /\*/g, '[A-Za-z0-9-_]+' ).
+        split( ' ' ).
+        join( '\\s|\\s' ) +
+      '\\s', 'g' );
+
+    self.each( function ( i, it ) {
+      var cn = ' ' + it.className + ' ';
+      while ( patt.test( cn ) ) {
+        cn = cn.replace( patt, ' ' );
+      }
+      it.className = cn.trim();
+    });
+
+    return !additions ? self : self.addClass( additions );
+  };
+}

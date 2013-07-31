@@ -20,7 +20,6 @@ UT.Expression.ready(function(post) {
   };
 
   that.data = {
-    stickerData: post.storage.stickerData,
     imagePresent: false
   };
 
@@ -71,19 +70,14 @@ UT.Expression.ready(function(post) {
         top: "", height: "", marginTop:""
       });
     }
-    that.view.stickerArea.find("#sticker").utSticker("update");
+    that.view.stickerArea.find(".ut-sticker").utSticker("update");
     setTimeout(function(){
       that.adaptPlayButton();
     }, 0);
   };
 
-  that.view.utimage.utImage({
-    width: 576,
-    flexRatio: true,
-    autoCrop: true
-  });
-  that.view.utimage.on('utImage:ready', function(event, image) {
-    if(!image.data) {
+  that.view.utimage.on('utImage:ready', function(event, data) {
+    if(!data.data) {
       that.view.utimage.utImage('dialog');
     } else {
       $("#container").addClass("show");
@@ -97,38 +91,50 @@ UT.Expression.ready(function(post) {
       that.createPlayer();
     }
   });
-  that.view.utimage.on('utImage:cancelDialog', function(event, image) {
+
+  that.view.utimage.on('utImage:cancelDialog', function() {
     $("#container").addClass("show");
   });
-  that.view.utimage.on('utImage:resize', function(event, image) {
-    that.onImageSizeChangedOutside(image);
+
+  that.view.utimage.on('utImage:mediaReady', function(event, data) {
+    $("#container").addClass("show");
+    that.onImageSizeChangedOutside(data);
     that.adaptPopupSize();
     //adapt logo image height
     that.view.logo.height(that.view.logo.width()/2.05);
-  });
-  that.view.utimage.on('utImage:change', function(event, newValues){
-    $("#container").addClass("show");
-    var hasImage = !!newValues.data;
-    if(hasImage) {
-      that.data.imagePresent = true;
-      that.view.listButton.css("display", "");
-      that.view.stickerArea.css("display", "");
-      if(post.storage.audioUrl) {
-        post.valid(true);
-        that.hideList();
-      } else {
-        that.showList();
-      }
+
+    that.data.imagePresent = true;
+    that.view.listButton.css("display", "");
+    that.view.stickerArea.css("display", "");
+    that.view.previewBtn.css("display", "");
+    if(post.storage.audioUrl) {
+      post.valid(true);
+      that.hideList();
+      that.view.desc.addClass("hasAudio");
     } else {
-      that.view.listButton.css("display", "none");
-      that.view.stickerArea.css("display", "none");
-      that.data.imagePresent = false;
-      post.valid(false);
+      that.showList();
+      that.view.desc.removeClass("hasAudio");
     }
   });
 
-  that.view.utimage.on('utImage:focus', function() {
-    that.view.stickerArea.find("#sticker").utSticker("blur");
+  that.view.utimage.on('utImage:mediaRemove', function() {
+    that.view.listButton.css("display", "none");
+    that.view.stickerArea.css("display", "none");
+    that.data.imagePresent = false;
+    that.view.previewBtn.css("display", "none");
+    post.valid(false);
+  });
+
+  that.view.utimage.utImage({
+    ui: {
+      source: false
+    },
+    styles: {
+      width: 576,
+      flexRatio: true,
+      autoCrop: true,
+      autoResize: false
+    }
   });
 
   that.adaptPlayButton();
@@ -137,12 +143,14 @@ UT.Expression.ready(function(post) {
     post.valid(false);
     that.view.desc.addClass("popupOpened");
     that.view.list.removeClass('hidden_list');
+    that.view.utimage.utImage("editable", false);
   };
 
   that.hideList = function(e){
     that.view.desc.removeClass("popupOpened");
     that.view.list.find(".preplay").utAudio("pause");
     that.view.list.addClass('hidden_list');
+    that.view.utimage.utImage("editable", true);
     if(e) {
       e.stopPropagation();
     }
@@ -152,6 +160,23 @@ UT.Expression.ready(function(post) {
       post.valid(true);
     }
   };
+
+  that.view.stickerArea.on("utSticker:resize", ".ut-sticker", that.adaptPlayButton);
+  that.view.stickerArea.on("utSticker:change", ".ut-sticker", that.adaptPlayButton);
+  that.view.stickerArea.on("utSticker:destroy", ".ut-sticker", function(){
+    post.storage.audioUrl =  null;
+    post.save();
+    post.valid(false);
+    that.view.desc.removeClass("hasAudio");
+    that.createPlayer();
+    return false;
+  });
+
+  that.view.stickerArea.on("utSticker:buttonClick", ".ut-sticker", function(e, bttn){
+    if(bttn === "edit") {
+      that.showList();
+    }
+  });
 
   $('<div id="sticker" class="ut-audio-skin-sticker ut-audio-state-launch"><div class="ut-audio-ui-play"><span class="icon_spinner ut-audio-ui-seek-icon"></span><span class="icon_play ut-audio-ui-play-icon"></span><span class="icon_pause ut-audio-ui-pause-icon"></span></div></div>')
     .appendTo(that.view.stickerArea)
@@ -182,25 +207,6 @@ UT.Expression.ready(function(post) {
         }
       }
     });
-
-  that.view.stickerArea.on("utSticker:resize", "#sticker", that.adaptPlayButton);
-  that.view.stickerArea.on("utSticker:change", "#sticker", that.adaptPlayButton);
-  that.view.stickerArea.on("utSticker:destroy", "#sticker", function(){
-    post.storage.audioUrl =  null;
-    post.save();
-    post.valid(false);
-    that.view.desc.removeClass("hasAudio");
-    that.createPlayer();
-    return false;
-  });
-  that.view.stickerArea.on("utSticker:buttonClick", "#sticker", function(e, bttn){
-    if(bttn === "edit") {
-      that.showList();
-    }
-  });
-  that.view.stickerArea.on("utSticker:focus", "#sticker", function(bttn){
-    that.view.utimage.utImage('killFocus');
-  });
 
   that.attachPlayer = function(obj, url, num) {
     var playerObj = obj.find(".preplay");
@@ -301,11 +307,13 @@ UT.Expression.ready(function(post) {
       $("#player-area").utAudio('pause');
       that.settings.mode = 'edit';
       that.view.desc.removeClass('preview-mode').addClass('edit-mode');
-      that.view.stickerArea.find("#sticker").utSticker("editable", true);
+      that.view.stickerArea.find(".ut-sticker").utSticker("editable", true);
+      that.view.utimage.utImage("editable", true);
     } else {
       that.settings.mode = 'preview';
       that.view.desc.removeClass('edit-mode').addClass('preview-mode');
-      that.view.stickerArea.find("#sticker").utSticker("editable", false);
+      that.view.stickerArea.find(".ut-sticker").utSticker("editable", false);
+      that.view.utimage.utImage("editable", false);
     }
   };
 
@@ -317,7 +325,7 @@ UT.Expression.ready(function(post) {
     that.changeMode('edit');
   });
 
-  $("#sticker").on('click', function(){
+  $("#sticker").on('click', function() {
     if (that.settings.mode === 'edit') {
       return false;
     }
@@ -383,7 +391,7 @@ UT.Expression.ready(function(post) {
     that.hideList();
     that.view.desc.addClass("hasAudio");
     that.createPlayer();
-    that.view.stickerArea.find("#sticker").utSticker("focus");
+    that.view.stickerArea.find(".ut-sticker").utSticker("focus");
   });
 
   $("#list .close").on("click", that.hideList);
@@ -392,3 +400,32 @@ UT.Expression.ready(function(post) {
   that.view.stickerArea.css("display", "none");
   that.hideList();
 });
+
+if(!$.fn.alterClass) {
+  $.fn.alterClass = function ( removals, additions ) {
+    "use strict";
+
+    var self = this;
+    if ( removals.indexOf( '*' ) === -1 ) {
+      self.removeClass( removals );
+      return !additions ? self : self.addClass( additions );
+    }
+
+    var patt = new RegExp( '\\s' +
+      removals.
+        replace( /\*/g, '[A-Za-z0-9-_]+' ).
+        split( ' ' ).
+        join( '\\s|\\s' ) +
+      '\\s', 'g' );
+
+    self.each( function ( i, it ) {
+      var cn = ' ' + it.className + ' ';
+      while ( patt.test( cn ) ) {
+        cn = cn.replace( patt, ' ' );
+      }
+      it.className = cn.trim();
+    });
+
+    return !additions ? self : self.addClass( additions );
+  };
+}
