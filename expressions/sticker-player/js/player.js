@@ -25,9 +25,13 @@ UT.Expression.ready(function(post) {
     }
   };
 
+  that.view.utimage.on("utImage:mediaReady", function() {
+    that.addSticker();
+  });
+
   that.view.utimage.on("utImage:resize", function(event, data) {
     post.size(data.height, function() {
-      that.addSticker();
+      that.view.stickerArea.find(".ut-sticker").utSticker("update");
     });
     //adapt logo image height
     that.view.logo.height(that.view.logo.width()/2.05);

@@ -2,7 +2,7 @@
   "title": "Playlist Postcard",
   "description": "Nice and amazing sticker with music player inside",
   "system_name": "sticker-player",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "admins": [ "dmitry, yury, james bond, harry potter" ],
   "api_version": "1.1.1-alpha4",
   "platform": [ "desktop", "ios" ],
