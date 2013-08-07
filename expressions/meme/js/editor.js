@@ -10,7 +10,7 @@
         reuse: true
       })
       .on('utImage:ready',function() {
-        if (!$(this).utImage('data').url) {
+        if (!($(this).utImage('data') && $(this).utImage('data').url)) {
           $(this).utImage('dialog');
         }
         post.size({'height':$(this).outerHeight()});
@@ -23,9 +23,7 @@
           $(post.node).removeClass('image-is-present');
         }
         post.size({'height':$(this).outerHeight()});
-        setTimeout(function() {
-          jQuery(":utText").utText('adaptFontSize');
-        }, 50);
+        jQuery(":utText").utText('adaptFontSize');
         checkValidContent();
       });
    $("#header_text")
