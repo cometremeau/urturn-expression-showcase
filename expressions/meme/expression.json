@@ -2,30 +2,14 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.9.4",
-  "api_version": "1.0.2",
-  "platform": [
-    "desktop",
-    "ios",
-    "bookmarklet"
-  ],
-  "indexed_keys": [
-    "indexedContent"
-  ],
-  "assets": [
-    "fonts/anton/anton-webfont.woff"
-  ],
+  "version": "0.9.6",
+  "api_version": "1.1.1-alpha5",
+  "platform": [ "desktop", "ios", "bookmarklet" ],
+  "indexed_keys": [ "indexedContent" ],
+  "assets": [ "fonts/anton/anton-webfont.woff" ],
   "dependencies": [
-    {
-      "path": "js/editor.js",
-      "context": "editor"
-    },
-    {
-      "path": "js/player.js",
-      "context": "player"
-    },
-    {
-      "path": "css/exp.css"
-    }
+    {                      "path": "css/exp.css" },
+    { "context": "editor", "path": "js/editor.js" },
+    { "context": "player", "path": "js/player.js" }
   ]
 }
