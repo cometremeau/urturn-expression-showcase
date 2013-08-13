@@ -33,13 +33,6 @@ UT.Expression.ready(function(post) {
     that.view.desc.addClass('touch-device');
   }
 
-  //check background for popup
-//  var tmpimage = new Image();
-//  tmpimage.src = 'images/background.png';
-//  tmpimage.onload = function() {
-//    that.view.list.css('opacity', '1');
-//  };
-
   that.adaptPlayButton = function(/*e*/) {
     var obj = $("#sticker");
     var hh = obj.height();
@@ -224,7 +217,7 @@ UT.Expression.ready(function(post) {
       },
       editable: false
     });
-    playerObj.on('utAudio:canplay',function(e, data) {
+    playerObj.on('utAudio:mediaReady',function(e, data) {
       playerObj.attr("data-art", data.artwork_url);
     });
     playerObj.on("click", function(e){ e.stopPropagation(); });
@@ -245,7 +238,7 @@ UT.Expression.ready(function(post) {
         //console.log('--- utAudio:change -> audio data/parameters was changed');
       }).on('utAudio:ready',function(e) {
         //console.log('--- utAudio:ready -> audio component ready to accept events');
-      }).on('utAudio:canplay',function(e, data) {
+      }).on('utAudio:mediaReady',function(e, data) {
         //console.log('--- utAudio:canplay -> audio ready to be played', data);
         $("#sticker").css("background-image", "url(" + data.artwork_url + ")");
         if(data.service_name === "soundcloud") {
@@ -267,7 +260,7 @@ UT.Expression.ready(function(post) {
         that.settings.state = 'launch';
       }).on('utAudio:finish',function(){
         //console.log('--- utAudio:finish -> audio finished');
-      }).on('utAudio:timeupdate',function(e,s){
+      }).on('utAudio:timeUpdate',function(e,s){
         //console.log('--- utAudio:timeupdate -> audio time updated', s);
         $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
         that.settings.state = 'play';
@@ -335,7 +328,7 @@ UT.Expression.ready(function(post) {
     } else {
       $("#player-area").utAudio('pause');
     }
-    //that.view.player.show();
+    return false;
   });
 
   $("#player-area").on("click", ".ut-audio-ui-source" , function() {

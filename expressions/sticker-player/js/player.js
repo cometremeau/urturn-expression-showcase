@@ -109,7 +109,7 @@ UT.Expression.ready(function(post) {
     //console.log('--- utAudio:change -> audio data/parameters was changed');
   }).on('utAudio:ready',function(e){
     //console.log('--- utAudio:ready -> audio component ready to accept events');
-  }).on('utAudio:canplay',function(e, data) {
+  }).on('utAudio:mediaReady',function(e, data) {
     //console.log('--- utAudio:canplay -> audio ready to be played', data);
     $("#sticker").css("background-image", "url(" + data.artwork_url + ")");
     if(data.service_name === "soundcloud") {
@@ -131,7 +131,7 @@ UT.Expression.ready(function(post) {
     that.state = 'launch';
   }).on('utAudio:finish',function(){
     //console.log('--- utAudio:finish -> audio finished');
-  }).on('utAudio:timeupdate',function(e,s){
+  }).on('utAudio:timeUpdate',function(e,s){
     //console.log('--- utAudio:timeupdate -> audio time updated', s);
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
     that.state = 'play';

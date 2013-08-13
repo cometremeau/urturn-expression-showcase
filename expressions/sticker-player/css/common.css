@@ -175,3 +175,8 @@
   cursor: pointer;
   z-index: 3;
 }
+
+.ut-media-placeholder {
+  background-color: transparent;
+  box-shadow: none;
+}
