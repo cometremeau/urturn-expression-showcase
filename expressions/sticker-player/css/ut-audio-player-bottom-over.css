@@ -25,14 +25,14 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   box-shadow: 0 0 3px rgba(0, 0, 0, 1);
   background-color: rgb(255, 255, 255);
   color: black;
-  font-size: 14px;
-  line-height: 28px;
+  font-size: 22px;
+  line-height: 40px;
   text-align: center;
 }
 
@@ -50,7 +50,7 @@
 
 .ut-audio-skin-bottom-over .ut-audio-ui-play .ut-audio-ui-play-icon {
   display: block;
-  padding-left: 2px;
+  padding-left: 4px;
 }
 
 .ut-audio-skin-bottom-over.ut-audio-state-play .ut-audio-ui-play .ut-audio-ui-play-icon {
@@ -68,9 +68,9 @@
   position: absolute;
   z-index: 5;
   bottom: 20px;
-  left: 45px; /*35px;*/
-  width: -webkit-calc(100% - 140px);
-  width:         calc(100% - 140px);
+  left: 60px; /*35px;*/
+  width: -webkit-calc(100% - 155px);
+  width:         calc(100% - 155px);
   white-space: nowrap;
   line-height: 30px;
   height: 30px;
@@ -99,10 +99,10 @@
   display: none;
   position: absolute;
   z-index: 40;
-  left: 45px; /*10px;*/
+  left: 60px; /*10px;*/
   bottom: 10px;
-  width: -webkit-calc(100% - 105px);
-  width:         calc(100% - 105px);
+  width: -webkit-calc(100% - 120px);
+  width:         calc(100% - 120px);
   height: 10px;
   margin: 0;
   padding: 0;
