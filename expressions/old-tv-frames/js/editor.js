@@ -72,8 +72,14 @@ UT.Expression.ready(function(post) {
         that.ui.videoPlayer = $("<div>", {"id":"videoPlayer"});
         obj.append(that.ui.videoPlayer);
         that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false}} : {});
-        that.ui.videoPlayer.on("utVideo:change", function(){
+        that.ui.videoPlayer.on("utVideo:ready", function(event, data){
+          post.valid(!!data.data);
+        });
+        that.ui.videoPlayer.on("utVideo:mediaReady", function(){
           post.valid(true);
+        });
+        that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
+          post.valid(false);
         });
       } else {
         that.ui.videoPlayer.detach();
@@ -287,8 +293,14 @@ UT.Expression.ready(function(post) {
   that.ui.videoPlayer = $("<div>", {"id":"videoPlayer"});
   $(that.ui.videos.get(0)).find(".video").append(that.ui.videoPlayer);
   that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false, title:false, source:false }} : {});
-  that.ui.videoPlayer.on("utVideo:change", function(){
+  that.ui.videoPlayer.on("utVideo:ready", function(event, data){
+    post.valid(!!data.data);
+  });
+  that.ui.videoPlayer.on("utVideo:mediaReady", function(){
     post.valid(true);
+  });
+  that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
+    post.valid(false);
   });
 
   // update element position

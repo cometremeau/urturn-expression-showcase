@@ -13,7 +13,9 @@
       })
       .on('utImage:ready',function(event, data) {
         if(!data.data) {
-          $(this).utImage('dialog', {forceQuit:true});
+          if(!post.context.mediaFirst) {
+            $(this).utImage('dialog', {forceQuit:true});
+          }
         }
       })
       .on('utImage:resize', function(event, data) {

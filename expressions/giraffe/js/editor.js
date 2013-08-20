@@ -73,7 +73,9 @@ UT.Expression.ready(function(post) {
         that.addButtonClick();
       }
     } else {
-      that.image.utImage("dialog", {dialog: {fastQuit:true}});
+      if(!post.context.mediaFirst) {
+        that.image.utImage("dialog", {dialog: {fastQuit:true}});
+      }
     }
   });
 

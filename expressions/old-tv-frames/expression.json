@@ -2,9 +2,9 @@
   "title": "Old TV frames",
   "description": "",
   "system_name": "old-tv-frames",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "admins":["Alexey"],
-  "api_version":"1.0.0",
+  "api_version":"1.2.1-alpha1",
   "indexed_keys": ["indexedContent"],
   "assets":[
     "images/1_export.png",
