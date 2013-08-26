@@ -1,33 +1,28 @@
 {
-  "title": "Playlist Postcard",
+  "title": "sound card",
   "description": "Nice and amazing sticker with music player inside",
-  "system_name": "sticker-player",
-  "version": "1.1.20",
-  "admins": [ "dmitry, yury, james bond, harry potter" ],
+  "system_name": "sound-card",
+  "version": "1.2.0",
   "api_version": "1.2.0",
   "platform": [ "desktop", "ios" ],
   "assets": [],
   "dependencies": [
-    {                      "path": "css/default/jquery.ut-audio.css" },
-    { "context": "editor", "path": "js/jquery.jplayer.min.js" },
-    { "context": "editor", "path": "js/jquery.ut-audio.js" },
-    { "context": "editor", "path": "js/jquery.ut-audio-engine.js" },
 
-    { "context": "editor", "path": "css/antiscroll.css" },
-    { "context": "editor", "path": "js/antiscroll.custom.js" },
+    {"context": "editor", "path": "lib/css/antiscroll.css" },
+    {"context": "editor", "path": "lib/js/antiscroll.custom.js" },
 
-    { "context": "editor", "path": "js/fontdetect.2.1.js" },
+    {"context": "editor", "path": "lib/js/fontdetect.2.1.js" },
 
-    {                      "path": "css/common.css" },
-    { "context": "editor", "path": "css/editor.css" },
-    { "context": "player", "path": "css/player.css" },
-    {                      "path": "css/styles.css" },
-    {                      "path": "css/ut-audio-player-bottom-over.css" },
-    {                      "path": "css/ut-audio-player-sticker.css" },
-    { "context": "editor", "path": "css/ut-audio-player-preplay.css" },
+    {                     "path": "lib/css/common.css" },
+    {"context": "editor", "path": "lib/css/editor.css" },
+    {"context": "player", "path": "lib/css/player.css" },
+    {                     "path": "lib/css/ut-audio-player-bottom-over.css" },
+    {                     "path": "lib/css/ut-audio-player-sticker.css" },
+    {"context": "editor", "path": "lib/css/ut-audio-player-preplay.css" },
+    {                     "path": "css/styles.css" },
 
-    { "context": "editor", "path": "js/tracks.js" },
-    { "context": "editor", "path": "js/editor.js" },
-    { "context": "player", "path": "js/player.js" }
+    {"context": "editor", "path": "lib/js/editor.js" },
+    {"context": "player", "path": "lib/js/player.js" },
+    {"context": "editor", "path": "js/tracks.js" }
   ]
 }
