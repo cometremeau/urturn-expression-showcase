@@ -1,0 +1,280 @@
+#logo{
+  opacity: .3;
+}
+
+/*============================= BUTTONS ==============================*/
+
+.button-add-sticker{
+  z-index: 9;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+.desc.hasAudio #listbutton {
+  display: none;
+}
+
+#stickerArea {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.desc.hasAudio #stickerArea {
+  opacity: 1;
+  visibility: visible;
+}
+
+#player-area{
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  opacity: .3;
+  height: 40px;
+  line-height: 40px;
+}
+
+.player-overlay {
+  display: none;
+  width: 100%;
+  height: 45px;
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+}
+
+.hasAudio .player-overlay {
+  display: block;
+}
+
+.preview-mode .player-overlay {
+  display: none;
+}
+
+.preview-mode #player-area,
+.preview-mode #logo{
+  opacity: 1;
+}
+
+.desc:not(.hasAudio) #player-area,
+.popupOpened #player-area,
+.popupOpened #stickerArea,
+.popupOpened #listbutton,
+.popupOpened #logo,
+.popupOpened .ut-preview-action-list {
+  display: none !important;
+}
+
+/*============================== MENU ================================*/
+
+#list {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin-right: -288px;
+  margin-top: -188px;
+  color: white;
+  font-size: 16px;
+  z-index: 100;
+  padding-top: 100px;
+  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  visibility: visible;
+  opacity: .85;
+}
+
+#list.hidden_list{
+  -webkit-transform: translateY(20%);
+  -moz-transform: translateY(20%);
+  -ms-transform: translateY(20%);
+  -o-transform: translateY(20%);
+  transform: translateY(20%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+#list ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  overflow: scroll;
+  opacity: 0.8;
+}
+
+#list li{
+  position: relative;
+  height: 49px;
+  padding: 0 20px 0 47px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#list li::before {
+  display: inline-block;
+  content: '';
+  height: 100%;
+  width: 0;
+  vertical-align: middle;
+}
+
+#list li > span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#list .logo {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 121px;
+  height: 60px;
+  background-image: url(../../images/logo.png);
+  background-size:cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
+#list .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+
+.preplay {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+@media only screen and (max-device-width : 350px) { /* 320px */
+  #list {
+    position: absolute;
+    left: 0;
+    width: 270px;
+    height: 100%;
+    margin: 0;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+  #list.hidden_list{
+    -webkit-transform: translateX(-20%);
+    -moz-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    -o-transform: translateX(-20%);
+    transform: translateX(-20%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-device-width : 350px) and (max-device-width : 480px) {  /* 416px */
+  #list {
+    position: absolute;
+    left: 0;
+    width: 360px;
+    height: 100%;
+    margin: 0;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+  }
+  #list.hidden_list{
+    -webkit-transform: translateX(-20%);
+    -moz-transform: translateX(-20%);
+    -ms-transform: translateX(-20%);
+    -o-transform: translateX(-20%);
+    transform: translateX(-20%);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.ut-preview-action-list {
+  left: auto;
+  right: 10px;
+}
+
+.edit-btn {
+  display: none;
+}
+
+.preview-mode .edit-btn {
+  display: inline-block;
+}
+
+.preview-mode .preview-btn {
+  display: none;
+}
+
+.popup-tooltip {
+  position: absolute;
+  top: 40px;
+  left: 155px;
+  font: 20px/22px "CasinoHandRegular";
+}
+
+/*popup and logo style for mobile*/
+@media only screen and (max-device-width : 350px) { /* 320px */
+  .popup-tooltip {
+    top: 70px;
+    left: 5px;
+  }
+
+  #list .logo {
+    width: 122px;
+    height: 60px;
+    left: 5px;
+    top: 5px;
+  }
+}
+
+/*============================= SOURCE LINK ==============================*/
+.preview-mode .ut-audio-skin-bottom-over .ut-audio-ui-source {
+  cursor: pointer;
+}
+
+.preview-mode .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:hover {
+  color: rgba(180,180,180,1);
+}
+
+.preview-mode .ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
+  color: rgba(180,180,180,1);
+}
+
+.antiscroll-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.ut-sticker .ut-sticker-button-edit {
+  left: -22px;
+  top: -21px;
+}

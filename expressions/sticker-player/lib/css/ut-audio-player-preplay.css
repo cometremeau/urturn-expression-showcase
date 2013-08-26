@@ -1,0 +1,171 @@
+.ut-audio-skin-preplay.ut-audio-ui {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, helvetica, arial, sans-serif;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+.ut-audio-skin-preplay.ut-audio-ui div,
+.ut-audio-skin-preplay.ut-audio-ui h1,
+.ut-audio-skin-preplay.ut-audio-ui a {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+/*----------------------  PLAY BUTTON  -----------------------------------*/
+
+.ut-audio-skin-preplay .ut-audio-ui-play {
+  display: none;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: top;
+  text-align: center;
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+.ut-audio-skin-preplay.ut-audio-state-launch .ut-audio-ui-play,
+.ut-audio-skin-preplay.ut-audio-state-seek   .ut-audio-ui-play,
+.ut-audio-skin-preplay.ut-audio-state-play   .ut-audio-ui-play,
+.ut-audio-skin-preplay.ut-audio-state-pause  .ut-audio-ui-play{
+  display: block;
+}
+
+.ut-audio-ui-pause-icon,
+.ut-audio-ui-play-icon,
+.ut-audio-ui-seek-icon{
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left: 0;
+}
+
+.ut-audio-skin-preplay.ut-audio-state-launch  .ut-audio-ui-play .ut-audio-ui-play-icon,
+.ut-audio-skin-preplay.ut-audio-state-pause   .ut-audio-ui-play .ut-audio-ui-play-icon{
+  display: block;
+  padding-left: 3px;
+}
+
+.ut-audio-skin-preplay.ut-audio-state-play  .ut-audio-ui-play .ut-audio-ui-pause-icon{
+  display: block;
+}
+
+.ut-audio-skin-preplay.ut-audio-state-seek .ut-audio-ui-play .ut-audio-ui-seek-icon,
+.ut-audio-skin-preplay.ut-audio-state-loading .ut-audio-ui-play .ut-audio-ui-seek-icon{
+  display: block;
+}
+
+/*----------------------- LOADING PANEL ---------------------------------*/
+
+.ut-audio-skin-preplay .ut-audio-ui-loading {
+  display: none;
+}
+
+/*----------------------- ERROR PANEL ---------------------------------*/
+
+.ut-audio-skin-preplay .ut-audio-ui-error {
+  display: none;
+}
+
+/* SOME ADDITIONAL CSS*/
+
+.icon_spinner{
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}

@@ -1,0 +1,28 @@
+.ut-audio-skin-bottom-over .ut-audio-ui-play {
+  cursor: pointer;
+}
+
+#stickerArea .content {
+  padding: 1px;
+}
+
+#stickerArea .content:hover {
+  padding: 0;
+}
+
+#sticker:hover {
+  border: 6px solid white;
+}
+
+/*============================= SOURCE LINK ==============================*/
+.ut-audio-skin-bottom-over .ut-audio-ui-source {
+  cursor: pointer;
+}
+
+.ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:hover {
+  color: rgba(180,180,180,1);
+}
+
+.ut-audio-skin-bottom-over.ut-audio-touch-false .ut-audio-ui-source:active {
+  color: rgba(180,180,180,1);
+}
