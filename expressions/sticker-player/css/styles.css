@@ -3,8 +3,8 @@
 
 
 /* To set your logo, simply replace the PNG file named "logo.png" in 
-   the "images" folder by your own 328x160px "logo.png". This image
-   will appear in the top-left corner of each posts and in the 
+   the "images" folder with your own 328x160px "logo.png". This image
+   will appear in the top-left corner of each post and in the 
    header of the playlist menu */
 
 
@@ -14,7 +14,7 @@
 	/* Menu background color */
   background: rgb(30,30,30);
   
-  /* You can set a menu background image simply by adding a 640x640px PNG 
+  /* You can set a menu background image by simply adding a 640x640px PNG 
   file named "background.png" in the "images" folder */
 }
 /* ------------------------------------------------------------------- */
@@ -30,7 +30,7 @@
   background-color: rgb(50,50,50);
   
   /* Font */
-  /* Choose one of the fonts bellow: 
+  /* Choose one of the fonts below: 
      Roboto   (Sans Serif)
      Gentium  (Serif)
      Sanchez  (Slab Serif)
@@ -61,7 +61,7 @@
 
 
 /* ------------------------------------------------------------------- */
-/* Close icon color */
+/* "Close" icon color */
 #list .close {
   color: rgb(230,230,230);
 }
@@ -69,7 +69,7 @@
 
 
 /* ------------------------------------------------------------------- */
-/* Play button */
+/* "Play" button */
 .ut-audio-skin-preplay .ut-audio-ui-play {
   /* Background color */
   background: rgb(230,230,230);
@@ -77,12 +77,12 @@
   /* Icon color */
   color: rgb(50,50,50);
 }
-/* Play button when the mouse cursor is over */
+/* "Play" button when the mouse cursor is over */
 .ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:hover {
   /* Background color */
   background: rgb(210,210,210);
 }
-/* Play button on mouse click */
+/* "Play" button on mouse click */
 .ut-audio-skin-preplay.ut-audio-touch-false .ut-audio-ui-play:active {
   /* Background color */
   background: rgb(190,190,190);

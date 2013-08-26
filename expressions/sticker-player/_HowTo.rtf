@@ -1,18 +1,147 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1138\cocoasubrtf510
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-\paperw11905\paperh16837\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf390
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;\f2\froman\fcharset0 Times-Roman;
+\f3\fmodern\fcharset0 CourierNewPSMT;}
+{\colortbl;\red255\green255\blue255;\red176\green0\blue5;\red255\green255\blue255;\red46\green46\blue46;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22600\viewh11660\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
 
-\f0\b\fs36 \cf0 TO CREATE YOUR OWN EXPRESSION: 
+\f0\b\fs36 \cf0 TO CREATE YOUR OWN SOUNDCARD EXPRESSION: 
 \b0 \
-\
+\pard\pardeftab720\sl340
 
-\fs32 - define the design of your expression in 
+\f1\fs30 \cf0 Post a collection of tracks, let users select from a pre-defined list, all the functionality of the Music Postcard Expression but with a set playlist. Download and install the Urturn toolbelt and the SoundCard template and kick out the jams.
+\f0\fs36 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\fs32 \cf0 \ul \ulc0 \
+QUICKGUIDE\ulnone \
+- define the design of your expression in 
 \b css/styles.css
 \b0 \
 - define your playlist tracks in 
 \b js/tracks.js\
-\
 
-\b0 That's it! Enjoy.}
+\b0 \
+\ul FULL RECIPE\ulnone \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Create your own SoundCard Expression
+\f2\b0\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Install Urturn
+\f2\b0\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Make sure you have the latest version of the Urturn toolbelt installed
+\f2\fs24 \
+\pard\pardeftab720\sl460\sa240
+
+\f3\fs30 \cf2 \cb3 curl -s install.urturn.com | sh
+\f2\fs24 \cf0 \cb1 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Create Your Expression
+\f2\b0\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Create a new Expression with the SoundCard template
+\f2\fs24 \
+
+\f1\fs30 Enter the following command in a new terminal window.
+\f2\fs24 \
+\pard\pardeftab720\sl460\sa240
+
+\f3\fs30 \cf2 \cb3 urturn create mysticker -t soundcard
+\f2\fs24 \cf0 \cb1 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Modify Your Assets
+\f2\b0\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Add your playlist tracks in tracks.js (see file for examples).
+\f2\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Note
+\b0  Only tracks from SoundCloud and iTunes are available at this time (Only US & UK iTunes links work in all countries).
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Modify your styling in the style.css (see file for examples).
+\f2\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Note 
+\b0 See CSS base file icon names.
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Add your your logo, simply replace the PNG file named "logo.png" in the "images" folder with your own 328x160px "logo.png". This image will appear in the top-left corner of each post and in the header of the playlist menu.
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf4 \cb3 Replace 
+\i banner.png
+\i0  in your local resources folder with another png or jpg file (recommended dimensions are 800x408px).
+\f2\fs24 \cf0 \cb1 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 You can also set a menu background image by simply adding a 640x640px PNG file named "background.png" in the "images" folder.
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Deploy Your Expression
+\f2\b0\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 To package your Expression and upload it to Urturn, enter the following command in the terminal window:
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f3\fs30 \cf2 \cb3 urturn deploy soundcard
+\f2\fs24 \cf0 \cb1 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Enter your e-mail and Urturn password, when prompted, or make sure you are logged in to urturn.com before you deploy.
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 When the upload process is complete, copy the link displayed in the terminal window into your browser.
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sl340
+
+\f1\b\fs30 \cf0 Publish
+\f2\b0\fs24 \
+\pard\pardeftab720\sl340
+
+\f1\fs30 \cf0 Make some test posts on the server. When you\'92re happy with your sticker, share it with the world!
+\f2\fs24 \
+\pard\pardeftab720
+\cf0 \
+\
+\
+\
+}
