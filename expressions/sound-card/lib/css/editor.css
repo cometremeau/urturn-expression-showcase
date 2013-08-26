@@ -110,7 +110,6 @@
   padding: 0;
   margin: 0;
   height: 100%;
-  overflow: scroll;
   opacity: 0.8;
 }
 
@@ -141,7 +140,7 @@
   top: 20px;
   width: 121px;
   height: 60px;
-  background-image: url(../images/logo.png);
+  background-image: url(../../images/logo.png);
   background-size:cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;

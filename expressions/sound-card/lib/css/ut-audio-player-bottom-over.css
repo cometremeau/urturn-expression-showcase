@@ -28,9 +28,9 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 1);
-  background-color: rgb(255, 255, 255);
-  color: black;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  background-color: rgb(250, 250, 250);
+  color: rgb(70,70,70);
   font-size: 22px;
   line-height: 40px;
   text-align: center;
@@ -70,6 +70,7 @@
   bottom: 20px;
   left: 60px; /*35px;*/
   width: -webkit-calc(100% - 155px);
+  width:    -moz-calc(100% - 155px);
   width:         calc(100% - 155px);
   white-space: nowrap;
   line-height: 30px;
@@ -79,8 +80,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bold;
-  color: rgba(255,255,255,1);
-  text-shadow: 0 0 3px rgba(0,0,0,.5);
+  color: rgb(250, 250, 250);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   font-family: "Roboto";
   text-align: left;
   font-size: 16px;
@@ -102,6 +103,7 @@
   left: 60px; /*10px;*/
   bottom: 10px;
   width: -webkit-calc(100% - 120px);
+  width:    -moz-calc(100% - 120px);
   width:         calc(100% - 120px);
   height: 10px;
   margin: 0;
@@ -112,7 +114,7 @@
   text-overflow: ellipsis;
   font-weight: normal;
   color: rgba(255,255,255,1);
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgb(70, 70, 70);
   text-shadow: 0 0 0 transparent;
   text-align: left;
   font-size: 24px;
@@ -181,7 +183,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: normal;
-  color: rgba(255,255,255,1);
+  color: rgb(250, 250, 250);
   text-shadow: 0 0 0 transparent;
   text-align: right;
   font-size: 12px;
@@ -201,7 +203,7 @@
   height: 14px;
   line-height: 14px;
   color: rgba(255,255,255,1);
-  text-shadow: 0 0 5px rgba(0,0,0,1);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   font-size: 16px;
   font-weight: bold;
 }
@@ -233,8 +235,8 @@
   overflow: visible;
   text-overflow: ellipsis;
   font-weight: normal;
-  color: rgba(255,255,255,1);
-  text-shadow: 0 0 5px rgba(0,0,0,1);
+  color: rgb(250, 250, 250);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
   text-align: center;
   font-size: 38px;
 }
@@ -303,7 +305,7 @@
   line-height: 30px;
   bottom:10px;
   right: 10px;
-  color: #A0A0A0;
+  color: rgb(250, 250, 250);
   text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
   font-size: 18px;
   text-align: right;

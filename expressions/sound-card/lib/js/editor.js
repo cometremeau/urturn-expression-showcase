@@ -71,7 +71,7 @@ UT.Expression.ready(function(post) {
 
   that.view.utimage.on('utImage:ready', function(event, data) {
     if(!data.data) {
-      that.view.utimage.utImage('dialog');
+      that.view.utimage.utImage('dialog', {dialog: {fastQuit: true}});
     } else {
       $("#container").addClass("show");
       if(post.storage.audioUrl) {
@@ -90,16 +90,16 @@ UT.Expression.ready(function(post) {
   });
 
   that.view.utimage.on('utImage:mediaReady', function(event, data) {
+    that.view.listButton.css("display", "");
+    that.view.stickerArea.css("display", "");
+    that.view.previewBtn.css("display", "");
     $("#container").addClass("show");
     that.onImageSizeChangedOutside(data);
-    that.adaptPopupSize();
+    
     //adapt logo image height
     that.view.logo.height(that.view.logo.width()/2.05);
 
     that.data.imagePresent = true;
-    that.view.listButton.css("display", "");
-    that.view.stickerArea.css("display", "");
-    that.view.previewBtn.css("display", "");
     if(post.storage.audioUrl) {
       post.valid(true);
       that.hideList();
@@ -108,6 +108,9 @@ UT.Expression.ready(function(post) {
       that.showList();
       that.view.desc.removeClass("hasAudio");
     }
+
+    that.adaptPopupSize();
+    $('.antiscroll-wrapper').antiscroll({autoHide: false});
   });
 
   that.view.utimage.on('utImage:mediaRemove', function() {
@@ -177,7 +180,8 @@ UT.Expression.ready(function(post) {
       id: "sticker",
       editable: {
         movable: true,
-        resizable: true
+        resizable: true,
+        rotatable: true
       },
       ui: {
         remove: false,
@@ -192,7 +196,7 @@ UT.Expression.ready(function(post) {
           top: "0",
           left: "0",
           right: "0",
-          bottom: "45px"
+          bottom: "60px"
         },
         sizeLimits: {
           minWidth: "60px",
@@ -236,7 +240,7 @@ UT.Expression.ready(function(post) {
         editable: false
       }).on('utAudio:change',function() {
         //console.log('--- utAudio:change -> audio data/parameters was changed');
-      }).on('utAudio:ready',function(e) {
+      }).on('utAudio:ready',function(e, data) {
         //console.log('--- utAudio:ready -> audio component ready to accept events');
       }).on('utAudio:mediaReady',function(e, data) {
         //console.log('--- utAudio:canplay -> audio ready to be played', data);
@@ -246,6 +250,11 @@ UT.Expression.ready(function(post) {
         } else {
           $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Buy on iTunes</a>');
         }
+        $("#sourceTip a").on('click', function (event) {
+          window.open($(this).attr('href'), '_blank');
+          event.stopPropagation();
+          event.preventDefault();
+        });
       }).on('utAudio:play',function(){
         //console.log('--- utAudio:play -> audio started to play');
         $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
@@ -292,7 +301,6 @@ UT.Expression.ready(function(post) {
       that.view.list.css('height', '376px');
     }
     that.view.list.css('margin-top', - that.view.list.outerHeight() / 2);
-    $('.antiscroll-wrapper').antiscroll();
   };
 
   that.changeMode = function(mode) {
@@ -302,6 +310,7 @@ UT.Expression.ready(function(post) {
       that.view.desc.removeClass('preview-mode').addClass('edit-mode');
       that.view.stickerArea.find(".ut-sticker").utSticker("editable", true);
       that.view.utimage.utImage("editable", true);
+      $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-launch');
     } else {
       that.settings.mode = 'preview';
       that.view.desc.removeClass('edit-mode').addClass('preview-mode');
@@ -361,13 +370,15 @@ UT.Expression.ready(function(post) {
     that.attachPlayer(listNode, tracksList[j].url, "prePlayer" + (lastIndex + j + 1));
   }
 
-  that.view.hiddenList.find('li span').each(function(){
-    var self = $(this);
-    fontdetect.onFontLoaded("Roboto", function(){
+  fontdetect.onFontLoaded("Roboto", function () {
+    that.view.hiddenList.find('li span').each(function () {
+      var self = $(this);
       that.adaptSize(self.html(), self);
-      that.adaptPopupSize();
-    }, function(){console.error('BAD .. FONT NOT LOADED IN 10 SEC... editor.js line 368');}, {msInterval: 100, msTimeout: 10000});
-  });
+    });
+    that.adaptPopupSize();
+  }, function () {
+    console.error('BAD .. FONT NOT LOADED IN 10 SEC... editor.js line 368');
+  }, {msInterval: 500, msTimeout: 10000});
 
   //that.adaptPopupSize();
 

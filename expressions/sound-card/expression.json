@@ -1,0 +1,28 @@
+{
+  "title": "sound card",
+  "description": "Nice and amazing sticker with music player inside",
+  "system_name": "sound-card",
+  "version": "1.2.0",
+  "api_version": "1.2.0",
+  "platform": [ "desktop", "ios" ],
+  "assets": [],
+  "dependencies": [
+
+    {"context": "editor", "path": "lib/css/antiscroll.css" },
+    {"context": "editor", "path": "lib/js/antiscroll.custom.js" },
+
+    {"context": "editor", "path": "lib/js/fontdetect.2.1.js" },
+
+    {                     "path": "lib/css/common.css" },
+    {"context": "editor", "path": "lib/css/editor.css" },
+    {"context": "player", "path": "lib/css/player.css" },
+    {                     "path": "lib/css/ut-audio-player-bottom-over.css" },
+    {                     "path": "lib/css/ut-audio-player-sticker.css" },
+    {"context": "editor", "path": "lib/css/ut-audio-player-preplay.css" },
+    {                     "path": "css/styles.css" },
+
+    {"context": "editor", "path": "lib/js/editor.js" },
+    {"context": "player", "path": "lib/js/player.js" },
+    {"context": "editor", "path": "js/tracks.js" }
+  ]
+}
