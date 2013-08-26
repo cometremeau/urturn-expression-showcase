@@ -107,7 +107,7 @@ UT.Expression.ready(function(post) {
     editable: false
   }).on('utAudio:change',function(){
     //console.log('--- utAudio:change -> audio data/parameters was changed');
-  }).on('utAudio:ready',function(e){
+  }).on('utAudio:ready',function(e, data){
     //console.log('--- utAudio:ready -> audio component ready to accept events');
   }).on('utAudio:mediaReady',function(e, data) {
     //console.log('--- utAudio:canplay -> audio ready to be played', data);
@@ -117,6 +117,11 @@ UT.Expression.ready(function(post) {
     } else {
       $("#sourceTip").html('<a href="' + post.storage.audioUrl + '" target="_blank">Buy on iTunes</a>');
     }
+    $("#sourceTip a").on('click', function (event) {
+      window.open($(this).attr('href'), '_blank');
+      event.stopPropagation();
+      event.preventDefault();
+    });
   }).on('utAudio:play',function(){
     //console.log('--- utAudio:play -> audio started to play');
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-play');
@@ -139,6 +144,12 @@ UT.Expression.ready(function(post) {
     //console.log('--- utAudio:seek -> audio seek started');
     $("#sticker").alterClass('ut-audio-state-*', 'ut-audio-state-seek');
     that.state = 'seek';
+  });
+
+  $("#logo").on('click', function (event) {
+    window.open($(this).attr('href'), '_blank');
+    event.stopPropagation();
+    event.preventDefault();
   });
 
   var src_lick = that.view.player.find(".ut-audio-ui-source");
