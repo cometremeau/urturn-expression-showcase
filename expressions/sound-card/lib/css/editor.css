@@ -95,7 +95,8 @@
   opacity: .85;
 }
 
-#list.hidden_list{
+#list.hidden_list,
+#list.init_list{
   -webkit-transform: translateY(20%);
   -moz-transform: translateY(20%);
   -ms-transform: translateY(20%);

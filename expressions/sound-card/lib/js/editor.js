@@ -95,7 +95,7 @@ UT.Expression.ready(function(post) {
     that.view.previewBtn.css("display", "");
     $("#container").addClass("show");
     that.onImageSizeChangedOutside(data);
-    
+
     //adapt logo image height
     that.view.logo.height(that.view.logo.width()/2.05);
 
@@ -138,7 +138,7 @@ UT.Expression.ready(function(post) {
   that.showList = function(){
     post.valid(false);
     that.view.desc.addClass("popupOpened");
-    that.view.list.removeClass('hidden_list');
+    that.view.list.removeClass('init_list hidden_list');
     that.view.utimage.utImage("editable", false);
   };
 
@@ -348,6 +348,8 @@ UT.Expression.ready(function(post) {
     return false;
   });
 
+  var tracksList = window.tracksList;
+
   var tmp = that.view.list.find("li");
   var qq;
   for(qq = 0; qq < tmp.length; qq++) {
@@ -359,7 +361,7 @@ UT.Expression.ready(function(post) {
   //index of last player
   var lastIndex = tmp.length - 1;
 
-  var tracksList = window.tracksList;
+
   for (var j = 0; j < tracksList.length; j++) {
     var listNode = $('<li></li>')
       .appendTo(that.view.hiddenList)
