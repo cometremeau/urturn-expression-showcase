@@ -58,6 +58,7 @@ UT.Expression.ready(function(post) {
    * main container
    ********************************************************************************/
   var element = $(post.node);
+  element.addClass("giraffe");
   if(that.isTouch) {
     element.addClass("mobile");
   }

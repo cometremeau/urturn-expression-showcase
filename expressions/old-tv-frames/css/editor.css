@@ -10,6 +10,18 @@
 }
 
 .container {
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+}
+
+.container.show {
+  visibility: visible;
+  opacity: 1;
+  z-index: 1;
+}
+
+.container {
   background-color: rgb(247,247,247);
 }
 

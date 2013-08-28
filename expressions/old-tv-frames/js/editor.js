@@ -1,5 +1,7 @@
+/* global UT:true */
 UT.Expression.ready(function(post) {
   "use strict";
+
   var that = {};
   that.ui = {};
   that.data = {};
