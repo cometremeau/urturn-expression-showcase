@@ -1,15 +1,9 @@
 
 // ONLY ITUNES AND SOUNDCLOUD TRACKS ARE AVAILABLE FOR NOW
 
-<<<<<<< HEAD:expressions/sticker-player/js/tracks.js
-/* !!!IMPORTANT!!! 
-   ONLY USE US AND UK STORES ITUNES TRACKS. 
-   TRACKS FROM OTHER STORES WILL NOT BE AVAILABLE IN ALL COUNTRIES */
-=======
 /* !!!IMPORTANT!!!
-   USE ONLY US AND UK STORES ITUNES TRACKS.
-   OTHER STORES TRACKS WON"T BE AVAILABLE IN ALL COUNTRIES */
->>>>>>> 4bf521cba1503151e183d878beccf3faa3199958:expressions/sound-card/js/tracks.js
+   ONLY USE US AND UK STORES ITUNES TRACKS.
+   TRACKS FROM OTHER STORES WILL NOT BE AVAILABLE IN ALL COUNTRIES */
 
 window.tracksList = [
 /* ----------------------------------------------------------------------------------------- */

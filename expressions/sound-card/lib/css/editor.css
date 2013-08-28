@@ -82,10 +82,10 @@
   font-size: 16px;
   z-index: 100;
   padding-top: 100px;
-  -webkit-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-  -moz-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-  -o-transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
-  transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -webkit-transition: visibility 0.1s cubic-bezier(0.25, 0.5, 0.5, 0.9), opacity 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9),  -webkit-transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -moz-transition:    visibility 0.1s cubic-bezier(0.25, 0.5, 0.5, 0.9), opacity 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9),     -moz-transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  -o-transition:      visibility 0.1s cubic-bezier(0.25, 0.5, 0.5, 0.9), opacity 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9),       -o-transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
+  transition:         visibility 0.1s cubic-bezier(0.25, 0.5, 0.5, 0.9), opacity 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9),          transform 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
   -webkit-transform: translateY(0);
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);

@@ -2,8 +2,8 @@
   "title": "sound card",
   "description": "",
   "system_name": "soundCard",
-  "version": "1.2.0",
-  "api_version": "1.2.0",
+  "version": "1.0.0",
+  "api_version": "1.2.1",
   "platform": [ "desktop", "ios" ],
   "assets": [],
   "dependencies": [
