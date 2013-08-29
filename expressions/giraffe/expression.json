@@ -2,10 +2,10 @@
   "title":"Giraffe",
   "description": "Be a giraffe!",
   "system_name": "giraffe",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "static_view": true,
   "offline_support": true,
-  "api_version": "1.2.1-alpha4",
+  "api_version": "1.2.1",
   "assets":[],
   "dependencies":[
     {"context":"editor", "path":"css/utPopupChooser.css"},

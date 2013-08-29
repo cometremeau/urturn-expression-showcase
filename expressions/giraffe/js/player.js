@@ -48,8 +48,8 @@ UT.Expression.ready(function(post) {
   };
   // ========= ready state controller end ==========//
 
-  that.readyStateController.setKeys(["image","img1","img2","img3","img4","img5","img6","img7","img8"], function(keys){
-    post.size(keys.image.data.height, function() {
+  that.readyStateController.setKeys(["size","image","img1","img2","img3","img4","img5","img6","img7","img8"], function(keys){
+    post.size(keys.size.data.height, function() {
       that.image.find(".ut-sticker").utSticker("update");
     });
   });
@@ -102,10 +102,11 @@ UT.Expression.ready(function(post) {
     $.each(that.parameters.items, function(i,v) {
       that._addSticker(v);
     });
+    that.readyStateController.readyKey("image");
   });
 
   that.image.on("utImage:resize", function(event, data){
-    that.readyStateController.readyKey("image", data);
+    that.readyStateController.readyKey("size", data);
   });
 
   that.image.utImage();
