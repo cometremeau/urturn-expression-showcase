@@ -37,10 +37,15 @@
 
 .slide_animation .video_element {
   -webkit-transition: opacity 100ms linear, -webkit-transform 100ms linear;
-  -moz-transition: opacity 100ms linear, -moz-transform 100ms linear;
   -ms-transition: opacity 100ms linear, -ms-transform 100ms linear;
   -o-transition: opacity 100ms linear, -o-transform 100ms linear;
   transition: opacity 100ms linear, transform 100ms linear;
+}
+
+/*hack for firefox (transform + flash :(    ))*/
+.firefox.slide_animation .video_element {
+  -moz-transition: opacity 100ms linear, left 100ms linear;
+  transition: opacity 100ms linear, left 100ms linear;
 }
 
 /*.video_element:not(.selected) {*/

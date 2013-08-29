@@ -8,11 +8,17 @@ UT.Expression.ready(function(post) {
   that.methods = {};
   that.isTouch = (('ontouchstart' in window) || (window.navigator.msMaxTouchPoints > 0));
   that.isMSIE = (navigator.userAgent.indexOf("MSIE") !== -1);
+  that.isFF = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
   /**
    * prepare referance to UI elements
    */
   that.ui.container = $(".container");
+
+  if (that.isFF) {
+    that.ui.container.addClass('firefox');
+  }
+
   that.ui.videos = $(".video_element");
   that.ui.videoPlayer = null;
   that.ui.styleSwitcher = $(".style_switcher");
@@ -98,13 +104,20 @@ UT.Expression.ready(function(post) {
     }
 
     var off = (percent/100) * that.data.expWidth;
-    that.ui.videos.css({
-      "-webkit-transform": "translateX("+off+"px) rotateZ(0)",
-      "-moz-transform": "translateX("+off+"px) rotateZ(0)",
-      "-ms-transform": "translateX("+off+"px) rotateZ(0)",
-      "-o-transform": "translateX("+off+"px) rotateZ(0)",
-      "transform": "translateX("+off+"px) rotateZ(0)"
-    });
+    if (!that.isFF) {
+      that.ui.videos.css({
+        "-webkit-transform": "translateX("+off+"px) rotateZ(0)",
+        "-moz-transform": "translateX("+off+"px) rotateZ(0)",
+        "-ms-transform": "translateX("+off+"px) rotateZ(0)",
+        "-o-transform": "translateX("+off+"px) rotateZ(0)",
+        "transform": "translateX("+off+"px) rotateZ(0)"
+      });
+    } else {
+      that.ui.videos.each(function(index, el){
+        $(this).css('left', that.data.expWidth * index + off + that.data.expWidth / 2);
+      });
+    }
+    
   };
 
   /**
@@ -296,7 +309,7 @@ UT.Expression.ready(function(post) {
   $(that.ui.videos.get(0)).find(".video").append(that.ui.videoPlayer);
   that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false, title:false, source:false }} : {});
   that.ui.videoPlayer.on("utVideo:ready", function(event, data){
-    post.valid(!!data.data);
+    post.valid(!!data);
   });
   that.ui.videoPlayer.on("utVideo:mediaReady", function(){
     post.valid(true);
