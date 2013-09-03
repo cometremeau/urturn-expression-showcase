@@ -50,6 +50,7 @@
 
     that.readyStateController.setKeys(["size","image","font"], function(keys){
       post.size(keys.size.data.height);
+      post.display();
     });
 
     that.readyStateController.cacheFont("font", "antonregular");

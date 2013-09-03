@@ -5,6 +5,8 @@
 
   UT.Expression.ready(function(post) {
 
+    post.enableRotation(true);
+
     $("#meme")
       .utImage({
         styles: {
@@ -36,6 +38,12 @@
           jQuery(":utText").utText('adaptFontSize');
         }, 50);
         checkValidContent();
+      })
+      .on("utImage:mediaAdd", function(event, data){
+        if(((data.width/data.height) > 1 && ($("#meme").width()/$("#meme").height()) < 1) ||
+          ((data.width/data.height) < 1 && ($("#meme").width()/$("#meme").height()) > 1)) {
+          post.notification('suggestRotation');
+        }
       });
     $("#header_text")
       .utText({
