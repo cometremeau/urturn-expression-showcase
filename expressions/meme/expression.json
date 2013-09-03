@@ -2,7 +2,7 @@
   "title": "MEME",
   "description": "",
   "system_name": "meme",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "api_version": "1.2.2-alpha3",
   "platform": [ "desktop", "ios", "bookmarklet" ],
   "indexed_keys": [ "indexedContent" ],
