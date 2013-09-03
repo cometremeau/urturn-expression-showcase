@@ -54,6 +54,7 @@ UT.Expression.ready(function (post) {
 
   that.readyStateController.setKeys(["image","overlay"], function(){
     post.size($(post.node).width()/post.storage.ratio);
+    post.display();
   });
 
   /**
