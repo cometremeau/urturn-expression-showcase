@@ -92,6 +92,9 @@ UT.Expression.ready(function(post) {
           post.valid(false);
           that.ui.videoPlayer.utVideo('dialog');
         });
+        that.ui.videoPlayer.on("utVideo:mediaAdd", function(){
+          post.valid(true);
+        });
       } else {
         that.ui.videoPlayer.detach();
         obj.append(that.ui.videoPlayer);
@@ -312,7 +315,7 @@ UT.Expression.ready(function(post) {
   $(that.ui.videos.get(0)).find(".video").append(that.ui.videoPlayer);
   that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false, title:false, source:false }} : {});
   that.ui.videoPlayer.on("utVideo:ready", function(event, data){
-    post.valid(!!data);
+    post.valid(!!data.data);
   });
   that.ui.videoPlayer.on("utVideo:mediaReady", function(){
     post.valid(true);
@@ -320,6 +323,9 @@ UT.Expression.ready(function(post) {
   that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
     post.valid(false);
     that.ui.videoPlayer.utVideo('dialog');
+  });
+  that.ui.videoPlayer.on("utVideo:mediaAdd", function(){
+    post.valid(true);
   });
 
   // update element position
