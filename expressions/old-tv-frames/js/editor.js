@@ -2,6 +2,8 @@
 UT.Expression.ready(function(post) {
   "use strict";
 
+  post.enableRotation(true);
+
   var that = {};
   that.ui = {};
   that.data = {};
