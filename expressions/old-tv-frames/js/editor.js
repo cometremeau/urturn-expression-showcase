@@ -66,7 +66,7 @@ UT.Expression.ready(function(post) {
     $(that.ui.videos[that.data.currentElement]).addClass("selected");
 
     // update videoPlayer position
-    if(that.ui.videoPlayer) {
+    if(that.ui.videoPlayer && that.ui.videoPlayer.utVideo("data")) {
       that.ui.videoPlayer.utVideo("stop");
     }
 
@@ -88,6 +88,7 @@ UT.Expression.ready(function(post) {
         });
         that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
           post.valid(false);
+          that.ui.videoPlayer.utVideo('dialog');
         });
       } else {
         that.ui.videoPlayer.detach();
@@ -316,6 +317,7 @@ UT.Expression.ready(function(post) {
   });
   that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
     post.valid(false);
+    that.ui.videoPlayer.utVideo('dialog');
   });
 
   // update element position
