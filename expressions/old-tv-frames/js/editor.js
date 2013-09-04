@@ -120,7 +120,7 @@ UT.Expression.ready(function(post) {
         $(this).css('left', that.data.expWidth * index + off + that.data.expWidth / 2);
       });
     }
-    
+
   };
 
   /**
