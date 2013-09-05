@@ -4,7 +4,7 @@
   "system_name": "old-tv-frames",
   "version": "1.2.19",
   "admins":["Alexey"],
-  "api_version":"1.2.2-alpha3",
+  "api_version":"1.2.2",
   "indexed_keys": ["indexedContent"],
   "assets":[
     "images/1_export.png",
