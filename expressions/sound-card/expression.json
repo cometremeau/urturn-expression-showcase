@@ -3,7 +3,7 @@
   "description": "",
   "system_name": "soundCard",
   "version": "1.0.2",
-  "api_version": "1.2.2-alpha3",
+  "api_version": "1.2.3-alpha3",
   "platform": [ "desktop", "ios" ],
   "assets": [],
   "dependencies": [

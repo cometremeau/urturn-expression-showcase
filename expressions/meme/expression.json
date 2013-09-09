@@ -3,7 +3,7 @@
   "description": "",
   "system_name": "meme",
   "version": "0.9.12",
-  "api_version": "1.2.2-alpha3",
+  "api_version": "1.2.3-alpha3",
   "platform": [ "desktop", "ios", "bookmarklet" ],
   "indexed_keys": [ "indexedContent" ],
   "assets": [ "fonts/anton/anton-webfont.woff" ],
