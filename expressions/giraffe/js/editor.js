@@ -88,6 +88,10 @@ UT.Expression.ready(function(post) {
   });
 
   that.image.on("utImage:mediaReady", function(event, data){
+    if(post.isStatic) {
+      post.isStatic(!(data.data && data.data.url && data.data.url.match(/(\.gif$|data\/gif)/i)));
+    }
+
     that.image.find(".ut-sticker").utSticker("show");
     that.desc.addClass("show");
     that.onImageSizeChangedOutside(data.width, data.height);
