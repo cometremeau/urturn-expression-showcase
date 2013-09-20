@@ -12,6 +12,17 @@ UT.Expression.ready(function(post) {
   that.isMSIE = (navigator.userAgent.indexOf("MSIE") !== -1);
   that.isFF = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
+  that.waiter = UT.preloader.waitFor(["image","over1","over2","over3","over4","over5"], false);
+  that.waiter.on("load", function() {
+    post.display();
+  });
+
+  that.waiter.readyImage("over1", "images/1_export.png");
+  that.waiter.readyImage("over2", "images/2_export.png");
+  that.waiter.readyImage("over3", "images/3_export.png");
+  that.waiter.readyImage("over4", "images/4_export.png");
+  that.waiter.readyImage("over5", "images/5_export.png");
+
   /**
    * prepare referance to UI elements
    */
@@ -50,7 +61,7 @@ UT.Expression.ready(function(post) {
     }
     post.storage.design = that.data.currentElement;
     post.storage.ratio = that.data.frameRatios[that.data.currentElement];
-    post.storage.save();
+    post.save();
 
     that.methods.onResize(false);
 
@@ -315,9 +326,17 @@ UT.Expression.ready(function(post) {
   $(that.ui.videos.get(0)).find(".video").append(that.ui.videoPlayer);
   that.ui.videoPlayer.utVideo(that.isTouch ? {ui:{play:false, playing:false, title:false, source:false }} : {});
   that.ui.videoPlayer.on("utVideo:ready", function(event, data){
+    if(!data.data) {
+      that.waiter.ready("image");
+    }
     post.valid(!!data.data);
   });
-  that.ui.videoPlayer.on("utVideo:mediaReady", function(){
+  that.ui.videoPlayer.on("utVideo:mediaReady", function(event, data) {
+    if(data.thumbnail_url) {
+      that.waiter.readyImage("image", data.thumbnail_url);
+    } else {
+      that.waiter.ready("image");
+    }
     post.valid(true);
   });
   that.ui.videoPlayer.on("utVideo:mediaRemove", function(){
