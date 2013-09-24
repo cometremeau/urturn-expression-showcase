@@ -1,8 +1,8 @@
 {
   "title": "Old TV frames",
-  "description": "",
+  "description": "Put your videos in a retro frame",
   "system_name": "old-tv-frames",
-  "version": "1.2.23",
+  "version": "1.2.24",
   "admins":["Alexey"],
   "api_version":"1.2.6",
   "indexed_keys": ["indexedContent"],
